@@ -95,7 +95,10 @@
           <h4>Boutique</h4>
           <a href="matelas.html">Matelas</a>
           <a href="collections.html">Chambres à coucher</a>
+          <a href="matelas.html?cat=lits">Lits &amp; têtes de lit</a>
           <a href="matelas.html?cat=sectionnels">Sectionnels-lits</a>
+          <a href="matelas.html?cat=salon">Salon</a>
+          <a href="matelas.html?cat=salle">Salle à manger</a>
           <a href="bases.html">Bases &amp; sommiers</a>
           <a href="liquidation.html">Liquidation</a>
         </div>

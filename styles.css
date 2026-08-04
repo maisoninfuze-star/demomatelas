@@ -933,6 +933,10 @@ body.cart-open .cart-drawer { transform: translateX(0); }
    contact, guide, bases, liquidation
    ============================================================ */
 
+/* ---------- Grand catalogue : rendu paresseux hors écran ---------- */
+.cat-grid .product-card { content-visibility: auto; contain-intrinsic-size: 300px 430px; }
+.filter-bar { flex-wrap: wrap; }
+
 /* ---------- Grille de collections ---------- */
 .col-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }
 .col-card {
