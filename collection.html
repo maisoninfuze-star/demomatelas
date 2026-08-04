@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collection — Literie d'Amitié, Montréal</title>
+  <meta name="description" content="Découvrez la collection complète : lit, commode, miroir, chiffonnier et tables de nuit assortis. Prix d'usine, livraison soignée dans le Grand Montréal.">
+  <meta name="theme-color" content="#0d1626">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=5">
+</head>
+<body data-page="collections">
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div data-header></div>
+
+  <main id="main">
+    <section class="page-hero" id="collectionRoot">
+      <div class="container">
+        <nav class="crumbs" aria-label="Fil d'Ariane">
+          <a href="index.html">Accueil</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+          <a href="collections.html">Collections</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+          <span id="collCrumb">Collection</span>
+        </nav>
+
+        <div class="coll-hero">
+          <div class="coll-hero-media reveal"><img id="collImg" src="" alt="" decoding="async"></div>
+          <div>
+            <span class="eyebrow" id="collKicker">Collection</span>
+            <h1 id="collTitle">Collection</h1>
+            <p class="lede" id="collDesc"></p>
+            <div class="coll-feats" id="collFeats"></div>
+            <div class="coll-hero-cta">
+              <a class="btn" id="collShopBtn" href="#collProducts">Voir les pièces <span class="btn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+              <a class="btn btn--ghost" href="tel:+14383754949">Conseil expert</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight" id="collProducts">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">La collection</span>
+          <h2 id="collProductsTitle" style="font-family:var(--serif);font-weight:540;letter-spacing:-0.01em">Chaque pièce, à l'unité.</h2>
+          <p class="lede">Composez la chambre à votre rythme — ou prenez l'ensemble complet ci-dessous.</p>
+        </div>
+        <div class="cat-grid" id="collGrid"></div>
+      </div>
+    </section>
+
+    <section class="section section--paper2" id="collBundleWrap" hidden>
+      <div class="container">
+        <div class="bundle" id="collBundle"></div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="section-head reveal" style="text-align:center;margin-inline:auto">
+          <span class="eyebrow" style="justify-content:center">Continuez l'exploration</span>
+          <h2 style="font-family:var(--serif);font-weight:540">Autres collections</h2>
+        </div>
+        <div class="col-grid" id="collRelated"></div>
+      </div>
+    </section>
+  </main>
+
+  <div data-footer></div>
+
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="data.js?v=5"></script>
+  <script src="partials.js?v=5"></script>
+  <script src="app.js?v=5"></script>
+</body>
+</html>
