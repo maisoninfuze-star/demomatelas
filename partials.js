@@ -63,6 +63,10 @@
       <div class="nav-links">${navLinks}</div>
       <div class="nav-actions">
         <a class="nav-phone" href="tel:${TEL}">${phoneSvg}${PHONE}</a>
+        <button class="search-btn" id="searchOpen" aria-label="Rechercher — Ctrl+K" title="Rechercher (Ctrl+K)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+          <span class="kbd-hint">⌘K</span>
+        </button>
         <button class="cart-btn" id="cartOpen" aria-label="Ouvrir le panier">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1.3 12.1a1.8 1.8 0 0 1-1.8 1.9H6.5a1.8 1.8 0 0 1-1.8-1.9L6 7Z"/><path d="M8.5 9.5V6a3.5 3.5 0 0 1 7 0v3.5"/></svg>
           <span class="cart-count" id="cartCount">0</span>
@@ -76,6 +80,7 @@
     <ul>
       ${mobileLinks}
       <li><a href="guide.html"${page === "guide" ? ' class="is-active"' : ""}>Guide des dimensions</a></li>
+      <li><a href="chambre.html"${page === "chambre" ? ' class="is-active"' : ""}>Ça va rentrer ?</a></li>
       <li class="mm-info"><span>${ADDR}<br><a href="tel:${TEL}">${PHONE}</a></span></li>
     </ul>
   </div>`;
@@ -105,6 +110,7 @@
         <div class="footer-col">
           <h4>Aide</h4>
           <a href="guide.html">Guide des dimensions</a>
+          <a href="chambre.html">Ça va rentrer ? — planificateur</a>
           <a href="livraison.html">Zones de livraison</a>
           <a href="contact.html">Contact &amp; showroom</a>
           <a href="tel:${TEL}">${PHONE}</a>
@@ -143,6 +149,10 @@
     <div class="cart-foot">
       <div class="cart-total"><span>Sous-total</span><b id="cartTotal">0&nbsp;$</b></div>
       <button class="btn" id="checkoutBtn">Passer la commande <span class="btn-orb">${arrowSvg}</span></button>
+      <button class="btn btn--ghost devis-btn" id="devisBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+        Soumission PDF — taxes incluses
+      </button>
       <p class="cart-note">Démo — le paiement sera branché sur la boutique Shopify existante.</p>
     </div>
   </aside>

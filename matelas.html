@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="styles.css?v=11">
 </head>
 <body data-page="matelas">
   <a class="skip-link" href="#main">Aller au contenu</a>
@@ -31,6 +31,15 @@
         <h1 id="catTitle">La boutique, <em>prix d'usine</em>.</h1>
         <p class="lede">Nos matelas signature sont cousus dans notre atelier de Montréal, et on complète la gamme — sommiers, futons, meubles — directement chez notre fournisseur. Aucun intermédiaire — c'est pour ça que les prix ressemblent à ça.</p>
         <div class="filter-bar" id="filterBar" role="tablist" aria-label="Filtrer par catégorie"></div>
+        <div class="quiz-strip reveal">
+          <div>
+            <b>Pas certain du bon matelas&nbsp;?</b>
+            <p>4 questions, 60 secondes — on vous recommande le vôtre parmi nos 9 modèles cousus ici.</p>
+          </div>
+          <button class="btn" id="quizOpen">Trouver mon matelas
+            <span class="btn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          </button>
+        </div>
         <p class="cat-count" id="catCount"></p>
         <div class="cat-grid" id="catGrid"></div>
       </div>
@@ -57,8 +66,9 @@
   <div data-footer></div>
 
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script src="data.js?v=10"></script>
-  <script src="partials.js?v=10"></script>
-  <script src="app.js?v=10"></script>
+  <script src="data.js?v=11"></script>
+  <script src="partials.js?v=11"></script>
+  <script src="app.js?v=11"></script>
+  <script src="extras.js?v=11"></script>
 </body>
 </html>

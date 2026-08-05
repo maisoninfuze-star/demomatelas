@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ça va rentrer ? — Planificateur de chambre à coucher | Literie d'Amitié</title>
+  <meta name="description" content="Entrez les dimensions de votre chambre (3½, 4½, chambre principale) et voyez instantanément quel format de matelas rentre vraiment — avec les dégagements réels et nos conseils d'escalier.">
+  <meta name="theme-color" content="#0d1626">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=11">
+</head>
+<body data-page="chambre">
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div data-header></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <nav class="crumbs" aria-label="Fil d'Ariane">
+          <a href="index.html">Accueil</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+          <span>Planificateur de chambre</span>
+        </nav>
+        <span class="eyebrow" style="margin-top:18px">Outil exclusif</span>
+        <h1 style="font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.6rem);font-weight:540;line-height:1.03;letter-spacing:-0.02em;margin-top:14px">Ça va <em style="font-style:italic;color:var(--garnet)">rentrer</em>&nbsp;?</h1>
+        <p class="lede">Donnez-nous les dimensions de votre chambre — on dessine le plan, on calcule les dégagements réels et on vous dit quel format de lit rentre <em>vraiment</em>. En pieds, comme on mesure au Québec.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight" id="plannerRoot">
+      <div class="container">
+        <div class="planner">
+          <div class="plan-form reveal">
+            <span class="plan-label">Votre chambre</span>
+            <div class="plan-presets" id="planPresets">
+              <button data-p="3h">3½ typique <em>9 × 10 pi</em></button>
+              <button data-p="4h" class="on">4½ typique <em>10 × 11 pi</em></button>
+              <button data-p="main">Principale <em>12 × 13 pi</em></button>
+            </div>
+            <div class="plan-fields">
+              <label class="plan-field">
+                <span>Largeur <em>(mur de la tête de lit)</em></span>
+                <span class="plan-input"><input id="planW" type="number" min="6" max="30" step="0.5" value="10" inputmode="decimal"> <b>pi</b></span>
+              </label>
+              <label class="plan-field">
+                <span>Profondeur</span>
+                <span class="plan-input"><input id="planL" type="number" min="6" max="30" step="0.5" value="11" inputmode="decimal"> <b>pi</b></span>
+              </label>
+              <label class="plan-field">
+                <span>Largeur de la porte</span>
+                <span class="plan-input">
+                  <select id="planDoor">
+                    <option value="28">28″ — porte étroite</option>
+                    <option value="30" selected>30″ — standard</option>
+                    <option value="32">32″</option>
+                    <option value="36">36″ — large</option>
+                  </select>
+                </span>
+              </label>
+              <label class="plan-check">
+                <input id="planTight" type="checkbox">
+                <span>Escalier en tournant ou corridor serré <em>(2ᵉ étage, duplex, walk-up…)</em></span>
+              </label>
+            </div>
+            <div class="plan-verdicts" id="planVerdicts"></div>
+            <div class="plan-cta" id="planCta"></div>
+          </div>
+
+          <div class="plan-visual reveal" style="--d:.15s">
+            <div class="plan-svg-frame">
+              <span class="plan-svg-tag">Vue du dessus — à l'échelle</span>
+              <div id="planSvg"></div>
+              <span class="plan-legend">
+                <i class="lg-ok"></i> à l'aise &nbsp; <i class="lg-warn"></i> serré &nbsp; <i class="lg-bad"></i> trop grand
+              </span>
+            </div>
+            <div id="planTip"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="plan-notes">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Nos repères de livreurs</span>
+          <h2>Les règles qu'on applique <em>sur le terrain</em>.</h2>
+        </div>
+        <div class="faq-grid" style="margin-top:34px">
+          <div class="faq-item reveal">
+            <button class="faq-q" aria-expanded="false">Combien d'espace autour du lit ?<span class="fx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+            <div class="faq-a"><div><p>Visez <b>24 po de circulation</b> de chaque côté (18 po est le strict minimum) et <b>30 po au pied du lit</b> pour circuler et ouvrir les tiroirs d'une commode. Notre outil applique exactement ces seuils.</p></div></div>
+          </div>
+          <div class="faq-item reveal" style="--d:.06s">
+            <button class="faq-q" aria-expanded="false">Un King dans un 4½, réaliste ?<span class="fx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+            <div class="faq-a"><div><p>Rarement. Dans une chambre de 10 pi de large, un King (76″) laisse à peine 22 po par côté — faisable, mais serré avec des tables de nuit. C'est exactement pour ça que le <b>Queen est le format le plus vendu au Québec</b>.</p></div></div>
+          </div>
+          <div class="faq-item reveal" style="--d:.12s">
+            <button class="faq-q" aria-expanded="false">Et si l'escalier ne passe pas ?<span class="fx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+            <div class="faq-a"><div><p>Le matelas plie légèrement — le sommier, jamais. Pour les tournants serrés on livre le <b>sommier divisé en 2 morceaux</b> (Queen ou King) : chaque moitié passe comme une boîte de déménagement. Nos livreurs font des walk-up du Plateau toutes les semaines.</p></div></div>
+          </div>
+          <div class="faq-item reveal" style="--d:.18s">
+            <button class="faq-q" aria-expanded="false">Vous mesurez à domicile ?<span class="fx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+            <div class="faq-a"><div><p>Envoyez une photo et vos mesures au <b>438-375-4949</b> — on confirme le format et le trajet de livraison avant que vous commandiez. C'est gratuit et ça évite les mauvaises surprises.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final on-dark" id="contact" style="margin-top:clamp(60px,9vh,110px)">
+      <div class="container">
+        <span class="eyebrow reveal" style="justify-content:center">La bonne taille, du premier coup</span>
+        <h2 class="mask-lines">
+          <span class="line"><span>Mesurez une fois, <em>dormez</em> longtemps.</span></span>
+        </h2>
+        <p class="reveal" style="--d:.15s">Le format trouvé ? Il ne reste qu'à choisir le confort — moelleux, équilibré ou ferme.</p>
+        <div class="hero-ctas reveal" style="--d:.25s">
+          <a class="btn btn--ivory" href="matelas.html?cat=matelas">
+            Voir les matelas
+            <span class="btn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          </a>
+          <a class="btn btn--ghost" href="guide.html">Guide des dimensions</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-footer></div>
+
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="data.js?v=11"></script>
+  <script src="partials.js?v=11"></script>
+  <script src="app.js?v=11"></script>
+  <script src="extras.js?v=11"></script>
+</body>
+</html>
