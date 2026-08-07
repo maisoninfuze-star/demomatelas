@@ -404,24 +404,27 @@ body.menu-open .mobile-menu li:nth-child(6) > * { transition-delay: 0.4s; }
   padding: 26px 24px 24px; height: 100%;
   display: flex; flex-direction: column; gap: 4px;
 }
-.size-bed { height: 86px; display: flex; align-items: flex-end; margin-bottom: 18px; }
-.size-bed .bed-rect {
-  border: 1.4px solid rgba(19, 26, 46, 0.5); border-radius: 7px 7px 4px 4px; position: relative;
-  background: linear-gradient(180deg, rgba(19, 26, 46, 0.05), rgba(19, 26, 46, 0.012));
-  transition: border-color 0.5s var(--ease), background 0.5s var(--ease);
+.size-bed { display: block; margin-bottom: 14px; }
+.size-bed svg { display: block; width: 100%; max-width: 250px; height: auto; margin-inline: auto; }
+.sb-ghost {
+  fill: none; stroke: rgba(13, 22, 38, 0.24); stroke-width: 1.4;
+  stroke-dasharray: 2.5 6.5; stroke-linecap: round;
 }
-.size-card:hover .bed-rect { border-color: var(--garnet); }
-.size-bed .bed-rect::before {
-  content: ""; position: absolute; left: 12%; right: 12%; top: 14%; height: 24%;
-  border: 1px solid rgba(19, 26, 46, 0.3); border-radius: 4px;
+.sb-matt {
+  fill: #fffdf6; stroke: rgba(13, 22, 38, 0.45); stroke-width: 1.5;
+  transition: stroke 0.5s var(--ease);
 }
-.size-card[data-size="double"] .bed-rect::before { right: 52%; }
-.size-card[data-size="queen"] .bed-rect::before, .size-card[data-size="king"] .bed-rect::before {
-  right: 54%;
+.sb-edge { fill: none; stroke: rgba(13, 22, 38, 0.13); }
+.sb-duvet { fill: rgba(13, 22, 38, 0.045); }
+.sb-fold { stroke: rgba(13, 22, 38, 0.17); stroke-width: 1.2; }
+.sb-pillow {
+  fill: var(--card); stroke: rgba(13, 22, 38, 0.32); stroke-width: 1.3;
+  transition: stroke 0.5s var(--ease);
 }
-.size-card[data-size="queen"] .bed-rect::after, .size-card[data-size="king"] .bed-rect::after {
-  content: ""; position: absolute; left: 54%; right: 12%; top: 14%; height: 24%;
-  border: 1px solid rgba(19, 26, 46, 0.3); border-radius: 4px;
+.size-card:hover .sb-matt { stroke: var(--garnet); }
+.size-card:hover .sb-pillow { stroke: rgba(158, 43, 58, 0.5); }
+.sizes-note {
+  margin-top: 16px; text-align: center; font-size: 0.82rem; color: var(--muted);
 }
 .size-name { font-family: var(--serif); font-size: 1.35rem; font-weight: 520; color: var(--ink); display: flex; align-items: baseline; gap: 10px; }
 .size-pop { font-family: var(--sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--garnet); }
