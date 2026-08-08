@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merci — votre commande est reçue | Literie d'Amitié</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0d1626">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=14">
+</head>
+<body data-page="merci">
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div data-header></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="merci-card">
+          <span class="merci-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg>
+          </span>
+          <h1>Merci — on s'occupe du reste.</h1>
+          <p class="lede">Votre commande est reçue. Un membre de l'équipe vous appelle sous peu au numéro fourni pour fixer le créneau de livraison qui vous convient.</p>
+          <div class="merci-steps">
+            <div class="ms-step"><b>1. Confirmation</b><span>Un reçu Stripe s'en va vers votre courriel à l'instant.</span></div>
+            <div class="ms-step"><b>2. Appel de planification</b><span>On vous joint au 438-375-4949 pour convenir du jour et de l'heure.</span></div>
+            <div class="ms-step"><b>3. Livraison soignée</b><span>Montréal et environs — on monte, on installe, on repart avec l'emballage.</span></div>
+          </div>
+          <p class="merci-ref" id="merciRef" hidden>Référence : <b></b></p>
+          <div class="hero-ctas">
+            <a class="btn" href="index.html">Retour à l'accueil <span class="btn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+            <a class="btn btn--ghost" href="tel:+14383754949">438-375-4949</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-footer></div>
+
+  <script src="data.js?v=14"></script>
+  <script src="partials.js?v=14"></script>
+  <script src="app.js?v=14"></script>
+  <script>
+    // Le panier est vidé au retour d'un paiement réussi.
+    (function () {
+      var id = new URLSearchParams(location.search).get("session_id");
+      if (!id) return;
+      try { localStorage.removeItem("lda_cart_v1"); } catch (e) {}
+      var el = document.getElementById("merciRef");
+      el.hidden = false;
+      el.querySelector("b").textContent = id.slice(-12).toUpperCase();
+      var c = document.getElementById("cartCount");
+      if (c) { c.textContent = "0"; c.classList.remove("has-items"); }
+    })();
+  </script>
+</body>
+</html>

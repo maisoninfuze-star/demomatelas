@@ -1483,3 +1483,32 @@ body.cart-open .cart-drawer { transform: translateX(0); }
   .dc-arrow { display: none; }
   .cat-tools { align-items: flex-start; flex-direction: column; }
 }
+
+/* ---------- Panier : zone de livraison & total ---------- */
+.ship-pick { padding: 16px 20px 14px; border-bottom: 1px solid var(--line); }
+.ship-lab { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.ship-opts { display: grid; gap: 8px; margin-top: 10px; }
+.ship-opt { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; cursor: pointer; transition: border-color 0.25s var(--ease), background 0.25s var(--ease); }
+.ship-opt:hover { border-color: rgba(19, 26, 46, 0.3); }
+.ship-opt:has(input:checked) { border-color: var(--ink); background: rgba(19, 26, 46, 0.04); }
+.ship-opt input { margin-top: 3px; accent-color: var(--ink); }
+.ship-opt b { display: block; font-size: 0.86rem; font-weight: 600; color: var(--ink); }
+.ship-opt em { font-style: normal; font-size: 0.75rem; color: var(--muted); }
+.ship-far { margin-top: 10px; font-size: 0.73rem; color: var(--muted); line-height: 1.5; }
+.ship-far a { color: var(--garnet); font-weight: 600; }
+.cart-line { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.85rem; color: var(--muted); margin-bottom: 6px; }
+.cart-line b { font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+
+/* ---------- Page merci ---------- */
+.merci-card { max-width: 640px; margin: clamp(30px, 6vh, 70px) auto; text-align: center; }
+.merci-ico { width: 62px; height: 62px; display: grid; place-items: center; margin: 0 auto 22px; border-radius: 50%; background: rgba(46, 125, 80, 0.12); color: #2e7d50; }
+.merci-ico svg { width: 30px; height: 30px; }
+.merci-card h1 { font-family: var(--serif); font-size: clamp(1.9rem, 4vw, 2.7rem); font-weight: 540; color: var(--ink); }
+.merci-card .lede { margin: 14px auto 0; }
+.merci-steps { display: grid; gap: 10px; margin: 30px 0; text-align: left; }
+.ms-step { padding: 14px 18px; border-radius: var(--r-md); background: var(--card); border: 1px solid var(--line); }
+.ms-step b { display: block; font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+.ms-step span { font-size: 0.82rem; color: var(--muted); }
+.merci-ref { font-size: 0.78rem; color: var(--muted); margin-bottom: 18px; }
+.merci-ref b { font-variant-numeric: tabular-nums; letter-spacing: 0.06em; color: var(--text); }
+.merci-card .hero-ctas { justify-content: center; }

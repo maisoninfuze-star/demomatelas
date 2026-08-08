@@ -145,6 +145,10 @@
      PANIER (localStorage)
      ============================================================ */
   const CART_KEY = "lda_cart_v1";
+  const ZONE_KEY = "lda_zone_v1";
+  const DELIVERY_FEE = 50;
+  const getZone = () => { try { return localStorage.getItem(ZONE_KEY) || "montreal"; } catch { return "montreal"; } };
+  const setZone = (z) => { try { localStorage.setItem(ZONE_KEY, z); } catch {} };
   const byHandle = (h) => (window.CATALOG || []).find((p) => p.h === h);
   const loadCart = () => { try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch { return []; } };
   const saveCart = (c) => localStorage.setItem(CART_KEY, JSON.stringify(c));
@@ -205,15 +209,29 @@
     const totalEl = $("#cartTotal");
     if (totalEl) totalEl.textContent = fmt(total);
 
+    // Livraison : 50 $ dans Montréal et environs, gratuit au ramassage.
     const ship = $("#cartShip");
     if (ship) {
-      const FREE = 750;
-      if (!c.length) { ship.innerHTML = ""; }
-      else if (total >= FREE) {
-        ship.innerHTML = `<p class="done"><b>Livraison gratuite débloquée</b> — on s'occupe du reste.</p><div class="ship-bar"><i style="width:100%"></i></div>`;
-      } else {
-        ship.innerHTML = `<p>Plus que <b>${fmt(FREE - total)}</b> pour la livraison gratuite</p><div class="ship-bar"><i style="width:${(total / FREE) * 100}%"></i></div>`;
-      }
+      ship.innerHTML = c.length
+        ? `<div class="ship-pick">
+             <span class="ship-lab">Livraison</span>
+             <div class="ship-opts">
+               <label class="ship-opt"><input type="radio" name="zone" value="montreal" ${getZone() === "montreal" ? "checked" : ""}><span><b>Montréal et environs</b><em>Jusqu'à Saint-Jérôme et Joliette · 50&nbsp;$</em></span></label>
+               <label class="ship-opt"><input type="radio" name="zone" value="ramassage" ${getZone() === "ramassage" ? "checked" : ""}><span><b>Ramassage au showroom</b><em>3512, boul. Industriel · gratuit</em></span></label>
+             </div>
+             <p class="ship-far">Plus loin que Saint-Jérôme ou Joliette&nbsp;? <a href="tel:+14383754949">Appelez-nous</a> — on vous soumissionne la livraison.</p>
+           </div>`
+        : "";
+    }
+
+    const shipLine = $("#cartShipLine");
+    if (shipLine) {
+      const fee = getZone() === "ramassage" ? 0 : DELIVERY_FEE;
+      shipLine.hidden = !c.length;
+      shipLine.querySelector("b").textContent = fee ? fmt(fee) : "Gratuit";
+    }
+    if (totalEl && c.length) {
+      totalEl.textContent = fmt(total + (getZone() === "ramassage" ? 0 : DELIVERY_FEE));
     }
   }
 
@@ -240,9 +258,40 @@
   $("#cartClose") && $("#cartClose").addEventListener("click", closeCart);
   $("#cartOverlay") && $("#cartOverlay").addEventListener("click", closeCart);
   addEventListener("keydown", (e) => { if (e.key === "Escape") { closeCart(); document.body.classList.remove("menu-open"); } });
-  $("#checkoutBtn") && $("#checkoutBtn").addEventListener("click", () =>
-    toast("Démo — le paiement sera relié à votre boutique Shopify.")
-  );
+  // Choix de la zone de livraison
+  drawer && drawer.addEventListener("change", (e) => {
+    const r = e.target.closest('input[name="zone"]');
+    if (!r) return;
+    setZone(r.value);
+    renderCart();
+  });
+
+  // Paiement — Stripe Checkout (les prix sont revalidés côté serveur)
+  const checkoutBtn = $("#checkoutBtn");
+  checkoutBtn && checkoutBtn.addEventListener("click", async () => {
+    const c = loadCart();
+    if (!c.length) { toast("Votre panier est vide."); return; }
+    const label = checkoutBtn.innerHTML;
+    checkoutBtn.disabled = true;
+    checkoutBtn.innerHTML = "Redirection vers le paiement…";
+    try {
+      const r = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          zone: getZone(),
+          items: c.map((i) => ({ h: i.h, v: i.v === "Format unique" ? "Default Title" : i.v, q: i.q })),
+        }),
+      });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok || !data.url) throw new Error(data.error || `Erreur ${r.status}`);
+      location.href = data.url;
+    } catch (err) {
+      checkoutBtn.disabled = false;
+      checkoutBtn.innerHTML = label;
+      toast("Paiement indisponible : " + err.message);
+    }
+  });
 
   if (drawer) {
     drawer.addEventListener("click", (e) => {

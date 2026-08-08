@@ -1,0 +1,10 @@
+{
+  "name": "literie-damitie-demo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Literie d'Amitié — démo de refonte (site statique + Stripe Checkout)",
+  "type": "module",
+  "dependencies": {
+    "stripe": "^16.12.0"
+  }
+}

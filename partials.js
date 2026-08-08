@@ -170,13 +170,14 @@
     <div class="cart-ship" id="cartShip"></div>
     <div class="cart-items" id="cartItems"></div>
     <div class="cart-foot">
-      <div class="cart-total"><span>Sous-total</span><b id="cartTotal">0&nbsp;$</b></div>
+      <div class="cart-line" id="cartShipLine" hidden><span>Livraison</span><b></b></div>
+      <div class="cart-total"><span>Total avant taxes</span><b id="cartTotal">0&nbsp;$</b></div>
       <button class="btn" id="checkoutBtn">Passer la commande <span class="btn-orb">${arrowSvg}</span></button>
       <button class="btn btn--ghost devis-btn" id="devisBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
         Soumission PDF — taxes incluses
       </button>
-      <p class="cart-note">Démo — le paiement sera branché sur la boutique Shopify existante.</p>
+      <p class="cart-note">Paiement sécurisé par Stripe · TPS et TVQ calculées à l'étape suivante.</p>
     </div>
   </aside>
   <div class="toast" id="toast" role="status"><span class="t-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span><span id="toastMsg"></span></div>`;
