@@ -266,11 +266,13 @@
     renderCart();
   });
 
-  // Paiement — Stripe Checkout (les prix sont revalidés côté serveur)
+  // Paiement — on passe d'abord par « Vos coordonnées » (commande.js), puis
+  // Stripe. Le repli direct sert si ce script n'a pas pu charger.
   const checkoutBtn = $("#checkoutBtn");
   checkoutBtn && checkoutBtn.addEventListener("click", async () => {
     const c = loadCart();
     if (!c.length) { toast("Votre panier est vide."); return; }
+    if (window.LDA_COMMANDE) { window.LDA_COMMANDE.open(); return; }
     const label = checkoutBtn.innerHTML;
     checkoutBtn.disabled = true;
     checkoutBtn.innerHTML = "Redirection vers le paiement…";

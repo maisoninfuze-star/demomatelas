@@ -1512,3 +1512,88 @@ body.cart-open .cart-drawer { transform: translateX(0); }
 .merci-ref { font-size: 0.78rem; color: var(--muted); margin-bottom: 18px; }
 .merci-ref b { font-variant-numeric: tabular-nums; letter-spacing: 0.06em; color: var(--text); }
 .merci-card .hero-ctas { justify-content: center; }
+
+/* ============================================================
+   Étape « Vos coordonnées » (avant Stripe)
+   ============================================================ */
+.coord-overlay {
+  position: fixed; inset: 0; background: rgba(13, 22, 38, .45);
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+  opacity: 0; pointer-events: none; transition: opacity .3s var(--ease); z-index: 240;
+}
+.coord-on .coord-overlay { opacity: 1; pointer-events: auto; }
+.coord {
+  position: fixed; z-index: 250; left: 50%; top: 50%;
+  transform: translate(-50%, -46%) scale(.98);
+  width: min(680px, 94vw); max-height: 90vh; overflow: auto;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--r-lg); box-shadow: 0 40px 90px -18px rgba(13, 22, 38, .5);
+  padding: clamp(24px, 4vw, 40px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .28s var(--ease), transform .34s var(--ease-expo);
+}
+.coord-on .coord { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
+.coord-close { position: absolute; top: 16px; right: 16px; }
+.coord h2 {
+  font-family: var(--serif); font-size: clamp(1.6rem, 3.4vw, 2.1rem);
+  font-weight: 540; letter-spacing: -.01em; margin-top: 8px; outline: 0;
+}
+.coord h2:focus-visible { outline: 2px solid var(--brass); outline-offset: 4px; border-radius: 4px; }
+.coord-lede { color: var(--muted); font-size: .92rem; margin-top: 6px; }
+.coord .form-row { margin-top: 14px; }
+.coord .form-field.full { margin-top: 14px; }
+.coord textarea { min-height: 64px !important; }
+/* 16 px minimum : en dessous, iOS zoome au focus et ne revient jamais. */
+.coord input, .coord select, .coord textarea { font-size: max(16px, .94rem) !important; }
+.form-field .opt { color: var(--muted); font-weight: 500; }
+.field-help { font-size: .74rem; color: var(--muted); line-height: 1.45; }
+.field-error { font-size: .76rem; color: var(--garnet); font-weight: 500; min-height: 0; }
+.field-error:empty { display: none; }
+.coord input.is-bad, .coord select.is-bad, .coord textarea.is-bad { border-color: var(--garnet); }
+
+.coord-err {
+  margin-top: 16px; padding: 13px 16px; border-radius: var(--r-md);
+  border: 1px solid rgba(158, 43, 58, .35); background: rgba(158, 43, 58, .07); outline: 0;
+}
+.coord-err b { font-size: .87rem; color: var(--garnet); }
+.coord-err ul { margin: 6px 0 0 18px; }
+.coord-err li { font-size: .82rem; }
+.coord-err a { color: var(--garnet); text-decoration: underline; }
+
+.coord-sep { display: flex; align-items: center; gap: 14px; margin-top: 26px; }
+.coord-sep::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.coord-sep span {
+  font-size: .68rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+.coord-zone { margin-top: 14px; padding: 13px 16px; border-radius: var(--r-md); border: 1px solid var(--line); }
+.coord-zone.is-in { border-color: rgba(63, 143, 91, .4); background: rgba(63, 143, 91, .07); }
+.coord-zone.is-out { border-color: rgba(176, 141, 87, .5); background: rgba(176, 141, 87, .09); }
+.coord-zone b { font-size: .88rem; color: var(--ink); }
+.coord-zone p { font-size: .8rem; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+.zone-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 11px; }
+.zone-acts .btn--ghost { padding: 9px 16px; font-size: .8rem; }
+.zone-acts .link-more { background: none; border: 0; cursor: pointer; font-size: .8rem; }
+
+.coord-recap { margin-top: 24px; padding: 15px 17px; border-radius: var(--r-md); background: rgba(19, 26, 46, .04); }
+.rc-line { display: flex; justify-content: space-between; align-items: baseline; font-size: .85rem; color: var(--muted); }
+.rc-line + .rc-line { margin-top: 6px; }
+.rc-line b { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
+.rc-total { margin-top: 10px !important; padding-top: 10px; border-top: 1px solid var(--line); font-size: .95rem; color: var(--ink); }
+.rc-total b { font-family: var(--serif); font-size: 1.25rem; font-weight: 560; color: var(--ink); }
+.rc-tax { font-size: .72rem; color: var(--muted); margin-top: 7px; }
+
+.coord-go { width: 100%; justify-content: center; margin-top: 18px; min-height: 50px; }
+.coord-note { font-size: .74rem; color: var(--muted); line-height: 1.55; text-align: center; margin-top: 12px; }
+.coord-note a { color: var(--garnet); font-weight: 600; }
+.coord-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+@media (max-width: 560px) {
+  .coord { width: 100%; max-width: none; max-height: 100vh; height: 100%; top: 0; left: 0;
+    transform: translateY(3%); border-radius: 0; border: 0;
+    padding: 26px 20px calc(30px + env(safe-area-inset-bottom)); }
+  .coord-on .coord { transform: translateY(0); }
+  .coord .form-row { grid-template-columns: 1fr; gap: 14px; }
+  .coord .form-field { grid-column: 1 / -1 !important; }
+}

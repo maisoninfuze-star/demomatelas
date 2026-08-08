@@ -10,6 +10,7 @@ import path from "node:path";
 const FREE_ZONES = new Set(["ramassage"]);
 const DELIVERY_FEE_CENTS = 5000; // 50 $ — Montréal et environs
 const MAX_QTY = 20;
+const MAX_ITEMS = 40;
 
 let catalogCache = null;
 function catalog() {
@@ -21,6 +22,27 @@ function catalog() {
   catalogCache = JSON.parse(m[1]);
   return catalogCache;
 }
+
+// zones.js est partagé avec le navigateur : on l'exécute avec un faux
+// `window` plutôt que d'en recopier la table ici (aucune dérive possible).
+let zonesCache = null;
+function zones() {
+  if (zonesCache) return zonesCache;
+  const src = readFileSync(path.join(process.cwd(), "zones.js"), "utf8");
+  const w = {};
+  new Function("window", src)(w);
+  zonesCache = w.LDA_ZONES;
+  return zonesCache;
+}
+
+// Les caracteres de controle sont retires : ces valeurs finissent dans les
+// metadonnees Stripe et sur la feuille de route du livreur.
+const clean = (v, max) => String(v == null ? "" : v).replace(/[\u0000-\u001F\u007F]/g, " ").trim().slice(0, max);
+const tel10 = (v) => {
+  let d = String(v || "").replace(/\D/g, "");
+  if (d.length === 11 && d[0] === "1") d = d.slice(1);
+  return d.length === 10 && /^[2-9]/.test(d) ? d : "";
+};
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -35,9 +57,50 @@ export default async function handler(req, res) {
   const stripe = new Stripe(key, { apiVersion: "2024-06-20" });
 
   try {
-    const { items = [], zone = "montreal" } = req.body || {};
+    const { items = [], zone = "montreal", client = {} } = req.body || {};
     if (!Array.isArray(items) || !items.length) {
       return res.status(400).json({ error: "Panier vide." });
+    }
+    if (items.length > MAX_ITEMS) {
+      return res.status(400).json({ error: "Trop d'articles — appelez-nous au 438-375-4949." });
+    }
+
+    const livraison = !FREE_ZONES.has(zone);
+
+    // Le formulaire valide déjà tout ça ; on le refait ici parce que rien
+    // de ce qui arrive du navigateur n'est digne de confiance.
+    const c = {
+      prenom: clean(client.prenom, 60),
+      nom: clean(client.nom, 60),
+      tel: tel10(client.tel),
+      courriel: clean(client.courriel, 254).toLowerCase(),
+      moment: clean(client.moment, 40),
+    };
+    if (!c.prenom || !c.nom) return res.status(400).json({ error: "Nom et prénom requis." });
+    if (!c.tel) return res.status(400).json({ error: "Numéro de téléphone invalide." });
+    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(c.courriel)) {
+      return res.status(400).json({ error: "Courriel invalide." });
+    }
+
+    if (livraison) {
+      Object.assign(c, {
+        adresse: clean(client.adresse, 120),
+        app: clean(client.app, 24),
+        ville: clean(client.ville, 80),
+        cp: zones().normalize(client.cp),
+        etage: clean(client.etage, 30),
+        ascenseur: clean(client.ascenseur, 10),
+        notes: clean(client.notes, 400),
+      });
+      if (!c.adresse || !c.ville) return res.status(400).json({ error: "Adresse de livraison incomplète." });
+      if (!c.cp) return res.status(400).json({ error: "Code postal invalide." });
+      // Le tarif fixe ne s'applique qu'au territoire desservi — un code
+      // postal hors zone ne doit jamais passer à 50 $.
+      if (!zones().covers(c.cp)) {
+        return res.status(400).json({
+          error: "Votre secteur dépasse notre zone de livraison à tarif fixe. Appelez-nous au 438-375-4949 pour votre prix de livraison.",
+        });
+      }
     }
 
     const list = catalog();
@@ -67,7 +130,7 @@ export default async function handler(req, res) {
       });
     }
 
-    if (!FREE_ZONES.has(zone)) {
+    if (livraison) {
       line_items.push({
         quantity: 1,
         price_data: {
@@ -75,11 +138,18 @@ export default async function handler(req, res) {
           unit_amount: DELIVERY_FEE_CENTS,
           product_data: {
             name: "Livraison — Montréal et environs",
-            description: "Jusqu'à Saint-Jérôme et Joliette. Au-delà : nous vous soumissionnons.",
+            description: "Créneau planifié par téléphone. Jusqu'à Saint-Jérôme et Joliette.",
           },
         },
       });
     }
+
+    const adresse = livraison
+      ? `${c.adresse}${c.app ? ", app. " + c.app : ""}, ${c.ville} (QC) ${c.cp}`
+      : "Ramassage au showroom — 3512, boul. Industriel";
+    const acces = livraison
+      ? [c.etage, c.ascenseur && `ascenseur : ${c.ascenseur}`, c.notes].filter(Boolean).join(" · ")
+      : "";
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
@@ -87,11 +157,22 @@ export default async function handler(req, res) {
       locale: "fr-CA",
       // Les taxes (TPS 5 % + TVQ 9,975 %) sont calculées par Stripe Tax.
       automatic_tax: { enabled: true },
-      phone_number_collection: { enabled: true },
-      shipping_address_collection: FREE_ZONES.has(zone) ? undefined : { allowed_countries: ["CA"] },
+      customer_email: c.courriel,
+      // Le formulaire a déjà tout demandé : on ne le refait pas faire à Stripe.
+      phone_number_collection: { enabled: false },
       success_url: `${siteUrl}/merci.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/matelas.html?annule=1`,
-      metadata: { zone, articles: String(items.length) },
+      // Ces champs suivent la commande jusqu'au tableau de bord Stripe : c'est
+      // la feuille de route que l'équipe utilise pour appeler et livrer.
+      metadata: {
+        mode: livraison ? "Livraison" : "Ramassage",
+        client: `${c.prenom} ${c.nom}`.slice(0, 200),
+        telephone: `${c.tel.slice(0, 3)} ${c.tel.slice(3, 6)}-${c.tel.slice(6)}`,
+        adresse: adresse.slice(0, 480),
+        acces: acces.slice(0, 480),
+        appeler: c.moment || "Peu importe",
+        articles: String(items.length),
+      },
     });
 
     return res.status(200).json({ url: session.url });
