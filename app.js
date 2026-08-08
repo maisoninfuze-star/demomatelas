@@ -273,26 +273,9 @@
     const c = loadCart();
     if (!c.length) { toast("Votre panier est vide."); return; }
     if (window.LDA_COMMANDE) { window.LDA_COMMANDE.open(); return; }
-    const label = checkoutBtn.innerHTML;
-    checkoutBtn.disabled = true;
-    checkoutBtn.innerHTML = "Redirection vers le paiement…";
-    try {
-      const r = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          zone: getZone(),
-          items: c.map((i) => ({ h: i.h, v: i.v === "Format unique" ? "Default Title" : i.v, q: i.q })),
-        }),
-      });
-      const data = await r.json().catch(() => ({}));
-      if (!r.ok || !data.url) throw new Error(data.error || `Erreur ${r.status}`);
-      location.href = data.url;
-    } catch (err) {
-      checkoutBtn.disabled = false;
-      checkoutBtn.innerHTML = label;
-      toast("Paiement indisponible : " + err.message);
-    }
+    // Sans commande.js on n'a ni coordonnées ni adresse, et le serveur les
+    // exige. Inutile de tenter l'appel : on oriente vers le téléphone.
+    toast("Commande en ligne indisponible — appelez-nous au 438-375-4949.");
   });
 
   if (drawer) {
@@ -801,5 +784,5 @@
   }
 
   /* ---------- API interne (extras.js : palette, devis, quiz, planificateur) ---------- */
-  window.LDA = { addToCart, openCart, toast, fmt, byHandle, loadCart };
+  window.LDA = { addToCart, openCart, toast, fmt, byHandle, loadCart, renderCart };
 })();

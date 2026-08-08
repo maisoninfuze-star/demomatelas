@@ -267,6 +267,9 @@
     try { localStorage.setItem("lda_zone_v1", "ramassage"); } catch (err) {}
     mode = "ramassage";
     applyMode();
+    // Le tiroir du panier garde son propre affichage : il faut le resynchroniser,
+    // sinon il continue d'annoncer 50 $ de livraison une fois rouvert.
+    LDA.renderCart && LDA.renderCart();
     LDA.toast && LDA.toast("Mode ramassage — livraison retirée du total.");
   });
 
@@ -325,6 +328,11 @@
   function close() {
     document.body.classList.remove("coord-on");
     errBox.hidden = true;
+    // On était venu du panier : on le rouvre, sinon le focus repart sur un
+    // bouton hors écran, dans un tiroir fermé.
+    if (lastTrigger && lastTrigger.closest && lastTrigger.closest("#cartDrawer")) {
+      LDA.openCart ? LDA.openCart() : document.body.classList.add("cart-open");
+    }
     if (lastTrigger && lastTrigger.focus) lastTrigger.focus();
   }
   $("#coordClose").addEventListener("click", close);
@@ -344,6 +352,10 @@
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (field("site").value) return; // piège à pourriel
+
+    // Le code postal a pu changer sans blur (Entrée depuis un autre champ) :
+    // on refait le calcul de zone avant de décider quoi que ce soit.
+    if (isLiv()) renderZone();
 
     const names = Object.keys(RULES).filter((n) => RULES[n].req !== "liv" || isLiv());
     const bad = names.filter((n) => !checkField(n));
@@ -394,6 +406,7 @@
         body: JSON.stringify({
           zone: mode,
           client,
+          site: field("site").value, // piège à pourriel, revalidé côté serveur
           items: cart.map((i) => ({ h: i.h, v: i.v === "Format unique" ? "Default Title" : i.v, q: i.q })),
         }),
       });

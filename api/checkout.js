@@ -57,13 +57,18 @@ export default async function handler(req, res) {
   const stripe = new Stripe(key, { apiVersion: "2024-06-20" });
 
   try {
-    const { items = [], zone = "montreal", client = {} } = req.body || {};
-    if (!Array.isArray(items) || !items.length) {
-      return res.status(400).json({ error: "Panier vide." });
-    }
+    const body = req.body && typeof req.body === "object" ? req.body : {};
+    const items = Array.isArray(body.items) ? body.items : [];
+    // `= {}` ne couvre que undefined : un `client: null` explicite passerait au travers.
+    const client = body.client && typeof body.client === "object" ? body.client : {};
+    const zone = typeof body.zone === "string" ? body.zone.trim().toLowerCase() : "montreal";
+
+    if (!items.length) return res.status(400).json({ error: "Panier vide." });
     if (items.length > MAX_ITEMS) {
       return res.status(400).json({ error: "Trop d'articles — appelez-nous au 438-375-4949." });
     }
+    // Piège à pourriel : rempli = robot. On répond 200 sans rien créer.
+    if (clean(body.site, 20)) return res.status(200).json({ url: `${siteUrl}/merci.html` });
 
     const livraison = !FREE_ZONES.has(zone);
 
@@ -107,8 +112,9 @@ export default async function handler(req, res) {
     const line_items = [];
 
     for (const it of items) {
+      if (!it || typeof it !== "object") return res.status(400).json({ error: "Panier illisible." });
       const p = list.find((x) => x.h === it.h);
-      if (!p) return res.status(400).json({ error: `Produit inconnu : ${it.h}` });
+      if (!p) return res.status(400).json({ error: "Un article du panier n'existe plus. Rafraîchissez la page." });
 
       // La variante choisie doit exister dans le catalogue ; sinon, première variante.
       const v = p.variants.find((x) => x.t === it.v) || p.variants[0];
@@ -177,9 +183,11 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ url: session.url });
   } catch (err) {
-    // Message lisible côté client, détail complet dans les logs Vercel.
-    console.error("checkout error:", err);
-    const msg = err && err.raw && err.raw.message ? err.raw.message : err.message || "Erreur inconnue";
-    return res.status(500).json({ error: msg });
+    // Le détail reste dans les logs Vercel ; le client reçoit une phrase utile.
+    // On ne renvoie pas le message brut : il peut nommer des fichiers ou des clés.
+    console.error("checkout error:", err && err.message);
+    return res.status(500).json({
+      error: "Le paiement est momentanément indisponible. Réessayez, ou appelez-nous au 438-375-4949 — on prend la commande au téléphone.",
+    });
   }
 }

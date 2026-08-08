@@ -244,7 +244,13 @@
       String(Math.floor(Math.random() * 900) + 100);
     const dateStr = now.toLocaleDateString("fr-CA", { year: "numeric", month: "long", day: "numeric" });
     const sub = cart.reduce((s, i) => s + i.p * i.q, 0);
-    const tps = sub * TPS, tvq = sub * TVQ, total = sub + tps + tvq;
+    // La soumission doit refléter ce que le client paiera vraiment : la
+    // livraison est taxable elle aussi.
+    let zone = "montreal";
+    try { zone = localStorage.getItem("lda_zone_v1") || "montreal"; } catch (e) {}
+    const liv = zone === "ramassage" ? 0 : ((window.LDA_ZONES && window.LDA_ZONES.fee) || 50);
+    const base = sub + liv;
+    const tps = base * TPS, tvq = base * TVQ, total = base + tps + tvq;
 
     $("#devisSheet").innerHTML = `
       <div class="devis">
@@ -271,12 +277,13 @@
         </table>
         <div class="devis-totals">
           <div><span>Sous-total</span><span>${fmtC(sub)}</span></div>
+          <div><span>${liv ? "Livraison — Montréal et environs" : "Ramassage au showroom"}</span><span>${liv ? fmtC(liv) : "Gratuit"}</span></div>
           <div><span>TPS (5 %)</span><span>${fmtC(tps)}</span></div>
           <div><span>TVQ (9,975 %)</span><span>${fmtC(tvq)}</span></div>
           <div class="devis-total"><span>Total</span><span>${fmtC(total)}</span></div>
-          <p class="devis-ship">${sub >= FREE
-            ? "✓ Livraison gratuite incluse (commande de 750 $ et plus) — créneau planifié avec vous."
-            : "Livraison : gratuite dès 750 $ d'achat, sinon selon la zone — on confirme au téléphone."}</p>
+          <p class="devis-ship">${liv
+            ? "Livraison 50 $ dans le Grand Montréal, jusqu'à Saint-Jérôme et Joliette — créneau planifié avec vous par téléphone. Plus loin ? Appelez-nous, on vous prépare un prix."
+            : "Ramassage gratuit au showroom, 3512 boul. Industriel — on vous appelle dès que la commande est prête."}</p>
         </div>
         <div class="devis-foot">
           <span>3512, boul. Industriel, Montréal QC · 438-375-4949 · literiedamitieinc@outlook.com</span>

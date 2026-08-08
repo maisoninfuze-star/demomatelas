@@ -45,6 +45,11 @@
 
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* L'attribut [hidden] doit gagner : plusieurs classes du site déclarent
+   display (.form-field, .cart-line…) et écrasaient la règle du navigateur,
+   laissant apparaître des champs censés être masqués. */
+[hidden] { display: none !important; }
 /* Lenis pilote l'inertie ; le lissage CSS natif ne sert que de repli sans JS */
 html.lenis, html.lenis body { height: auto; }
 html.lenis { scroll-behavior: auto !important; }
@@ -1529,10 +1534,10 @@ body.cart-open .cart-drawer { transform: translateX(0); }
   background: var(--card); border: 1px solid var(--line);
   border-radius: var(--r-lg); box-shadow: 0 40px 90px -18px rgba(13, 22, 38, .5);
   padding: clamp(24px, 4vw, 40px);
-  opacity: 0; pointer-events: none;
-  transition: opacity .28s var(--ease), transform .34s var(--ease-expo);
+  opacity: 0; pointer-events: none; visibility: hidden;
+  transition: opacity .28s var(--ease), transform .34s var(--ease-expo), visibility .28s;
 }
-.coord-on .coord { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
+.coord-on .coord { opacity: 1; pointer-events: auto; visibility: visible; transform: translate(-50%, -50%) scale(1); }
 .coord-close { position: absolute; top: 16px; right: 16px; }
 .coord h2 {
   font-family: var(--serif); font-size: clamp(1.6rem, 3.4vw, 2.1rem);
@@ -1594,6 +1599,7 @@ body.cart-open .cart-drawer { transform: translateX(0); }
     transform: translateY(3%); border-radius: 0; border: 0;
     padding: 26px 20px calc(30px + env(safe-area-inset-bottom)); }
   .coord-on .coord { transform: translateY(0); }
+  .coord-close { position: sticky; top: 0; float: right; margin: -6px -4px 0 0; z-index: 2; }
   .coord .form-row { grid-template-columns: 1fr; gap: 14px; }
   .coord .form-field { grid-column: 1 / -1 !important; }
 }
