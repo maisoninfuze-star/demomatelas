@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=18">
+  <link rel="stylesheet" href="styles.css?v=19">
 </head>
 <body data-page="merci">
   <a class="skip-link" href="#main">Aller au contenu</a>
@@ -41,11 +41,11 @@
 
   <div data-footer></div>
 
-  <script src="zones.js?v=18"></script>
-  <script src="data.js?v=18"></script>
-  <script src="partials.js?v=18"></script>
-  <script src="app.js?v=18"></script>
-  <script src="commande.js?v=18"></script>
+  <script src="zones.js?v=19"></script>
+  <script src="data.js?v=19"></script>
+  <script src="partials.js?v=19"></script>
+  <script src="app.js?v=19"></script>
+  <script src="commande.js?v=19"></script>
   <script>
     // Le panier est vidé au retour d'un paiement réussi, et les étapes
     // annoncées suivent le mode choisi : livrer et ramasser, ce n'est pas
@@ -57,10 +57,10 @@
       var ramassage = mode === "ramassage";
 
       document.getElementById("merciSteps").innerHTML = ramassage
-        ? '<div class="ms-step"><b>1. Confirmation</b><span>Un reçu Stripe s\'en va vers votre courriel à l\'instant.</span></div>' +
+        ? '<div class="ms-step"><b>1. Confirmation</b><span>Vous recevez le reçu de paiement par courriel.</span></div>' +
           '<div class="ms-step"><b>2. On prépare la commande</b><span>On vous appelle dès qu\'elle est prête à ramasser — habituellement la même journée.</span></div>' +
           '<div class="ms-step"><b>3. Ramassage au showroom</b><span>3512, boul. Industriel, Montréal · Lun–Ven 9 h–18 h, Sam 10 h–17 h, Dim 11 h–16 h.</span></div>'
-        : '<div class="ms-step"><b>1. Confirmation</b><span>Un reçu Stripe s\'en va vers votre courriel à l\'instant.</span></div>' +
+        : '<div class="ms-step"><b>1. Confirmation</b><span>Vous recevez le reçu de paiement par courriel.</span></div>' +
           '<div class="ms-step"><b>2. Appel de planification</b><span>On vous joint au numéro fourni pour convenir du jour et de l\'heure.</span></div>' +
           '<div class="ms-step"><b>3. Livraison soignée</b><span>Montréal et environs — on monte, on installe, on repart avec l\'emballage.</span></div>';
 
@@ -70,8 +70,9 @@
         sessionStorage.removeItem("lda_coord_v1"); // le brouillon a fait son temps
       } catch (e) {}
       var el = document.getElementById("merciRef");
+      var ref = new URLSearchParams(location.search).get("ref");
       el.hidden = false;
-      el.querySelector("b").textContent = id.slice(-12).toUpperCase();
+      el.querySelector("b").textContent = ref || id.slice(-12).toUpperCase();
       var c = document.getElementById("cartCount");
       if (c) { c.textContent = "0"; c.classList.remove("has-items"); }
     })();

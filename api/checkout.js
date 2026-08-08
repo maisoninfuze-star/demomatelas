@@ -128,11 +128,22 @@ export default async function handler(req, res) {
       const label = v.t && v.t !== "Default Title" ? `${p.name} — ${v.t}` : p.name;
       const img = (p.imgs && p.imgs[0] || "").split("?")[0];
 
+      // Un prix illisible dans data.js bloquerait TOUTE la boutique, avec pour
+      // seul symptome un message d'excuse. On le detecte ici.
+      const cents = Math.round(Number(v.p) * 100);
+      if (!Number.isFinite(cents) || cents <= 0) {
+        console.error("prix invalide:", p.h, v.t, v.p);
+        return res.status(500).json({ error: "Un prix est momentanement indisponible. Appelez-nous au 438-375-4949." });
+      }
+
       line_items.push({
         quantity: qty,
         price_data: {
           currency: "cad",
-          unit_amount: Math.round(v.p * 100),
+          unit_amount: cents,
+          // Explicite : sinon Stripe exige un defaut regle dans le tableau de
+          // bord, et une case decochee la-bas casserait tous les paiements.
+          tax_behavior: "exclusive",
           product_data: {
             name: label.slice(0, 250),
             ...(img.startsWith("https://") ? { images: [img] } : {}),
@@ -148,8 +159,10 @@ export default async function handler(req, res) {
         price_data: {
           currency: "cad",
           unit_amount: DELIVERY_FEE_CENTS,
+          tax_behavior: "exclusive",
           product_data: {
             name: "Livraison — Montréal et environs",
+            tax_code: "txcd_92010001", // Transport — pas le code « biens »
             description: "Créneau planifié par téléphone. Jusqu'à Saint-Jérôme et Joliette.",
           },
         },
@@ -163,20 +176,56 @@ export default async function handler(req, res) {
       ? [c.etage, c.ascenseur && `ascenseur : ${c.ascenseur}`, c.notes].filter(Boolean).join(" · ")
       : "";
 
+    // Reference courte, prononcable au telephone, qu'on retrouve des deux
+    // cotes : page de remerciement, tableau de bord Stripe, et cle
+    // d'idempotence (un double-clic ne cree pas deux sessions payables).
+    const ref = "LDA-" + Math.random().toString(36).slice(2, 8).toUpperCase();
+
+    // Stripe Tax calcule la taxe d'apres l'adresse de FACTURATION de la carte.
+    // Une carte facturee en Ontario livree a Laval se verrait donc facturer
+    // 13 % de TVH au lieu de 5 % TPS + 9,975 % TVQ. On rattache l'adresse de
+    // livraison deja validee au client Stripe : c'est elle qui fait foi.
+    const customer = await stripe.customers.create({
+      email: c.courriel,
+      name: `${c.prenom} ${c.nom}`,
+      phone: "+1" + c.tel,
+      ...(livraison
+        ? {
+            shipping: {
+              name: `${c.prenom} ${c.nom}`,
+              phone: "+1" + c.tel,
+              address: {
+                line1: c.adresse,
+                ...(c.app ? { line2: "App. " + c.app } : {}),
+                city: c.ville,
+                state: "QC",
+                postal_code: c.cp,
+                country: "CA",
+              },
+            },
+          }
+        : {}),
+      metadata: { commande: ref },
+    });
+
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
       locale: "fr-CA",
       // Les taxes (TPS 5 % + TVQ 9,975 %) sont calculées par Stripe Tax.
       automatic_tax: { enabled: true },
-      customer_email: c.courriel,
+      customer: customer.id,
+      client_reference_id: ref,
+      // Le panier ne doit pas rester payable indefiniment a un vieux prix.
+      expires_at: Math.floor(Date.now() / 1000) + 3600,
       // Le formulaire a déjà tout demandé : on ne le refait pas faire à Stripe.
       phone_number_collection: { enabled: false },
-      success_url: `${siteUrl}/merci.html?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${siteUrl}/merci.html?session_id={CHECKOUT_SESSION_ID}&ref=${ref}`,
       cancel_url: `${siteUrl}/matelas.html?annule=1`,
       // Ces champs suivent la commande jusqu'au tableau de bord Stripe : c'est
       // la feuille de route que l'équipe utilise pour appeler et livrer.
       metadata: {
+        commande: ref,
         mode: livraison ? "Livraison" : "Ramassage",
         client: `${c.prenom} ${c.nom}`.slice(0, 200),
         telephone: `${c.tel.slice(0, 3)} ${c.tel.slice(3, 6)}-${c.tel.slice(6)}`,
@@ -188,13 +237,13 @@ export default async function handler(req, res) {
         delai: commande ? "6–7 jours ouvrables (fournisseur)" : "24–48 h (en stock)",
         articles: String(items.length),
       },
-    });
+    }, { idempotencyKey: ref });
 
     return res.status(200).json({ url: session.url });
   } catch (err) {
     // Le détail reste dans les logs Vercel ; le client reçoit une phrase utile.
     // On ne renvoie pas le message brut : il peut nommer des fichiers ou des clés.
-    console.error("checkout error:", err && err.message);
+    console.error("checkout error:", err && err.type, err && err.code, err && err.param, err && err.message);
     return res.status(500).json({
       error: "Le paiement est momentanément indisponible. Réessayez, ou appelez-nous au 438-375-4949 — on prend la commande au téléphone.",
     });
