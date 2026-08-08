@@ -803,15 +803,44 @@
   }
 
   /* ---------- Formulaire de contact (démo) ---------- */
+  // Formulaire de contact — envoi réel via Web3Forms. Tant que la clé n'est
+  // pas remplie, on n'annonce SURTOUT pas « message envoyé » : on affiche le
+  // téléphone et le courriel. Un client qui a un problème de commande ne doit
+  // jamais écrire dans le vide.
   const cform = $("#contactForm");
   if (cform) {
-    cform.addEventListener("submit", (e) => {
+    const KEY = cform.dataset.key || "";
+    cform.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (!cform.checkValidity()) { cform.reportValidity(); return; }
-      cform.classList.add("sent");
-      const target = cform.querySelector(".form-ok");
-      if (window.__lenis && target) window.__lenis.scrollTo(cform, { offset: -140, duration: 1.1 });
-      else cform.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      const showOk = () => {
+        cform.classList.add("sent");
+        const target = cform.querySelector(".form-ok");
+        if (window.__lenis && target) window.__lenis.scrollTo(cform, { offset: -140, duration: 1.1 });
+        else cform.scrollIntoView({ behavior: "smooth", block: "center" });
+      };
+
+      if (!KEY) {
+        toast("Écrivez-nous plutôt à literiedamitieinc@outlook.com ou appelez le 438-375-4949.");
+        return;
+      }
+
+      const btn = cform.querySelector('button[type="submit"]');
+      const label = btn ? btn.innerHTML : "";
+      if (btn) { btn.disabled = true; btn.textContent = "Envoi…"; }
+      try {
+        const fd = new FormData(cform);
+        fd.append("access_key", KEY);
+        fd.append("subject", "Nouveau message — literiedamitie.com");
+        const r = await fetch("https://api.web3forms.com/submit", { method: "POST", body: fd });
+        const data = await r.json().catch(() => ({}));
+        if (!data.success) throw new Error(data.message || "Envoi impossible");
+        showOk();
+      } catch (err) {
+        if (btn) { btn.disabled = false; btn.innerHTML = label; }
+        toast("Envoi impossible — appelez-nous au 438-375-4949.");
+      }
     });
   }
 

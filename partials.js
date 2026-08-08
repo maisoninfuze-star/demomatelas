@@ -154,7 +154,7 @@
         <div class="footer-legal">
           <a href="#">Confidentialité</a>
           <a href="#">Conditions</a>
-          <span>Proposition de refonte — démo B12</span>
+          <span>Paiement sécurisé par Stripe</span>
         </div>
       </div>
     </div>

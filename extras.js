@@ -288,7 +288,7 @@
         <div class="devis-foot">
           <span>3512, boul. Industriel, Montréal QC · 438-375-4949 · literiedamitieinc@outlook.com</span>
           <span>Showroom ouvert 7 jours · Lun–Ven 9 h–18 h · Sam 10 h–17 h · Dim 11 h–16 h</span>
-          <span class="devis-note">Soumission générée sur literiedamitie.com — les prix incluent la garantie 1 an. Démo.</span>
+          <span class="devis-note">Soumission générée sur literiedamitie.com — les prix incluent la garantie 1 an. Taxes en sus, sauf indication contraire.</span>
         </div>
       </div>`;
     return true;
