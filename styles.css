@@ -1603,3 +1603,7 @@ body.cart-open .cart-drawer { transform: translateX(0); }
   .coord .form-row { grid-template-columns: 1fr; gap: 14px; }
   .coord .form-field { grid-column: 1 / -1 !important; }
 }
+
+/* Pastille « sur commande » — le catalogue fournisseur (6–7 jours ouvrables). */
+.pc-chip--order { background: rgba(176, 141, 87, .16); color: #6d5426; border: 1px solid rgba(176, 141, 87, .4); }
+.cart-delai b { font-weight: 600; color: var(--brass); }

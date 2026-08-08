@@ -231,7 +231,7 @@
   /* ============================================================
      2. SOUMISSION PDF — panier → devis imprimable avec TPS/TVQ
      ============================================================ */
-  const TPS = 0.05, TVQ = 0.09975, FREE = 750;
+  const TPS = 0.05, TVQ = 0.09975;
   const fmtC = (n) => n.toLocaleString("fr-CA", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " $";
 
   document.body.insertAdjacentHTML("beforeend", `<div id="devisSheet" aria-hidden="true"></div>`);

@@ -80,6 +80,8 @@ export default async function handler(req, res) {
       tel: tel10(client.tel),
       courriel: clean(client.courriel, 254).toLowerCase(),
       moment: clean(client.moment, 40),
+      jour: clean(client.jour, 30),
+      plage: clean(client.plage, 40),
     };
     if (!c.prenom || !c.nom) return res.status(400).json({ error: "Nom et prénom requis." });
     if (!c.tel) return res.status(400).json({ error: "Numéro de téléphone invalide." });
@@ -110,6 +112,9 @@ export default async function handler(req, res) {
 
     const list = catalog();
     const line_items = [];
+    // Les articles « ifdc- » viennent du fournisseur : 6–7 jours ouvrables.
+    // Une commande mixte suit le plus lent.
+    let commande = false;
 
     for (const it of items) {
       if (!it || typeof it !== "object") return res.status(400).json({ error: "Panier illisible." });
@@ -117,6 +122,7 @@ export default async function handler(req, res) {
       if (!p) return res.status(400).json({ error: "Un article du panier n'existe plus. Rafraîchissez la page." });
 
       // La variante choisie doit exister dans le catalogue ; sinon, première variante.
+      if (p.h.startsWith("ifdc-")) commande = true;
       const v = p.variants.find((x) => x.t === it.v) || p.variants[0];
       const qty = Math.min(Math.max(parseInt(it.q, 10) || 1, 1), MAX_QTY);
       const label = v.t && v.t !== "Default Title" ? `${p.name} — ${v.t}` : p.name;
@@ -177,6 +183,9 @@ export default async function handler(req, res) {
         adresse: adresse.slice(0, 480),
         acces: acces.slice(0, 480),
         appeler: c.moment || "Peu importe",
+        // Ce que le client souhaite : l'équipe confirme le créneau réel au téléphone.
+        souhait: [c.jour || "Jour : peu importe", c.plage || "Heure : peu importe"].join(" · "),
+        delai: commande ? "6–7 jours ouvrables (fournisseur)" : "24–48 h (en stock)",
         articles: String(items.length),
       },
     });

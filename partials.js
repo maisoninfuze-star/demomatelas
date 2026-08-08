@@ -170,6 +170,7 @@
     <div class="cart-ship" id="cartShip"></div>
     <div class="cart-items" id="cartItems"></div>
     <div class="cart-foot">
+      <div class="cart-line cart-delai" id="cartDelai" hidden></div>
       <div class="cart-line" id="cartShipLine" hidden><span>Livraison</span><b></b></div>
       <div class="cart-total"><span>Total avant taxes</span><b id="cartTotal">0&nbsp;$</b></div>
       <button class="btn" id="checkoutBtn">Passer la commande <span class="btn-orb">${arrowSvg}</span></button>

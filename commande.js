@@ -146,8 +146,39 @@
         </div>
       </div>
 
+      <div id="coordPref">
+        <div class="coord-sep"><span id="prefTitre">Votre préférence de livraison</span></div>
+        <p class="field-help" id="prefAide"></p>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cd-jour">Jour de la semaine</label>
+            <select id="cd-jour" name="jour">
+              <option value="">Peu importe</option>
+              <option value="Lundi">Lundi</option>
+              <option value="Mardi">Mardi</option>
+              <option value="Mercredi">Mercredi</option>
+              <option value="Jeudi">Jeudi</option>
+              <option value="Vendredi">Vendredi</option>
+              <option value="Samedi">Samedi</option>
+              <option value="Dimanche">Dimanche</option>
+              <option value="En semaine">N'importe quel jour de semaine</option>
+              <option value="Fin de semaine">Fin de semaine</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="cd-plage">Plage horaire</label>
+            <select id="cd-plage" name="plage">
+              <option value="">Peu importe</option>
+              <option value="Avant-midi (9 h – 12 h)">Avant-midi (9 h – 12 h)</option>
+              <option value="Après-midi (12 h – 17 h)">Après-midi (12 h – 17 h)</option>
+              <option value="Soirée (17 h – 20 h)">Soirée (17 h – 20 h)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
       <div class="form-field full">
-        <label for="cd-moment">Meilleur moment pour vous joindre <span class="opt">(facultatif)</span></label>
+        <label for="cd-moment">Meilleur moment pour vous appeler <span class="opt">(facultatif)</span></label>
         <select id="cd-moment" name="moment">
           <option value="">Peu importe</option>
           <option value="Matin (9 h – 12 h)">Matin (9 h – 12 h)</option>
@@ -191,7 +222,7 @@
   const field = (n) => form.elements[n];
 
   /* ---------- Brouillon (survit à un retour de Stripe) ---------- */
-  const NAMES = ["prenom", "nom", "tel", "courriel", "adresse", "app", "ville", "cp", "etage", "ascenseur", "notes", "moment"];
+  const NAMES = ["prenom", "nom", "tel", "courriel", "adresse", "app", "ville", "cp", "etage", "ascenseur", "notes", "jour", "plage", "moment"];
   function saveDraft() {
     try {
       const d = {};
@@ -284,7 +315,9 @@
       <div class="rc-line"><span>${n} article${n > 1 ? "s" : ""}</span><b>${f(sub)}</b></div>
       <div class="rc-line"><span>${isLiv() ? "Livraison — Montréal et environs" : "Ramassage au showroom"}</span><b>${fee ? f(fee) : "Gratuit"}</b></div>
       <div class="rc-line rc-total"><span>Total avant taxes</span><b>${f(sub + fee)}</b></div>
-      <p class="rc-tax">TPS et TVQ ajoutées à l'étape du paiement.</p>`;
+      <p class="rc-tax">TPS et TVQ ajoutées à l'étape du paiement.${
+        window.LDA_DELAI ? ` ${isLiv() ? "Livraison" : "Prêt à ramasser"} sous ${LDA_DELAI.delaiCart(cart)}.` : ""
+      }</p>`;
   }
 
   /* ---------- Mode livraison / ramassage ---------- */
@@ -300,6 +333,13 @@
     $("#coordLede").textContent = liv
       ? "On en a besoin pour préparer la livraison et vous appeler — deux minutes, puis le paiement."
       : "On en a besoin pour préparer votre commande et vous prévenir quand elle est prête à ramasser.";
+
+    // La préférence porte sur la livraison ou sur le ramassage, selon le mode.
+    const delai = (window.LDA_DELAI && LDA_DELAI.delaiCart((LDA.loadCart && LDA.loadCart()) || [])) || "";
+    $("#prefTitre").textContent = liv ? "Votre préférence de livraison" : "Votre préférence de ramassage";
+    $("#prefAide").textContent = liv
+      ? `On fait l'impossible pour respecter votre choix — on confirme le créneau exact par téléphone. Délai prévu : ${delai}.`
+      : `On vous appelle dès que la commande est prête. Délai prévu : ${delai}. Showroom ouvert 7 jours.`;
     if (!liv) { zoneBox.hidden = true; outOfZone = false; }
     else renderZone();
     renderRecap();
@@ -394,6 +434,8 @@
       notes: field("notes").value.trim(),
     });
     client.moment = field("moment").value;
+    client.jour = field("jour").value;
+    client.plage = field("plage").value;
 
     const label = goBtn.innerHTML;
     goBtn.disabled = true;

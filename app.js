@@ -144,6 +144,19 @@
   /* ============================================================
      PANIER (localStorage)
      ============================================================ */
+  /* ---------- Délais ----------
+     Deux réalités dans le catalogue : ce qui dort dans l'entrepôt part en
+     24–48 h, le reste est commandé chez le fournisseur (6–7 jours ouvrables,
+     autant pour la livraison que pour le ramassage). Les articles fournisseur
+     portent un handle « ifdc- ».                                        */
+  const isStock = (p) => !!p && !String(p.h || p).startsWith("ifdc-");
+  const DELAI_STOCK = "24–48 h";
+  const DELAI_COMMANDE = "6–7 jours ouvrables";
+  const delaiOf = (p) => (isStock(p) ? DELAI_STOCK : DELAI_COMMANDE);
+  // Une commande mixte avance au rythme du plus lent.
+  const delaiCart = (c) => (c.some((i) => !isStock(i.h)) ? DELAI_COMMANDE : DELAI_STOCK);
+  window.LDA_DELAI = { isStock, delaiOf, delaiCart, DELAI_STOCK, DELAI_COMMANDE };
+
   const CART_KEY = "lda_cart_v1";
   const ZONE_KEY = "lda_zone_v1";
   const DELIVERY_FEE = 50;
@@ -180,7 +193,7 @@
     if (!c.length) {
       itemsEl.innerHTML = `<div class="cart-empty">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1.3 12.1a1.8 1.8 0 0 1-1.8 1.9H6.5a1.8 1.8 0 0 1-1.8-1.9L6 7Z"/><path d="M8.5 9.5V6a3.5 3.5 0 0 1 7 0v3.5"/></svg>
-        <b>Votre panier dort encore</b><p>Ajoutez un matelas — il sera chez vous en 24–48 h.</p>
+        <b>Votre panier dort encore</b><p>Ajoutez un matelas — nos modèles en stock partent en 24–48 h.</p>
       </div>`;
     } else {
       itemsEl.innerHTML = c.map((i, idx) => {
@@ -222,6 +235,16 @@
              <p class="ship-far">Plus loin que Saint-Jérôme ou Joliette&nbsp;? <a href="tel:+14383754949">Appelez-nous</a> — on vous soumissionne la livraison.</p>
            </div>`
         : "";
+    }
+
+    const delaiLine = $("#cartDelai");
+    if (delaiLine) {
+      delaiLine.hidden = !c.length;
+      if (c.length) {
+        const d = delaiCart(c);
+        delaiLine.innerHTML = `<span>${d === DELAI_STOCK ? "En stock" : "Sur commande"}</span><b>${
+          getZone() === "ramassage" ? "Prêt à ramasser" : "Livré"} sous ${d}</b>`;
+      }
     }
 
     const shipLine = $("#cartShipLine");
@@ -413,7 +436,7 @@
       return `<article class="product-card" style="--d:${Math.min(i * 0.05, 0.45)}s">
         <div class="pc-core">
           <a class="pc-media" href="produit.html?p=${encodeURIComponent(p.h)}" ${img2 ? `data-img2="${img2}" data-img1="${img}"` : ""}>
-            ${p.cat === "matelas" ? `<span class="pc-chip pc-chip--stock">En stock</span>` : ""}
+            ${isStock(p) ? `<span class="pc-chip pc-chip--stock">En stock · ${DELAI_STOCK}</span>` : `<span class="pc-chip pc-chip--order">Sur commande · ${DELAI_COMMANDE}</span>`}
             <img src="${img}" alt="${p.name}" loading="lazy" decoding="async">
           </a>
           <div class="pc-body">
@@ -551,6 +574,15 @@
     $("#pTitle").textContent = p.name;
     $("#pSub").textContent = p.sub && p.sub.includes("—") ? p.sub.split("—").slice(1).join("—").trim() : (p.sub || "");
 
+    // Le délai dépend du produit : entrepôt ou commande fournisseur.
+    const dTitre = $("#pDelaiTitre"), dTexte = $("#pDelaiTexte");
+    if (dTitre && dTexte) {
+      dTitre.textContent = isStock(p) ? `Livraison ${DELAI_STOCK}` : `Livraison en ${DELAI_COMMANDE}`;
+      dTexte.textContent = isStock(p)
+        ? "En stock — Grand Montréal 50 $, ou ramassage gratuit"
+        : "Sur commande chez notre fournisseur — livraison 50 $ ou ramassage gratuit";
+    }
+
     const mainImg = $("#gMain");
     mainImg.src = imgUrl(imgs[0], 1000);
     mainImg.alt = p.name;
@@ -652,7 +684,7 @@
     return `<article class="product-card" style="--d:${Math.min((i || 0) * 0.05, 0.4)}s">
       <div class="pc-core">
         <a class="pc-media" href="produit.html?p=${encodeURIComponent(p.h)}" ${img2 ? `data-img1="${img}" data-img2="${img2}"` : ""}>
-          ${p.cat === "matelas" ? '<span class="pc-chip pc-chip--stock">En stock</span>' : ""}
+          ${isStock(p) ? `<span class="pc-chip pc-chip--stock">En stock · ${DELAI_STOCK}</span>` : `<span class="pc-chip pc-chip--order">Sur commande · ${DELAI_COMMANDE}</span>`}
           <img src="${img}" alt="${p.name}" loading="lazy" decoding="async">
         </a>
         <div class="pc-body">
