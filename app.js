@@ -297,7 +297,45 @@
       !size || p.cat !== "matelas"
         ? !size
         : p.variants.some((v) => SIZE_MATCH[size].some((m) => v.t.toLowerCase().includes(m)));
-    const matches = (p) => (cat === "tous" || catOf(p) === cat) && (size ? (p.cat === "matelas" && matchSize(p)) : true);
+    const matches = (p) => (cat === "tous" || catOf(p) === cat) && (size ? (p.cat === "matelas" && matchSize(p)) : true) && matchSub(p);
+
+    // Sous-filtres par département (testés sur sub + nom)
+    const SUBS = {
+      lits: [
+        { k: "simple", label: "Simple 39″", re: /lit simple|lit de jour|trundle/i },
+        { k: "double", label: "Double 54″", re: /double 54|lit double/i },
+        { k: "queen", label: "Queen 60″", re: /queen/i },
+        { k: "king", label: "King 78″", re: /king/i },
+        { k: "ajustable", label: "Électriques", re: /électrique|ajustable/i },
+        { k: "coffre", label: "Lits coffre", re: /coffre|rangement/i },
+      ],
+      salle: [
+        { k: "ens7", label: "Ensembles 7 pièces", re: /7 pièces/i },
+        { k: "ens5", label: "Ensembles 5 pièces", re: /5 pièces/i },
+        { k: "ens3", label: "Ensembles 3 pièces", re: /3 pièces/i },
+        { k: "tables", label: "Tables seules", re: /table seulement/i },
+        { k: "chaises", label: "Chaises", re: /^chaise/i },
+        { k: "tabourets", label: "Tabourets", re: /tabouret/i },
+      ],
+      salon: [
+        { k: "inclinables", label: "Fauteuils inclinables", re: /recliner/i },
+        { k: "sofas", label: "Sofas & causeuses", re: /sofa|causeuse|loveseat/i },
+        { k: "tbasses", label: "Tables basses & café", re: /table basse|coffee set|table d'appoint/i },
+        { k: "bancs", label: "Bancs & ottomans", re: /banc|ottoman/i },
+      ],
+      pieces: [
+        { k: "commodes", label: "Commodes & dressoirs", re: /commode|dressoir/i },
+        { k: "tnuit", label: "Tables de nuit", re: /table de nuit/i },
+        { k: "chiffonniers", label: "Chiffonniers & coffres", re: /chiffonnier|chiffonier|coffre|chest/i },
+      ],
+    };
+    let sub = "";
+    const subText = (p) => ((p.sub || "") + " " + p.name).toLowerCase();
+    const matchSub = (p) => {
+      if (!sub) return true;
+      const def = (SUBS[cat] || []).find((s) => s.k === sub);
+      return def ? def.re.test(subText(p)) : true;
+    };
 
     // barre de filtres
     const bar = $("#filterBar");
@@ -306,6 +344,31 @@
     bar.innerHTML = Object.keys(CAT_LABELS)
       .map((k) => `<button class="fchip ${k === cat ? "on" : ""}" data-cat="${k}">${CAT_LABELS[k]}<span>${counts[k] || 0}</span></button>`)
       .join("");
+
+    const subBar = $("#subBar");
+    function renderSubBar() {
+      if (!subBar) return;
+      const defs = SUBS[cat];
+      if (!defs || size) { subBar.hidden = true; subBar.innerHTML = ""; return; }
+      const base = CATALOG.filter((p) => p.cat === cat);
+      subBar.hidden = false;
+      subBar.innerHTML =
+        `<button class="schip ${!sub ? "on" : ""}" data-sub="">Tout</button>` +
+        defs
+          .map((s) => {
+            const n = base.filter((p) => s.re.test(subText(p))).length;
+            return n ? `<button class="schip ${sub === s.k ? "on" : ""}" data-sub="${s.k}">${s.label}<span>${n}</span></button>` : "";
+          })
+          .join("");
+    }
+    subBar && subBar.addEventListener("click", (e) => {
+      const c = e.target.closest(".schip");
+      if (!c) return;
+      sub = c.dataset.sub;
+      $$(".schip", subBar).forEach((x) => x.classList.toggle("on", x === c));
+      shown = PAGE;
+      renderGrid();
+    });
 
     const CARD_KICKERS = { matelas: "Matelas", ensembles: "Ensemble de chambre", lits: "Lit & tête de lit", sectionnels: "Sectionnel-lit", salon: "Salon", salle: "Salle à manger", pieces: "Pièce à l'unité", divers: "Bureau & divers" };
 
@@ -335,12 +398,29 @@
     }
 
     const ORDER = { matelas: 0, ensembles: 1, lits: 2, sectionnels: 3, salon: 4, salle: 5, pieces: 6, divers: 7 };
+    const PAGE = 60;
+    let shown = PAGE;
+    let sort = "reco";
+    const SORTS = {
+      reco: (a, b) => ORDER[a.cat] - ORDER[b.cat] || a.from - b.from,
+      asc: (a, b) => a.from - b.from,
+      desc: (a, b) => b.from - a.from,
+      az: (a, b) => a.name.localeCompare(b.name, "fr"),
+    };
+    const moreBtn = $("#moreBtn");
     function renderGrid() {
-      const list = CATALOG.filter(matches).sort((a, b) => ORDER[a.cat] - ORDER[b.cat] || a.from - b.from);
-      catGrid.innerHTML = list.map(card).join("");
+      renderSubBar();
+      const list = CATALOG.filter(matches).sort(SORTS[sort] || SORTS.reco);
+      const slice = list.slice(0, shown);
+      catGrid.innerHTML = slice.map(card).join("");
       $("#catCount").textContent = size
         ? `${list.length} matelas offerts en format ${size.charAt(0).toUpperCase() + size.slice(1)}`
         : `${list.length} produit${list.length > 1 ? "s" : ""} — prix d'usine, taxes en sus`;
+      if (moreBtn) {
+        const rest = list.length - slice.length;
+        moreBtn.hidden = rest <= 0;
+        moreBtn.querySelector("b").textContent = rest > 0 ? `Afficher plus (${rest} restant${rest > 1 ? "s" : ""})` : "";
+      }
       // survol : deuxième image
       $$("[data-img2]", catGrid).forEach((a) => {
         const im = a.querySelector("img");
@@ -348,12 +428,18 @@
         a.addEventListener("mouseleave", () => (im.src = a.dataset.img1));
       });
     }
+    moreBtn && moreBtn.addEventListener("click", () => { shown += PAGE * 2; renderGrid(); });
+
+    const sortSel = $("#sortSel");
+    sortSel && sortSel.addEventListener("change", () => { sort = sortSel.value; shown = PAGE; renderGrid(); });
 
     bar.addEventListener("click", (e) => {
       const chip = e.target.closest(".fchip");
       if (!chip) return;
       cat = chip.dataset.cat;
       size = "";
+      sub = "";
+      shown = PAGE;
       $$(".fchip", bar).forEach((c) => c.classList.toggle("on", c === chip));
       const url = new URL(location);
       url.searchParams.delete("size");
@@ -374,6 +460,41 @@
       else if (cat === "divers") heroTitle.innerHTML = `Bureau <em>&amp; divers</em>`;
     }
     renderGrid();
+  }
+
+  /* ============================================================
+     TUILES DÉPARTEMENTS (accueil)
+     ============================================================ */
+  const deptGrid = $("#deptGrid");
+  if (deptGrid && window.CATALOG) {
+    const DEPT_TILES = [
+      { cat: "matelas", label: "Matelas & sommiers", pick: "royal-supreme-10-matelas-euro-top-a-ressorts-800-pocket-coil" },
+      { cat: "lits", label: "Lits & têtes de lit" },
+      { cat: "ensembles", label: "Ensembles de chambre", pick: "madison-100" },
+      { cat: "pieces", label: "Commodes & tables de nuit", pick: "commode-miroir-if-100-if-100-d-m" },
+      { cat: "sectionnels", label: "Sectionnels-lits", pick: "if-9470-9471-sofa-bed-sectionnel-reversible-avec-rangement-ottoman-optionnel" },
+      { cat: "salon", label: "Salon" },
+      { cat: "salle", label: "Salle à manger", pickSub: /7 pièces/i },
+      { cat: "divers", label: "Bureau & divers" },
+    ];
+    deptGrid.innerHTML = DEPT_TILES.map((d, i) => {
+      const items = CATALOG.filter((p) => p.cat === d.cat);
+      if (!items.length) return "";
+      let p = d.pick ? items.find((x) => x.h === d.pick) : null;
+      if (!p && d.pickSub) p = items.find((x) => d.pickSub.test(x.sub || ""));
+      if (!p) p = items.find((x) => x.imgs && x.imgs[0]) || items[0];
+      const img = p.imgs && p.imgs[0] ? p.imgs[0] + (p.imgs[0].includes("?") ? "&" : "?") + "width=500" : "";
+      const min = Math.min(...items.map((x) => x.from));
+      return `<a class="dept-card reveal" style="--d:${(i % 4) * 0.07}s" href="matelas.html?cat=${d.cat}">
+        <span class="dc-media"><img src="${img}" alt="${d.label}" loading="lazy" decoding="async"></span>
+        <span class="dc-body">
+          <b>${d.label}</b>
+          <span>${items.length} produit${items.length > 1 ? "s" : ""} · dès ${fmt(min)}</span>
+        </span>
+        <span class="dc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </a>`;
+    }).join("");
+    $$(".dept-card", deptGrid).forEach((el) => io.observe(el));
   }
 
   /* ============================================================

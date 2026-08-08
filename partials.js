@@ -12,32 +12,55 @@
   const MAPS = "https://maps.google.com/?q=3512+Boulevard+Industriel+Montréal";
   const EMAIL = "literiedamitieinc@outlook.com";
 
+  const DEPTS = [
+    { cat: "matelas", label: "Matelas & sommiers" },
+    { cat: "lits", label: "Lits & têtes de lit" },
+    { cat: "ensembles", label: "Ensembles de chambre" },
+    { cat: "pieces", label: "Commodes & tables de nuit" },
+    { cat: "sectionnels", label: "Sectionnels-lits" },
+    { cat: "salon", label: "Salon" },
+    { cat: "salle", label: "Salle à manger" },
+    { cat: "divers", label: "Bureau & divers" },
+  ];
+  const deptCounts = {};
+  (window.CATALOG || []).forEach((p) => (deptCounts[p.cat] = (deptCounts[p.cat] || 0) + 1));
+  const deptTotal = (window.CATALOG || []).length;
+
   const NAV = [
-    { label: "Matelas", href: "matelas.html", key: "matelas" },
+    { label: "Boutique", href: "matelas.html", key: "boutique", drop: true },
+    { label: "Matelas", href: "matelas.html?cat=matelas", key: "matelas" },
     { label: "Chambres", href: "collections.html", key: "collections" },
-    { label: "Sectionnels", href: "matelas.html?cat=sectionnels", key: "sectionnels" },
     { label: "Liquidation", href: "liquidation.html", key: "liquidation" },
     { label: "Livraison", href: "livraison.html", key: "livraison" },
     { label: "Contact", href: "contact.html", key: "contact" },
   ];
 
   let page = document.body.getAttribute("data-page") || "";
-  // On the catalogue, refine the active tab from the ?cat= filter.
+  // On the catalogue, the active tab depends on the ?cat= filter.
   if (page === "matelas") {
     const cat = new URLSearchParams(location.search).get("cat");
-    if (cat === "sectionnels") page = "sectionnels";
+    page = cat === "matelas" ? "matelas" : "boutique";
   }
 
   const phoneSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2Z"/></svg>`;
   const brandSvg = `<svg class="brand-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="22" r="20.5" stroke="currentColor" stroke-width="1.3"/><path d="M28.5 10.5a13.5 13.5 0 1 0 5 18.5 15 15 0 0 1-5-18.5Z" fill="currentColor"/><path d="M13 15.5l3.4 2M12 21.6h3.9M13 27.7l3.4-2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>`;
   const arrowSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>`;
 
-  const navLinks = NAV.map(
-    (n) => `<a href="${n.href}"${n.key === page ? ' class="is-active"' : ""}>${n.label}</a>`
+  const dropPanel = `<div class="nav-drop" role="menu" aria-label="Départements">
+      ${DEPTS.map((d) => `<a role="menuitem" href="matelas.html?cat=${d.cat}">${d.label}<span>${deptCounts[d.cat] || 0}</span></a>`).join("")}
+      <a role="menuitem" class="nav-drop-all" href="matelas.html">Tout le catalogue<span>${deptTotal}</span></a>
+    </div>`;
+
+  const navLinks = NAV.map((n) =>
+    n.drop
+      ? `<span class="nav-item has-drop"><a href="${n.href}"${n.key === page ? ' class="is-active"' : ""} aria-haspopup="true">${n.label}<svg class="drop-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></a>${dropPanel}</span>`
+      : `<a href="${n.href}"${n.key === page ? ' class="is-active"' : ""}>${n.label}</a>`
   ).join("");
 
-  const mobileLinks = NAV.map(
-    (n) => `<li><a href="${n.href}"${n.key === page ? ' class="is-active"' : ""}>${n.label}</a></li>`
+  const mobileLinks = NAV.map((n) =>
+    n.drop
+      ? `<li><a href="${n.href}"${n.key === page ? ' class="is-active"' : ""}>${n.label}</a><ul class="mm-depts">${DEPTS.map((d) => `<li><a href="matelas.html?cat=${d.cat}">${d.label} <em>${deptCounts[d.cat] || 0}</em></a></li>`).join("")}</ul></li>`
+      : `<li><a href="${n.href}"${n.key === page ? ' class="is-active"' : ""}>${n.label}</a></li>`
   ).join("");
 
   const header = `
