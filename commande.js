@@ -187,6 +187,16 @@
         </select>
       </div>
 
+      <!-- Consentement SMS : jamais coché d'avance, jamais requis pour payer.
+           C'est la preuve d'adhésion exigée pour l'enregistrement A2P. -->
+      <label class="coord-optin" for="cd-sms">
+        <input type="checkbox" id="cd-sms" name="sms" value="oui">
+        <span>
+          <b>Recevoir les nouvelles et promotions par texto</b>
+          <em>Facultatif — vous serez livré et appelé de toute façon. Fréquence variable&nbsp;; des frais de messagerie et de données peuvent s'appliquer. Répondez STOP pour vous désabonner, HELP pour de l'aide. Voir les <a href="conditions.html#sms" target="_blank" rel="noopener">conditions</a> et la <a href="confidentialite.html" target="_blank" rel="noopener">confidentialité</a>.</em>
+        </span>
+      </label>
+
       <div class="coord-hp" aria-hidden="true">
         <label for="cd-site">Ne remplissez pas ce champ</label>
         <input id="cd-site" name="site" type="text" tabindex="-1" autocomplete="off">
@@ -434,6 +444,9 @@
       notes: field("notes").value.trim(),
     });
     client.moment = field("moment").value;
+    // Preuve d'adhesion SMS : valeur + horodatage, exiges a l'enregistrement A2P.
+    client.sms = field("sms").checked ? "oui" : "non";
+    if (field("sms").checked) client.smsAt = new Date().toISOString();
     client.jour = field("jour").value;
     client.plage = field("plage").value;
 

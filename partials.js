@@ -150,10 +150,10 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 Literie d'Amitié Inc. — Matelassier montréalais depuis 2020</span>
+        <span>© 2026 Literie d'Amitié Inc. — 3512, boul. Industriel, Montréal (Québec) · NEQ 1226580367</span>
         <div class="footer-legal">
-          <a href="#">Confidentialité</a>
-          <a href="#">Conditions</a>
+          <a href="confidentialite.html">Confidentialité</a>
+          <a href="conditions.html">Conditions de vente</a>
           <span>Paiement sécurisé par Stripe</span>
         </div>
       </div>

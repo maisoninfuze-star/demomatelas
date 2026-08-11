@@ -82,6 +82,10 @@ export default async function handler(req, res) {
       moment: clean(client.moment, 40),
       jour: clean(client.jour, 30),
       plage: clean(client.plage, 40),
+      // Consentement SMS : la charge de la preuve appartient a l'expediteur
+      // (LCAP art. 13), alors on horodate.
+      sms: client.sms === "oui" ? "oui" : "non",
+      smsAt: clean(client.smsAt, 40),
     };
     if (!c.prenom || !c.nom) return res.status(400).json({ error: "Nom et prénom requis." });
     if (!c.tel) return res.status(400).json({ error: "Numéro de téléphone invalide." });
@@ -232,6 +236,7 @@ export default async function handler(req, res) {
         adresse: adresse.slice(0, 480),
         acces: acces.slice(0, 480),
         appeler: c.moment || "Peu importe",
+        sms_promo: c.sms === "oui" ? `consenti ${c.smsAt || ""}`.trim() : "non",
         // Ce que le client souhaite : l'équipe confirme le créneau réel au téléphone.
         souhait: [c.jour || "Jour : peu importe", c.plage || "Heure : peu importe"].join(" · "),
         delai: commande ? "6–7 jours ouvrables (fournisseur)" : "24–48 h (en stock)",

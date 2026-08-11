@@ -1607,3 +1607,61 @@ body.cart-open .cart-drawer { transform: translateX(0); }
 /* Pastille « sur commande » — le catalogue fournisseur (6–7 jours ouvrables). */
 .pc-chip--order { background: rgba(176, 141, 87, .16); color: #6d5426; border: 1px solid rgba(176, 141, 87, .4); }
 .cart-delai b { font-weight: 600; color: var(--brass); }
+
+/* ============================================================
+   Pages légales + consentement SMS
+   ============================================================ */
+.legal-h1 {
+  font-family: var(--serif); font-size: clamp(2.1rem, 5vw, 3.4rem); font-weight: 540;
+  line-height: 1.04; letter-spacing: -0.02em; margin-top: 14px;
+}
+.legal-h1 em { font-style: italic; color: var(--garnet); }
+.legal { max-width: 780px; margin-top: 44px; }
+.legal h2 {
+  font-family: var(--serif); font-size: clamp(1.3rem, 2.6vw, 1.7rem); font-weight: 560;
+  color: var(--ink); margin-top: 44px; scroll-margin-top: 130px;
+}
+.legal h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 560; margin-top: 26px; }
+.legal p { margin-top: 13px; font-size: 0.95rem; line-height: 1.72; color: var(--text); }
+.legal ul { margin: 13px 0 0 20px; }
+.legal li { margin-top: 8px; font-size: 0.95rem; line-height: 1.68; }
+.legal a { color: var(--garnet); font-weight: 550; text-decoration: underline; text-underline-offset: 2px; }
+.legal-meta {
+  padding: 20px 24px; border-radius: var(--r-md); background: var(--card);
+  border: 1px solid var(--line); font-size: 0.9rem !important; line-height: 1.66 !important;
+}
+.legal-date { display: block; margin-top: 9px; font-size: 0.8rem; color: var(--muted); }
+.legal-callout {
+  margin-top: 18px !important; padding: 17px 20px; border-radius: var(--r-md);
+  background: rgba(176, 141, 87, 0.1); border: 1px solid rgba(176, 141, 87, 0.4);
+}
+.legal-en {
+  margin-top: 30px; padding: 22px 24px; border-radius: var(--r-md);
+  background: rgba(19, 26, 46, 0.04); border: 1px solid var(--line);
+}
+.legal-en h3 { margin-top: 0; }
+.legal-en p { font-size: 0.9rem; }
+.legal-foot {
+  margin-top: 40px !important; padding-top: 22px; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 0.9rem !important;
+}
+.legal-table-wrap { margin-top: 18px; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-md); }
+.legal-table { width: 100%; border-collapse: collapse; min-width: 460px; }
+.legal-table th, .legal-table td {
+  text-align: left; padding: 13px 18px; font-size: 0.88rem; border-bottom: 1px solid var(--line); vertical-align: top;
+}
+.legal-table thead th {
+  background: var(--ink); color: var(--ivory); font-weight: 600;
+  font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.legal-table tbody tr:last-child td { border-bottom: 0; }
+.legal-table td:first-child { font-weight: 600; color: var(--ink); }
+
+.coord-optin {
+  display: flex; gap: 12px; align-items: flex-start; margin-top: 22px;
+  padding: 15px 17px; border-radius: var(--r-md);
+  background: rgba(19, 26, 46, 0.03); border: 1px solid var(--line); cursor: pointer;
+}
+.coord-optin input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--ink); flex: none; cursor: pointer; }
+.coord-optin b { display: block; font-size: 0.88rem; color: var(--ink); }
+.coord-optin em { display: block; margin-top: 4px; font-style: normal; font-size: 0.76rem; color: var(--muted); line-height: 1.5; }
