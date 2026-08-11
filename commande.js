@@ -140,9 +140,9 @@
         <div class="form-field full">
           <label for="cd-notes">Accès au logement <span class="opt">(facultatif)</span></label>
           <textarea id="cd-notes" name="notes" rows="2" maxlength="400"
-                    placeholder="Escalier en colimaçon, porte étroite, code d'entrée, stationnement…"
+                    placeholder="Escalier en colimaçon, porte étroite, stationnement difficile…"
                     aria-describedby="aide-notes"></textarea>
-          <p class="field-help" id="aide-notes">Ces détails nous évitent un deuxième déplacement.</p>
+          <p class="field-help" id="aide-notes">Ces détails nous évitent un deuxième déplacement. <b>N'inscrivez pas votre code d'entrée ici</b> — donnez-le au livreur lors de l'appel de planification.</p>
         </div>
       </div>
 
