@@ -249,8 +249,13 @@ export default async function handler(req, res) {
     // Le détail reste dans les logs Vercel ; le client reçoit une phrase utile.
     // On ne renvoie pas le message brut : il peut nommer des fichiers ou des clés.
     console.error("checkout error:", err && err.type, err && err.code, err && err.param, err && err.message);
+    // Le client lit la phrase francaise ; le `code` Stripe (ex.
+    // « stripe_tax_inactive ») accompagne la reponse pour qu'un probleme de
+    // configuration soit diagnosticable sans fouiller les journaux. Un code
+    // n'est pas un secret — contrairement au message brut.
     return res.status(500).json({
       error: "Le paiement est momentanément indisponible. Réessayez, ou appelez-nous au 438-375-4949 — on prend la commande au téléphone.",
+      code: (err && (err.code || err.type)) || "unknown",
     });
   }
 }

@@ -1665,3 +1665,9 @@ body.cart-open .cart-drawer { transform: translateX(0); }
 .coord-optin input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--ink); flex: none; cursor: pointer; }
 .coord-optin b { display: block; font-size: 0.88rem; color: var(--ink); }
 .coord-optin em { display: block; margin-top: 4px; font-style: normal; font-size: 0.76rem; color: var(--muted); line-height: 1.5; }
+
+/* Le défilement d'une surface ouverte ne doit pas se propager à la page. */
+.coord, .quiz, .pal-body, .cart-items, .mobile-menu { overscroll-behavior: contain; }
+/* La barre de défilement garde sa gouttière : pas de saut de mise en page
+   quand l'arrière-plan se fige. */
+html { scrollbar-gutter: stable; }

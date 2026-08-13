@@ -45,7 +45,7 @@
   /* ---------- Gabarit ---------- */
   const OVERLAY = `<div class="coord-overlay" id="coordOverlay"></div>`;
   const SHELL = `
-  <div class="coord" id="coord" role="dialog" aria-modal="true" aria-labelledby="coordTitle">
+  <div class="coord" id="coord" role="dialog" aria-modal="true" aria-labelledby="coordTitle" data-lenis-prevent>
     <button class="pal-esc coord-close" id="coordClose" aria-label="Fermer">esc</button>
     <form id="coordForm" novalidate>
       <span class="eyebrow">Dernière étape</span>

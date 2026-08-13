@@ -845,5 +845,30 @@
   }
 
   /* ---------- API interne (extras.js : palette, devis, quiz, planificateur) ---------- */
+  /* ---------- Verrou de défilement ----------
+     Sans ça, la molette au-dessus d'une fenêtre modale fait défiler la PAGE
+     derrière : Lenis capte l'événement au niveau de la racine. On gèle donc
+     l'arrière-plan dès qu'une surface s'ouvre — panier, menu, recherche,
+     quiz, coordonnées — et on rend sa position exacte à la fermeture.      */
+  const SURFACES = ["cart-open", "menu-open", "pal-open", "quiz-on", "coord-on"];
+  let lockY = 0, locked = false;
+  function syncLock() {
+    const open = SURFACES.some((c) => document.body.classList.contains(c));
+    if (open && !locked) {
+      locked = true;
+      lockY = window.scrollY;
+      if (window.__lenis) window.__lenis.stop();
+      const b = document.body.style;
+      b.position = "fixed"; b.top = `-${lockY}px`; b.left = "0"; b.right = "0"; b.width = "100%";
+    } else if (!open && locked) {
+      locked = false;
+      const b = document.body.style;
+      b.position = ""; b.top = ""; b.left = ""; b.right = ""; b.width = "";
+      window.scrollTo(0, lockY);
+      if (window.__lenis) { window.__lenis.start(); window.__lenis.scrollTo(lockY, { immediate: true }); }
+    }
+  }
+  new MutationObserver(syncLock).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
   window.LDA = { addToCart, openCart, toast, fmt, byHandle, loadCart, renderCart };
 })();

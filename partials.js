@@ -162,7 +162,7 @@
 
   const drawer = `
   <div class="cart-overlay" id="cartOverlay"></div>
-  <aside class="cart-drawer" id="cartDrawer" aria-label="Panier">
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Panier" data-lenis-prevent>
     <div class="cart-head">
       <h3>Votre panier <span id="cartQty"></span></h3>
       <button class="cart-close" id="cartClose" aria-label="Fermer le panier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>

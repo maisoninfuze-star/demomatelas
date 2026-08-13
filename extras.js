@@ -81,7 +81,7 @@
   // Injecte la palette une seule fois
   const palHTML = `
   <div class="pal-overlay" id="palOverlay"></div>
-  <div class="pal" id="pal" role="dialog" aria-modal="true" aria-label="Recherche">
+  <div class="pal" id="pal" role="dialog" aria-modal="true" aria-label="Recherche" data-lenis-prevent>
     <div class="pal-top">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
       <input id="palInput" type="text" placeholder="Matelas queen, commode Madison, sommier…" autocomplete="off" spellcheck="false" aria-label="Rechercher un produit ou une page">
@@ -341,7 +341,7 @@
 
   document.body.insertAdjacentHTML("beforeend", `
   <div class="quiz-overlay" id="quizOverlay"></div>
-  <div class="quiz" id="quiz" role="dialog" aria-modal="true" aria-label="Trouver mon matelas">
+  <div class="quiz" id="quiz" role="dialog" aria-modal="true" aria-label="Trouver mon matelas" data-lenis-prevent>
     <button class="pal-esc quiz-close" id="quizClose">esc</button>
     <div id="quizBody"></div>
   </div>`);
