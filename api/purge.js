@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     if (auth !== `Bearer ${secret}`) return res.status(401).json({ error: "Non autorisé" });
   }
 
-  const key = process.env.STRIPE_SECRET_KEY;
+  const key = (process.env.STRIPE_SECRET_KEY || "").trim();
   if (!key) return res.status(500).json({ error: "STRIPE_SECRET_KEY manquante" });
   const stripe = new Stripe(key, { apiVersion: "2024-06-20" });
 

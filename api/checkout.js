@@ -50,8 +50,19 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Méthode non permise" });
   }
 
-  const key = process.env.STRIPE_SECRET_KEY;
-  if (!key) return res.status(500).json({ error: "STRIPE_SECRET_KEY manquante sur le serveur." });
+  // La cle collee dans le tableau de bord traine souvent un espace ou un saut
+  // de ligne. Un tel caractere rend l'en-tete Authorization invalide et Node
+  // refuse d'emettre la requete : Stripe rapporte alors StripeConnectionError,
+  // ce qui ressemble a une panne reseau. On nettoie, puis on verifie la forme.
+  const key = (process.env.STRIPE_SECRET_KEY || "").trim();
+  if (!key) return res.status(500).json({ error: "STRIPE_SECRET_KEY manquante sur le serveur.", code: "key_missing" });
+  if (!/^(sk|rk)_(live|test)_[A-Za-z0-9]+$/.test(key)) {
+    console.error("STRIPE_SECRET_KEY malformee: longueur", key.length, "prefixe", key.slice(0, 8));
+    return res.status(500).json({
+      error: "Configuration de paiement invalide. Vérifiez la clé Stripe dans Vercel.",
+      code: "key_malformed",
+    });
+  }
 
   const siteUrl = (process.env.SITE_URL || `https://${req.headers.host}`).replace(/\/$/, "");
   const stripe = new Stripe(key, { apiVersion: "2024-06-20" });
