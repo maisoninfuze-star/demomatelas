@@ -230,6 +230,11 @@ export default async function handler(req, res) {
       // Les taxes (TPS 5 % + TVQ 9,975 %) sont calculées par Stripe Tax.
       automatic_tax: { enabled: true },
       customer: customer.id,
+      // Stripe Tax exige une adresse pour situer la taxe. En livraison, celle
+      // du client suffit ; en ramassage il n'y en a aucune, d'ou l'echec
+      // « customer_tax_location_invalid ». On laisse donc Checkout recueillir
+      // l'adresse de facturation et la rattacher au client.
+      customer_update: { address: "auto", name: "auto" },
       client_reference_id: ref,
       // Le panier ne doit pas rester payable indefiniment a un vieux prix.
       expires_at: Math.floor(Date.now() / 1000) + 3600,
