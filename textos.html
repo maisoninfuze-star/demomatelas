@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alertes par texto — inscription | Literie d'Amitié</title>
+  <meta name="description" content="Inscrivez-vous aux messages texte de Literie d'Amitié Inc. : suivi de livraison, rappels de créneau et promotions. Fréquence variable. Des frais de messagerie et de données peuvent s'appliquer. Répondez STOP pour vous désabonner.">
+  <meta name="theme-color" content="#0d1626">
+  <link rel="icon" type="image/png" href="assets/logo-badge.png">
+  <link rel="apple-touch-icon" href="assets/logo-badge.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=26">
+</head>
+<body data-page="textos">
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div data-header></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <nav class="crumbs" aria-label="Fil d'Ariane">
+          <a href="index.html">Accueil</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+          <span>Alertes par texto</span>
+        </nav>
+        <span class="eyebrow" style="margin-top:18px">Programme de messagerie texte</span>
+        <h1 class="legal-h1">Suivez votre livraison <em>par texto</em></h1>
+        <p class="lede">Le camion part, vous le savez. Le créneau change, vous le savez avant nous. Inscrivez-vous et Literie d'Amitié Inc. vous tient au courant — sans vous inonder.</p>
+
+        <div class="sms-grid">
+          <!-- ============ FORMULAIRE D'ADHÉSION ============ -->
+          <div class="sms-form-card">
+            <form id="smsForm" data-key="" novalidate>
+              <h2>S'inscrire aux alertes</h2>
+
+              <div class="form-field full">
+                <label for="sm-nom">Nom <span class="opt">(facultatif)</span></label>
+                <input id="sm-nom" name="nom" type="text" autocomplete="name" maxlength="80">
+              </div>
+
+              <div class="form-field full">
+                <label for="sm-tel">Numéro de téléphone mobile <span class="req">*</span></label>
+                <input id="sm-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel"
+                       maxlength="20" placeholder="514 555-1234" required aria-describedby="err-sm-tel">
+                <p class="field-error" id="err-sm-tel"></p>
+              </div>
+
+              <!-- Case d'adhésion : jamais cochée d'avance. C'est le geste positif
+                   qui constitue le consentement exprès. -->
+              <label class="coord-optin" for="sm-consent">
+                <input type="checkbox" id="sm-consent" name="consent" value="oui" required>
+                <span>
+                  <b>J'accepte de recevoir des messages texte de Literie d'Amitié Inc.</b>
+                  <em>Messages de suivi de commande, de planification et de rappel de livraison, ainsi que des promotions. La fréquence des messages peut varier. Des frais de messagerie et de données peuvent s'appliquer. Répondez <b>STOP</b> pour vous désabonner en tout temps, ou <b>HELP</b> (AIDE) pour de l'assistance. Consultez nos <a href="conditions.html#sms" target="_blank" rel="noopener">conditions d'utilisation</a> et notre <a href="confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a>.</em>
+                </span>
+              </label>
+              <p class="field-error" id="err-sm-consent"></p>
+
+              <button class="btn coord-go" type="submit" id="smsGo">
+                M'inscrire aux alertes
+                <span class="btn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+              </button>
+
+              <p class="coord-note">
+                Le consentement aux messages promotionnels n'est <b>jamais une condition d'achat</b>.<br>
+                Vous devez être titulaire de la ligne mobile fournie, ou avoir la permission du titulaire, et avoir au moins 18 ans.
+              </p>
+            </form>
+
+            <div class="sms-ok" id="smsOk" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 0-10-10 10 10 0 0 0 10 10Z"/><path d="m8 12 3 3 5-6"/></svg>
+              <h3>C'est noté&nbsp;!</h3>
+              <p>Vous recevrez un message de confirmation. Répondez <b>STOP</b> en tout temps pour vous désabonner.</p>
+            </div>
+          </div>
+
+          <!-- ============ CE QU'ON ENVOIE ============ -->
+          <div>
+            <h2 class="sms-h2">Ce qu'on vous envoie</h2>
+            <div class="sms-samples">
+              <div class="sms-bubble">
+                <span class="sms-tag">Confirmation</span>
+                <p>Literie d'Amitié : merci&nbsp;! Commande LDA-4F7K2P reçue. On vous appelle sous peu pour fixer la livraison. Répondez STOP pour vous désabonner.</p>
+              </div>
+              <div class="sms-bubble">
+                <span class="sms-tag">Planification</span>
+                <p>Literie d'Amitié : votre livraison est prévue mardi 18 août, entre 13 h et 16 h. Répondez 1 pour confirmer, ou appelez le 438-375-4949. STOP pour vous désabonner.</p>
+              </div>
+              <div class="sms-bubble">
+                <span class="sms-tag">Rappel</span>
+                <p>Literie d'Amitié : le camion arrive chez vous demain entre 13 h et 16 h. Prévoyez un accès dégagé. STOP pour vous désabonner.</p>
+              </div>
+              <div class="sms-bubble sms-bubble--promo">
+                <span class="sms-tag">Promotion</span>
+                <p>Literie d'Amitié : liquidation de matelas jusqu'au 30 août, jusqu'à 40 % au showroom du 3512 boul. Industriel. Détails : literiedamitie.com. STOP pour vous désabonner.</p>
+              </div>
+            </div>
+
+            <div class="sms-facts">
+              <h3>Les règles, en clair</h3>
+              <ul>
+                <li><b>Fréquence&nbsp;:</b> variable — généralement 2 à 6 messages par mois, plus ceux liés à votre commande.</li>
+                <li><b>Coût&nbsp;:</b> gratuit de notre part. Des frais de messagerie et de données peuvent s'appliquer selon votre forfait.</li>
+                <li><b>Se désabonner&nbsp;:</b> répondez <b>STOP</b>. Vous recevez une confirmation, puis plus rien.</li>
+                <li><b>De l'aide&nbsp;:</b> répondez <b>HELP</b> ou <b>AIDE</b>, appelez le <a href="tel:+14383754949">438-375-4949</a> ou écrivez à <a href="mailto:literiedamitieinc@outlook.com">literiedamitieinc@outlook.com</a>.</li>
+                <li><b>Livraison des messages&nbsp;:</b> les fournisseurs de services sans fil ne sont pas responsables des messages retardés ou non livrés.</li>
+                <li><b>Vos renseignements&nbsp;:</b> aucun renseignement mobile n'est partagé avec des tiers à des fins de marketing. Voir la <a href="confidentialite.html">politique de confidentialité</a>.</li>
+              </ul>
+            </div>
+
+            <div class="legal-en" lang="en">
+              <h3>SMS Program — English summary</h3>
+              <p>By submitting the form above you agree to receive text messages from <b>Literie d'Amitié Inc.</b> (3512 boul. Industriel, Montréal, Québec) about order confirmations, delivery scheduling and reminders, and promotions. <b>Consent is not a condition of any purchase.</b></p>
+              <p><b>Message frequency may vary. Message and data rates may apply.</b> Reply <b>STOP</b> to cancel at any time; you will receive a confirmation message and no further messages. <b>Text HELP for help</b>, or contact us at 438-375-4949 or literiedamitieinc@outlook.com. <b>Carriers are not liable for delayed or undelivered messages.</b></p>
+              <p>See our <a href="conditions.html#sms">Terms of Use</a> and <a href="confidentialite.html">Privacy Policy</a>. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-footer></div>
+
+  <script src="zones.js?v=26"></script>
+  <script src="data.js?v=26"></script>
+  <script src="partials.js?v=26"></script>
+  <script src="app.js?v=26"></script>
+  <script src="commande.js?v=26"></script>
+  <script>
+    // Inscription SMS — même principe que le formulaire de contact : tant que la
+    // clé Web3Forms n'est pas remplie (data-key), on n'annonce pas un succès qui
+    // n'a pas eu lieu ; on renvoie vers le téléphone.
+    (function () {
+      var f = document.getElementById("smsForm");
+      if (!f) return;
+      var digits = function (v) { return String(v || "").replace(/\D/g, ""); };
+      function telOk(v) {
+        var d = digits(v);
+        if (d.length === 11 && d[0] === "1") d = d.slice(1);
+        return d.length === 10 && /^[2-9]/.test(d);
+      }
+      f.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        var okTel = telOk(f.elements.tel.value);
+        var okConsent = f.elements.consent.checked;
+        document.getElementById("err-sm-tel").textContent = okTel ? "" : "Entrez un numéro mobile à 10 chiffres, par exemple 514 555-1234.";
+        document.getElementById("err-sm-consent").textContent = okConsent ? "" : "Cochez la case pour confirmer votre consentement.";
+        f.elements.tel.classList.toggle("is-bad", !okTel);
+        if (!okTel || !okConsent) return;
+
+        var KEY = f.dataset.key || "";
+        if (!KEY) {
+          window.LDA && LDA.toast && LDA.toast("Appelez le 438-375-4949 pour vous inscrire — nous ajoutons votre numéro sur-le-champ.");
+          return;
+        }
+        var btn = document.getElementById("smsGo");
+        btn.disabled = true; btn.textContent = "Inscription…";
+        try {
+          var fd = new FormData(f);
+          fd.append("access_key", KEY);
+          fd.append("subject", "Nouvelle adhésion SMS — literiedamitie.com");
+          fd.append("consentement_horodatage", new Date().toISOString());
+          var r = await fetch("https://api.web3forms.com/submit", { method: "POST", body: fd });
+          var d = await r.json().catch(function () { return {}; });
+          if (!d.success) throw new Error(d.message || "Envoi impossible");
+          f.hidden = true;
+          document.getElementById("smsOk").hidden = false;
+        } catch (err) {
+          btn.disabled = false; btn.textContent = "M'inscrire aux alertes";
+          window.LDA && LDA.toast && LDA.toast("Inscription impossible — appelez le 438-375-4949.");
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

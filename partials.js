@@ -79,9 +79,9 @@
 
   <div class="nav-wrap">
     <nav class="nav" id="nav" aria-label="Navigation principale">
-      <a class="brand" href="index.html" aria-label="Literie d'Amitié — accueil">
-        ${brandSvg}
-        <span><span class="brand-name">Literie d'Amitié</span><span class="brand-sub">Matelassier · Montréal</span></span>
+      <a class="brand brand--logo" href="index.html" aria-label="Literie d'Amitié — accueil">
+        <img src="assets/logo-literie.png" alt="Literie d'Amitié" width="2172" height="724" fetchpriority="high">
+        <span class="brand-sub">Matelassier · Montréal</span>
       </a>
       <div class="nav-links">${navLinks}</div>
       <div class="nav-actions">
@@ -113,9 +113,9 @@
     <div class="container">
       <div class="footer-main">
         <div>
-          <a class="brand" href="index.html" style="color:var(--ivory)">
-            <svg class="brand-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true" style="color:var(--brass-2)"><circle cx="22" cy="22" r="20.5" stroke="currentColor" stroke-width="1.3"/><path d="M28.5 10.5a13.5 13.5 0 1 0 5 18.5 15 15 0 0 1-5-18.5Z" fill="currentColor"/><path d="M13 15.5l3.4 2M12 21.6h3.9M13 27.7l3.4-2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-            <span><span class="brand-name">Literie d'Amitié</span><span class="brand-sub">Matelassier · Montréal · 2020</span></span>
+          <a class="brand brand--logo brand--footer" href="index.html">
+            <span class="brand-plate"><img src="assets/logo-literie.png" alt="Literie d'Amitié" width="2172" height="724" loading="lazy"></span>
+            <span class="brand-sub">Matelassier · Montréal · depuis 2020</span>
           </a>
           <p class="footer-about">On fabrique, on entrepose et on livre nos matelas nous-mêmes, du Plateau à Brossard. Du vrai sommeil, à prix juste.</p>
         </div>
@@ -133,6 +133,7 @@
         <div class="footer-col">
           <h4>Aide</h4>
           <a href="guide.html">Guide des dimensions</a>
+          <a href="textos.html">Alertes par texto</a>
           <a href="chambre.html">Ça va rentrer ? — planificateur</a>
           <a href="livraison.html">Zones de livraison</a>
           <a href="contact.html">Contact &amp; showroom</a>

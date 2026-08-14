@@ -1671,3 +1671,84 @@ body.cart-open .cart-drawer { transform: translateX(0); }
 /* La barre de défilement garde sa gouttière : pas de saut de mise en page
    quand l'arrière-plan se fige. */
 html { scrollbar-gutter: stable; }
+
+/* ---------- Page d'adhésion SMS ---------- */
+.sms-grid { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: clamp(26px, 4vw, 54px); margin-top: 42px; align-items: start; }
+.sms-form-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(22px, 3vw, 32px); position: sticky; top: 120px; }
+.sms-form-card h2 { font-family: var(--serif); font-size: 1.45rem; font-weight: 560; color: var(--ink); }
+.sms-form-card .form-field { margin-top: 16px; }
+.sms-form-card input { font-size: max(16px, .94rem) !important; }
+.sms-h2 { font-family: var(--serif); font-size: 1.45rem; font-weight: 560; color: var(--ink); }
+.sms-samples { display: grid; gap: 12px; margin-top: 18px; }
+.sms-bubble { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 14px 17px; }
+.sms-bubble--promo { border-color: rgba(176, 141, 87, .45); background: rgba(176, 141, 87, .07); }
+.sms-tag { font-size: .64rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--brass); }
+.sms-bubble p { margin-top: 6px; font-size: .87rem; line-height: 1.55; color: var(--text); }
+.sms-facts { margin-top: 32px; }
+.sms-facts h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 560; }
+.sms-facts ul { margin: 12px 0 0 18px; }
+.sms-facts li { font-size: .88rem; line-height: 1.6; margin-top: 8px; }
+.sms-facts a, .sms-bubble a { color: var(--garnet); font-weight: 550; }
+.sms-ok { text-align: center; padding: 26px 8px; }
+.sms-ok svg { width: 44px; height: 44px; color: #3f8f5b; }
+.sms-ok h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 560; margin-top: 12px; }
+.sms-ok p { margin-top: 8px; color: var(--muted); font-size: .9rem; }
+@media (max-width: 900px) {
+  .sms-grid { grid-template-columns: 1fr; }
+  .sms-form-card { position: static; }
+}
+
+/* ============================================================
+   Logo & réveil « en couches » du titre
+   ============================================================ */
+.brand--logo { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
+.brand--logo img { display: block; height: clamp(30px, 3.6vw, 40px); width: auto; }
+.brand--logo .brand-sub {
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.19em;
+  text-transform: uppercase; color: var(--brass); padding-left: 2px;
+}
+.brand--footer .brand-plate {
+  display: inline-block; background: var(--ivory);
+  padding: 10px 14px; border-radius: 12px;
+}
+.brand--footer .brand-plate img { height: 34px; }
+.brand--footer .brand-sub { color: var(--brass-2); }
+
+/* Réveil du titre : chaque mot est bâti de trois couches — ressorts, mousse,
+   coutil — qui se posent du bas vers le haut, puis s'enfoncent brièvement
+   comme une mousse qui accueille un poids. Le mouvement raconte le métier :
+   un matelas s'assemble couche par couche.                                */
+.hero-title { font-size: clamp(2.6rem, 6.4vw, 5.1rem); line-height: 1.02; letter-spacing: -0.028em; }
+.hero-title .w { display: inline-block; position: relative; }
+.hero-title.is-layering .w { opacity: 0; }
+.hero-title.is-layering .w.armed { opacity: 1; }
+.hero-title .w .lyr { display: inline-block; }
+.hero-title .w .l2, .hero-title .w .l3 { position: absolute; left: 0; top: 0; }
+.hero-title .w .l1 { clip-path: inset(-4% 0 66% 0); }   /* coutil */
+.hero-title .w .l2 { clip-path: inset(34% 0 34% 0); }   /* mousse */
+.hero-title .w .l3 { clip-path: inset(66% 0 -4% 0); }   /* ressorts */
+.hero-title .armed .l3 { animation: lay-base 0.52s var(--ease-expo) both; animation-delay: var(--wd); }
+.hero-title .armed .l2 { animation: lay-mid  0.52s var(--ease-expo) both; animation-delay: calc(var(--wd) + 0.07s); }
+.hero-title .armed .l1 { animation: lay-top  0.60s cubic-bezier(.22,1.4,.36,1) both; animation-delay: calc(var(--wd) + 0.14s); }
+@keyframes lay-base { from { transform: translateY(0.42em); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes lay-mid  { from { transform: translateY(0.30em); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes lay-top  { from { transform: translateY(0.22em); opacity: 0; } to { transform: none; opacity: 1; } }
+.hero-title.layers-done .w .lyr { clip-path: none; animation: none; }
+.hero-title.layers-done .w .l2, .hero-title.layers-done .w .l3 { display: none; }
+
+/* La couture : un fil de laiton file sous le titre quand le dernier mot se
+   pose, puis reste — comme le passepoil cousu sur la tranche d'un matelas. */
+.hero-seam {
+  display: block; height: 2px; width: min(34ch, 62%);
+  background: linear-gradient(90deg, var(--brass), rgba(176, 141, 87, 0));
+  transform-origin: left center; margin: 22px 0 26px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-seam { transform: scaleX(0); animation: seam 0.8s var(--ease-expo) 0.9s forwards; }
+  @keyframes seam { to { transform: scaleX(1); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-title.is-layering .w { opacity: 1; }
+  .hero-title .w .l2, .hero-title .w .l3 { display: none; }
+  .hero-title .w .l1 { clip-path: none; }
+}

@@ -126,6 +126,60 @@
     q.setAttribute("aria-expanded", open);
   });
 
+  /* ---------- Réveil « en couches » du titre ----------
+     Chaque mot est reconstruit en trois calques superposés — ressorts,
+     mousse, coutil — qui se posent du bas vers le haut. Le geste imite
+     l'assemblage d'un matelas ; le coutil arrive en dernier avec un léger
+     rebond, comme une mousse qui reprend sa forme.
+     Le texte reste intact pour les lecteurs d'écran : seuls les calques 2
+     et 3 sont dupliqués, et ils sont masqués aux technologies d'assistance. */
+  const heroTitle = $("#heroTitle");
+  if (heroTitle && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const build = (node, out) => {
+      [...node.childNodes].forEach((child) => {
+        if (child.nodeType === 3) {
+          child.textContent.split(/(\s+)/).forEach((part) => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { out.appendChild(document.createTextNode(" ")); return; }
+            const w = document.createElement("span");
+            w.className = "w";
+            for (let i = 1; i <= 3; i++) {
+              const l = document.createElement("span");
+              l.className = "lyr l" + i;
+              l.textContent = part;
+              if (i > 1) l.setAttribute("aria-hidden", "true");
+              w.appendChild(l);
+            }
+            out.appendChild(w);
+          });
+        } else {
+          const clone = child.cloneNode(false);
+          build(child, clone);
+          out.appendChild(clone);
+        }
+      });
+    };
+    // On garde le titre d'origine sous la main : une fois l'animation jouée,
+    // on le remet tel quel plutot que de laisser trois copies de chaque mot
+    // dans le DOM (le h1 se lirait « BienBienBien dormir… »).
+    const original = heroTitle.innerHTML;
+    const rebuilt = document.createElement("h1");
+    build(heroTitle, rebuilt);
+    heroTitle.innerHTML = rebuilt.innerHTML;
+    heroTitle.classList.add("is-layering");
+
+    const words = $$(".w", heroTitle);
+    words.forEach((w, i) => w.style.setProperty("--wd", (i * 0.075).toFixed(3) + "s"));
+    requestAnimationFrame(() => words.forEach((w) => w.classList.add("armed")));
+    // Une fois posé, le titre redevient exactement ce qu'il était : un texte
+    // simple, sélectionnable, sans découpe ni doublon.
+    setTimeout(() => {
+      heroTitle.classList.add("layers-done");
+      heroTitle.innerHTML = original;
+      heroTitle.classList.remove("is-layering", "layers-done");
+    }, 900 + words.length * 75);
+  }
+
   /* ---------- Parallaxe légère du héros ---------- */
   const heroImg = $(".hero-frame-core img");
   if (heroImg && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
