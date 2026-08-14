@@ -192,8 +192,8 @@
       <label class="coord-optin" for="cd-sms">
         <input type="checkbox" id="cd-sms" name="sms" value="oui">
         <span>
-          <b>Recevoir les nouvelles et promotions par texto</b>
-          <em>Facultatif — vous serez livré et appelé de toute façon. Fréquence variable&nbsp;; des frais de messagerie et de données peuvent s'appliquer. Répondez STOP pour vous désabonner, HELP pour de l'aide. Voir les <a href="conditions.html#sms" target="_blank" rel="noopener">conditions</a> et la <a href="confidentialite.html" target="_blank" rel="noopener">confidentialité</a>.</em>
+          <b>Recevoir les promotions par texto</b>
+          <em>Facultatif, et sans effet sur votre commande — vous serez livré et appelé de toute façon. J'accepte de recevoir des messages texte de marketing de Literie d'Amitié Inc. au numéro fourni. Fréquence variable&nbsp;; des frais de messagerie et de données peuvent s'appliquer. Répondez STOP pour vous désabonner, HELP pour de l'aide. Voir les <a href="conditions.html#sms" target="_blank" rel="noopener">conditions</a> et la <a href="confidentialite.html" target="_blank" rel="noopener">confidentialité</a>.</em>
         </span>
       </label>
 
