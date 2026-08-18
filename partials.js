@@ -8,7 +8,7 @@
 
   const PHONE = "438-375-4949";
   const TEL = "+14383754949";
-  const ADDR = "3512, boul. Industriel, Montréal";
+  const ADDR = "3512, boul. Industriel, Montréal-Nord";
   const MAPS = "https://maps.google.com/?q=3512+Boulevard+Industriel+Montréal";
   const EMAIL = "literiedamitieinc@outlook.com";
 
@@ -141,7 +141,7 @@
         </div>
         <div class="footer-col">
           <h4>Showroom</h4>
-          <a href="${MAPS}" target="_blank" rel="noopener">3512, boul. Industriel<br>Montréal, QC</a>
+          <a href="${MAPS}" target="_blank" rel="noopener">3512, boul. Industriel<br>Montréal-Nord (Québec) H1H 2Y4</a>
           <a href="mailto:${EMAIL}">${EMAIL}</a>
           <ul>
             <li class="foot-hours"><span>Lun – Ven</span><span>9 h – 18 h</span></li>
@@ -151,7 +151,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 Literie d'Amitié Inc. — 3512, boul. Industriel, Montréal (Québec) · NEQ 1226580367</span>
+        <span>© 2026 Literie d'Amitié Inc. — 3512, boul. Industriel, Montréal-Nord (Québec) H1H 2Y4 · NEQ 1226580367</span>
         <div class="footer-legal">
           <a href="confidentialite.html">Confidentialité</a>
           <a href="conditions.html">Conditions de vente</a>
