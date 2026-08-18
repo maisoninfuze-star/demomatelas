@@ -1752,3 +1752,7 @@ html { scrollbar-gutter: stable; }
   .hero-title .w .l2, .hero-title .w .l3 { display: none; }
   .hero-title .w .l1 { clip-path: none; }
 }
+/* Repli du pied de page quand le JS ne tourne pas : les vérificateurs A2P
+   exigent que les politiques soient liées, pas seulement injectées. */
+.footer-fallback { display: block; padding: 24px; text-align: center; font-size: .82rem; color: var(--muted); }
+.footer-fallback a { color: var(--garnet); font-weight: 550; }
