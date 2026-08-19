@@ -1,6 +1,6 @@
 # Surveillance de la disponibilité chez IFDC
 
-900 des 963 articles du catalogue viennent d'IFDC. Quand le fournisseur retire
+898 des 961 articles du catalogue viennent d'IFDC. Quand le fournisseur retire
 un meuble de sa gamme, rien ne le dit — le produit reste en vente sur le site,
 un client le paie, et l'appel qui suit est désagréable. Ces trois fichiers
 ferment ce trou, chaque lundi matin, sans que personne ait à y penser.
@@ -67,7 +67,7 @@ node tools/ifdc-check.mjs             # vérifie et applique
 
 ## Ce qui échappe à la surveillance
 
-**69 produits** viennent de la liste de prix d'août et n'ont jamais eu de page
+**67 produits** viennent de la liste de prix d'août et n'ont jamais eu de page
 sur le site d'IFDC : tables seules (T-1004, T-1210…), chaises seules (C-1027,
 C-5051…), quelques lits B-101 à B-122. Leur disponibilité ne peut se vérifier
 qu'auprès du fournisseur, et ils ne sont **jamais masqués automatiquement**.

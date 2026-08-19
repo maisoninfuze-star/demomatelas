@@ -6,4 +6,4 @@
 
 ---
 
-_69 produits du catalogue viennent de la liste de prix et n'ont pas de page IFDC : leur disponibilité ne peut pas être vérifiée en ligne, et ils ne sont jamais masqués automatiquement._
+_67 produits du catalogue viennent de la liste de prix et n'ont pas de page IFDC : leur disponibilité ne peut pas être vérifiée en ligne, et ils ne sont jamais masqués automatiquement._

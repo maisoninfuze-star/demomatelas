@@ -4,7 +4,7 @@
        node tools/ifdc-map-build.mjs
    Le résultat, tools/ifdc-map.json, est versionné ; c'est lui que
    la vérification hebdomadaire lit. On ne redécouvre pas les liens
-   chaque semaine — 900 sondages, ça ne se refait pas pour rien.
+   chaque semaine — 898 sondages, ça ne se refait pas pour rien.
 
    Trois façons de relier un produit à IFDC, de la plus sûre à la
    moins sûre :

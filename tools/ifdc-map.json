@@ -4357,10 +4357,6 @@
     "if-8010-2"
    ]
   },
-  "ifdc-match": {
-   "via": "aucune",
-   "slugs": []
-  },
   "ifdc-if-8011-brown-leather": {
    "via": "codes",
    "slugs": [
@@ -4445,10 +4441,6 @@
     "if-8110",
     "if-8110-recliner"
    ]
-  },
-  "ifdc-match-4": {
-   "via": "aucune",
-   "slugs": []
   },
   "ifdc-if-8111-beige-leather": {
    "via": "codes",
