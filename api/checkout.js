@@ -135,6 +135,15 @@ export default async function handler(req, res) {
       if (!it || typeof it !== "object") return res.status(400).json({ error: "Panier illisible." });
       const p = list.find((x) => x.h === it.h);
       if (!p) return res.status(400).json({ error: "Un article du panier n'existe plus. Rafraîchissez la page." });
+      // "off" est pose par tools/ifdc-check.mjs quand le fournisseur retire
+      // l'article. Le navigateur le masque deja, mais un panier vieux de trois
+      // semaines vit dans localStorage : la caisse tranche la derniere.
+      if (p.off) {
+        return res.status(400).json({
+          error: `« ${p.name} » n'est plus offert. Retirez-le du panier, ou appelez-nous au 438-375-4949.`,
+          code: "article_retire",
+        });
+      }
 
       // La variante choisie doit exister dans le catalogue ; sinon, première variante.
       if (p.h.startsWith("ifdc-")) commande = true;

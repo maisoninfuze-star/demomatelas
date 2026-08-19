@@ -1756,3 +1756,21 @@ html { scrollbar-gutter: stable; }
    exigent que les politiques soient liées, pas seulement injectées. */
 .footer-fallback { display: block; padding: 24px; text-align: center; font-size: .82rem; color: var(--muted); }
 .footer-fallback a { color: var(--garnet); font-weight: 550; }
+
+/* ============================================================
+   ARTICLE RETIRÉ CHEZ LE FOURNISSEUR
+   Posé par tools/ifdc-check.mjs le lundi. Le grenat de la marque
+   sert d'avertissement : assez visible pour arrêter la main,
+   assez sobre pour ne pas crier au sinistre.
+   ============================================================ */
+.cart-item--parti { border-color: rgba(158, 43, 58, 0.35); background: rgba(158, 43, 58, 0.045); }
+.cart-item--parti .ci-img img { filter: grayscale(1); opacity: 0.55; }
+.ci-parti { display: block; font-size: 0.72rem; font-weight: 600; color: var(--garnet); margin-top: 3px; }
+
+.p-parti {
+  display: grid; gap: 5px; margin: 22px 0 4px; padding: 16px 18px;
+  border: 1px solid rgba(158, 43, 58, 0.28); border-left: 3px solid var(--garnet);
+  border-radius: var(--r-md); background: rgba(158, 43, 58, 0.05);
+}
+.p-parti b { font-family: var(--serif); font-size: 1.06rem; color: var(--garnet); }
+.p-parti span { font-size: 0.86rem; line-height: 1.55; color: var(--text); }

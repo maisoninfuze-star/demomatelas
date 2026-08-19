@@ -216,7 +216,9 @@
   const DELIVERY_FEE = 50;
   const getZone = () => { try { return localStorage.getItem(ZONE_KEY) || "montreal"; } catch { return "montreal"; } };
   const setZone = (z) => { try { localStorage.setItem(ZONE_KEY, z); } catch {} };
-  const byHandle = (h) => (window.CATALOG || []).find((p) => p.h === h);
+  // Le panier et la fiche produit doivent retrouver même un article retiré :
+  // on cherche dans le catalogue complet, la disponibilité se lit sur `off`.
+  const byHandle = (h) => (window.LDA_TOUT || window.CATALOG || []).find((p) => p.h === h);
   const loadCart = () => { try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch { return []; } };
   const saveCart = (c) => localStorage.setItem(CART_KEY, JSON.stringify(c));
 
@@ -253,11 +255,15 @@
       itemsEl.innerHTML = c.map((i, idx) => {
         const p = byHandle(i.h);
         const img = p && p.imgs[0] ? p.imgs[0] + (p.imgs[0].includes("?") ? "&" : "?") + "width=200" : "";
-        return `<div class="cart-item">
+        // Un panier peut dormir des semaines dans le navigateur : l'article
+        // qu'il contient a pu être retiré par le fournisseur entre-temps.
+        const parti = !!(p && p.off);
+        return `<div class="cart-item${parti ? " cart-item--parti" : ""}">
           <span class="ci-img"><img src="${img}" alt=""></span>
           <span>
             <span class="ci-name">${i.name}</span>
             <span class="ci-variant">${i.v}</span>
+            ${parti ? `<span class="ci-parti">Plus offert — retirez-le pour continuer</span>` : ""}
             <span class="ci-price">${fmt(i.p * i.q)}</span>
           </span>
           <span class="ci-right">
@@ -313,8 +319,11 @@
   }
 
   function addToCart(handle, variantIdx = 0, qty = 1) {
-    const p = byHandle(handle);
+    const p = byHandle(handle) || (window.LDA_TOUT || []).find((x) => x.h === handle);
     if (!p) return;
+    // Retiré chez IFDC entre-temps : mieux vaut un refus net qu'une commande
+    // qu'on ne pourra pas honorer.
+    if (p.off) return toast(`${p.name} n'est plus offert — appelez-nous au 438-375-4949`);
     const v = p.variants[variantIdx] || p.variants[0];
     const c = loadCart();
     const key = handle + "::" + v.t;
@@ -349,6 +358,9 @@
   checkoutBtn && checkoutBtn.addEventListener("click", async () => {
     const c = loadCart();
     if (!c.length) { toast("Votre panier est vide."); return; }
+    // Le serveur refuserait de toute façon : autant le dire ici, clairement.
+    const partis = c.filter((i) => { const p = byHandle(i.h); return p && p.off; });
+    if (partis.length) { openCart(); toast(`${partis[0].name} n'est plus offert — retirez-le du panier`); return; }
     if (window.LDA_COMMANDE) { window.LDA_COMMANDE.open(); return; }
     // Sans commande.js on n'a ni coordonnées ni adresse, et le serveur les
     // exige. Inutile de tenter l'appel : on oriente vers le téléphone.
@@ -682,6 +694,32 @@
     $("#qtyVal") && $("#qtyPlus").addEventListener("click", () => { qty++; $("#qtyVal").textContent = qty; });
     $("#qtyVal") && $("#qtyMinus").addEventListener("click", () => { qty = Math.max(1, qty - 1); $("#qtyVal").textContent = qty; });
     $("#pAdd").addEventListener("click", () => { addToCart(p.h, vi, qty); openCart(); });
+
+    /* ---------- Article retiré chez le fournisseur ----------
+       Un lien partagé ou indexé par Google reste vivant longtemps. Plutôt
+       que de rediriger vers autre chose, la fiche se tient debout et le dit :
+       ce meuble n'est plus offert, voici le téléphone, voici trois voisins. */
+    if (p.off) {
+      const actions = $(".p-actions");
+      if (actions) {
+        actions.innerHTML = `<a class="btn" href="tel:+14383754949">Appelez-nous — 438-375-4949
+          <span class="btn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+          <a class="btn btn--ghost" href="matelas.html?cat=${p.cat}">Voir les modèles offerts</a>`;
+        actions.insertAdjacentHTML("beforebegin", `<div class="p-parti">
+          <b>Ce modèle n'est plus offert</b>
+          <span>Notre fournisseur l'a retiré de sa gamme. Appelez-nous&nbsp;: il reste parfois une pièce au showroom, et on vous trouve l'équivalent.</span>
+        </div>`);
+      }
+      const prix = $(".p-price-row"), vb = $("#vBlock");
+      if (prix) prix.hidden = true;
+      if (vb) vb.hidden = true;
+      const dTit = $("#pDelaiTitre"), dTex = $("#pDelaiTexte");
+      if (dTit && dTex) { dTit.textContent = "Plus au catalogue"; dTex.textContent = "Retiré par le fournisseur — appelez-nous pour un équivalent"; }
+      document.title = `${p.name} — plus offert | Literie d'Amitié`;
+      const rob = document.createElement("meta");
+      rob.name = "robots"; rob.content = "noindex";      // qu'il sorte des résultats de recherche
+      document.head.appendChild(rob);
+    }
 
     // Détails générés selon la catégorie
     const dims = { simple: "39 po × 75 po", double: "54 po × 75 po", queen: "60 po × 80 po", king: "76/78 po × 80 po" };

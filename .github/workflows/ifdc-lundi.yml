@@ -1,0 +1,82 @@
+# Vérification hebdomadaire de la disponibilité chez IFDC.
+# Chaque lundi matin : on sonde les pages du fournisseur, on masque ce qui
+# a disparu, on pousse — et Vercel redéploie tout seul.
+name: IFDC — disponibilité du lundi
+
+on:
+  schedule:
+    # 12:00 UTC = 8 h à Montréal l'été, 7 h l'hiver. GitHub ne connaît que UTC.
+    - cron: "0 12 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Simulation — vérifier sans rien modifier"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write   # pour repousser data.js
+  issues: write     # pour ouvrir le billet d'alerte
+
+concurrency:
+  group: ifdc-dispo
+  cancel-in-progress: false
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Sonder IFDC
+        id: check
+        continue-on-error: true   # le seuil de sécurité sort en code 3 : on veut quand même le rapport
+        run: node tools/ifdc-check.mjs ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: Publier les changements
+        if: steps.check.outputs.applique == '1'
+        run: |
+          git config user.name  "IFDC bot"
+          git config user.email "actions@github.com"
+          git add data.js tools/ifdc-rapport.md
+          git commit -m "IFDC ${{ steps.check.outputs.disparus }} disparu(s), ${{ steps.check.outputs.revenus }} de retour" \
+                     -m "Vérification automatique du lundi — voir tools/ifdc-rapport.md"
+          git push
+
+      - name: Archiver le rapport seul
+        if: steps.check.outputs.applique != '1'
+        run: |
+          git config user.name  "IFDC bot"
+          git config user.email "actions@github.com"
+          git add tools/ifdc-rapport.md
+          git diff --cached --quiet || {
+            git commit -m "Rapport IFDC du $(date +%F)"
+            git push
+          }
+
+      # Un billet GitHub sert de notification : le courriel part tout seul.
+      # On n'en ouvre un que s'il y a une décision humaine à prendre.
+      - name: Signaler
+        if: steps.check.outputs.disparus != '0' || steps.check.outputs.bloque == '1' || steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${{ steps.check.outputs.bloque }}" = "1" ]; then
+            titre="IFDC — ${{ steps.check.outputs.disparus }} disparitions d'un coup, rien n'a été appliqué"
+          elif [ "${{ steps.check.outcome }}" = "failure" ] && [ -z "${{ steps.check.outputs.disparus }}" ]; then
+            titre="IFDC — la vérification du lundi a échoué"
+          else
+            titre="IFDC — ${{ steps.check.outputs.disparus }} produit(s) retiré(s) le $(date +%F)"
+          fi
+          corps=$(cat tools/ifdc-rapport.md 2>/dev/null || echo "Aucun rapport produit — voir les journaux de l'exécution.")
+          gh issue create --title "$titre" --body "$corps" --label "ifdc" 2>/dev/null \
+            || gh issue create --title "$titre" --body "$corps"
+
+      - name: Refléter l'échec
+        if: steps.check.outcome == 'failure'
+        run: exit 1

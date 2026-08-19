@@ -6,6 +6,17 @@
 (function () {
   "use strict";
 
+  /* ---------- Ce qu'IFDC ne fournit plus ----------
+     tools/ifdc-check.mjs sonde le site du fournisseur chaque lundi et pose
+     "off" sur les articles dont la page a disparu. Le filtre est appliqué
+     ici, dans le premier script de la page : grilles, compteurs, recherche
+     par palette, quiz, produits reliés — tout ce qui lit window.CATALOG
+     hérite du tri sans une ligne de plus. Le catalogue entier reste sous
+     window.LDA_TOUT, pour que /produit.html?p=… puisse encore expliquer
+     posément qu'un article n'est plus offert au lieu d'afficher autre chose. */
+  window.LDA_TOUT = window.CATALOG || [];
+  window.CATALOG = window.LDA_TOUT.filter((p) => !p.off);
+
   const PHONE = "438-375-4949";
   const TEL = "+14383754949";
   const ADDR = "3512, boul. Industriel, Montréal-Nord";
