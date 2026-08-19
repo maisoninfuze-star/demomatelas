@@ -155,12 +155,14 @@ if (bloque) {
   writeFileSync(dataPath, dataSrc.replace(bloc[0], "window.CATALOG = " + JSON.stringify(catalogue) + ";\n"));
   applique = true;
 }
-// La table d'appariement se répare d'elle-même : sans ça, un produit renommé
-// serait re-signalé chaque lundi jusqu'à la fin des temps.
-if (!DRY && renommes.length) {
+/* La table d'appariement se tient à jour toute seule : un produit renommé
+   retrouve son adresse, et les nouveautés signalées ce lundi entrent dans
+   `nonPortes` pour ne pas être re-annoncées chaque semaine jusqu'à la fin des
+   temps. Le rapport, lui, reste dans l'historique git. */
+if (!DRY && (renommes.length || nouveautes.length)) {
   for (const { h, apres } of renommes) carte.produits[h] = { via: "renomme", slugs: apres.sort() };
   const portes = new Set(Object.values(carte.produits).flatMap((m) => m.slugs));
-  if (publies.length) carte.nonPortes = publies.filter((s) => !portes.has(s));
+  if (publies.length) carte.nonPortes = publies.filter((s) => !portes.has(s)).sort();
   writeFileSync(mapPath, JSON.stringify(carte, null, 1) + "\n");
   applique = true;
 }
@@ -181,7 +183,7 @@ bloc2(`Disparus d'IFDC — masqués sur le site`, disparus, ({ p, mortes }) => `
 bloc2(`Adresses changées chez IFDC — appariement réparé, rien de masqué`, renommes, ({ p, avant, apres }) => `**${p.name}** — ${avant.map(lien).join(", ")} → ${apres.map(lien).join(", ")}`);
 bloc2(`Un fini en moins — le produit reste en vente`, partiels, ({ p, mortes, vivantes }) => `**${p.name}** — parti : ${mortes.map(lien).join(", ")} · reste : ${vivantes.length} page${vivantes.length > 1 ? "s" : ""}`);
 bloc2(`De retour chez IFDC — remis en vente`, revenus, ({ p }) => `**${p.name}** (${p.cat})`);
-bloc2(`Nouveautés chez IFDC — pas encore au catalogue`, nouveautes.slice(0, 60), (s) => lien(s));
+bloc2(`Nouveautés chez IFDC — pas encore au catalogue (signalées une seule fois)`, nouveautes.slice(0, 60), (s) => lien(s));
 if (nouveautes.length > 60) lignes.push(`…et ${nouveautes.length - 60} autres.`, "");
 
 if (offs.length) {

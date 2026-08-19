@@ -38,26 +38,25 @@ jobs:
         continue-on-error: true   # le seuil de sécurité sort en code 3 : on veut quand même le rapport
         run: node tools/ifdc-check.mjs ${{ inputs.dry_run && '--dry-run' || '' }}
 
+      # Un seul point de publication : le script peut toucher data.js (produits
+      # masqués), tools/ifdc-map.json (adresse réparée), le rapport, ou rien
+      # du tout. On met tout en scène et on ne commite que s'il y a matière —
+      # un « git commit » sans rien à commiter fait échouer le travail.
       - name: Publier les changements
-        if: steps.check.outputs.applique == '1'
         run: |
           git config user.name  "IFDC bot"
           git config user.email "actions@github.com"
-          git add data.js tools/ifdc-rapport.md
-          git commit -m "IFDC ${{ steps.check.outputs.disparus }} disparu(s), ${{ steps.check.outputs.revenus }} de retour" \
-                     -m "Vérification automatique du lundi — voir tools/ifdc-rapport.md"
-          git push
-
-      - name: Archiver le rapport seul
-        if: steps.check.outputs.applique != '1'
-        run: |
-          git config user.name  "IFDC bot"
-          git config user.email "actions@github.com"
-          git add tools/ifdc-rapport.md
-          git diff --cached --quiet || {
-            git commit -m "Rapport IFDC du $(date +%F)"
+          git add data.js tools/ifdc-map.json tools/ifdc-rapport.md
+          if git diff --cached --quiet; then
+            echo "Rien à publier."
+          elif [ "${{ steps.check.outputs.applique }}" = "1" ]; then
+            git commit -m "IFDC : ${{ steps.check.outputs.disparus }} disparu(s), ${{ steps.check.outputs.renommes }} renommé(s), ${{ steps.check.outputs.revenus }} de retour" \
+                       -m "Vérification automatique du lundi — voir tools/ifdc-rapport.md"
             git push
-          }
+          else
+            git commit -m "Rapport IFDC du $(TZ=America/Toronto date +%F)"
+            git push
+          fi
 
       # Un billet GitHub sert de notification : le courriel part tout seul.
       # On n'en ouvre un que s'il y a une décision humaine à prendre.

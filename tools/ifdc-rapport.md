@@ -1,6 +1,8 @@
-# Disponibilité IFDC — 18 août 2026
+# Disponibilité IFDC — 19 août 2026
 
 813 pages vérifiées · **0** disparition · **0** adresse changée · **0** produit amputé d'un fini · **0** retour
+
+> Simulation — aucun fichier modifié.
 
 ---
 
