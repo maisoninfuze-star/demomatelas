@@ -1,8 +1,20 @@
-# Disponibilité IFDC — 19 août 2026
+# Disponibilité IFDC — 24 août 2026
 
-813 pages vérifiées · **0** disparition · **0** adresse changée · **0** produit amputé d'un fini · **0** retour
+813 pages vérifiées · **3** disparitions · **0** adresse changée · **0** produit amputé d'un fini · **0** retour
 
-> Simulation — aucun fichier modifié.
+> data.js a été modifié : les produits disparus sont masqués, les revenus sont ressortis.
+
+## Disparus d'IFDC — masqués sur le site
+
+- **Lit superposé B-1842** (lits, 1319.98 $) — [b-1842](https://www.ifdc.ca/product-page/b-1842)
+- **Bureau de travail IF-7000** (divers, 179.98 $) — [if-7000](https://www.ifdc.ca/product-page/if-7000)
+- **Meuble télé IF-5116** (salon, 199.98 $) — [if-5116](https://www.ifdc.ca/product-page/if-5116)
+
+## Actuellement masqués (3)
+
+- **Lit superposé B-1842** — lits — masqué le 2026-08-24
+- **Bureau de travail IF-7000** — divers — masqué le 2026-08-24
+- **Meuble télé IF-5116** — salon — masqué le 2026-08-24
 
 ---
 
