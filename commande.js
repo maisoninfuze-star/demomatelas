@@ -187,15 +187,11 @@
         </select>
       </div>
 
-      <!-- Consentement SMS : jamais coché d'avance, jamais requis pour payer.
-           C'est la preuve d'adhésion exigée pour l'enregistrement A2P. -->
-      <label class="coord-optin" for="cd-sms">
-        <input type="checkbox" id="cd-sms" name="sms" value="oui">
-        <span>
-          <b>Recevoir les promotions par texto</b>
-          <em>Facultatif, et sans effet sur votre commande — vous serez livré et appelé de toute façon. J'accepte de recevoir des messages texte de marketing de Literie d'Amitié Inc. au numéro fourni. Fréquence variable&nbsp;; des frais de messagerie et de données peuvent s'appliquer. Répondez STOP pour vous désabonner, HELP pour de l'aide. Voir les <a href="conditions.html#sms" target="_blank" rel="noopener">conditions</a> et la <a href="confidentialite.html" target="_blank" rel="noopener">confidentialité</a>.</em>
-        </span>
-      </label>
+      <!-- La case « Recevoir les promotions par texto » a été retirée le
+           2026-08-26 : la liste de conformité A2P exige qu'aucun formulaire
+           ne recueille de consentement SMS sur une page portant le widget de
+           clavardage, et le widget est chargé partout. L'adhésion SMS passe
+           désormais uniquement par le widget. -->
 
       <div class="coord-hp" aria-hidden="true">
         <label for="cd-site">Ne remplissez pas ce champ</label>
@@ -445,8 +441,9 @@
     });
     client.moment = field("moment").value;
     // Preuve d'adhesion SMS : valeur + horodatage, exiges a l'enregistrement A2P.
-    client.sms = field("sms").checked ? "oui" : "non";
-    if (field("sms").checked) client.smsAt = new Date().toISOString();
+    // La case a été retirée pour la conformité A2P : plus aucune adhésion
+    // SMS ne se recueille à la caisse. Le serveur attend toujours le champ.
+    client.sms = "non";
     client.jour = field("jour").value;
     client.plage = field("plage").value;
 
