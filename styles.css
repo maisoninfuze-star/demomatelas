@@ -1774,3 +1774,27 @@ html { scrollbar-gutter: stable; }
 }
 .p-parti b { font-family: var(--serif); font-size: 1.06rem; color: var(--garnet); }
 .p-parti span { font-size: 0.86rem; line-height: 1.55; color: var(--text); }
+
+/* ============================================================
+   WIDGET DE CLAVARDAGE LEADCONNECTOR
+   Il se pose en position fixe avec un z-index maximal, donc
+   au-dessus du panier, de la fiche « Vos coordonnées » et du menu
+   mobile. Pendant qu'on remplit une commande, une bulle de
+   clavardage par-dessus le champ de code postal fait perdre la
+   vente. On l'escamote le temps de ces trois états, sans jamais le
+   retirer du DOM : le vérificateur A2P doit pouvoir le trouver.
+   ============================================================ */
+body.cart-open chat-widget,
+body.coord-on chat-widget,
+body.menu-open chat-widget,
+body.quiz-on chat-widget,
+body.cart-open #lc_text-widget,
+body.coord-on #lc_text-widget,
+body.menu-open #lc_text-widget,
+body.quiz-on #lc_text-widget {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+chat-widget,
+#lc_text-widget { transition: opacity 0.22s ease; }
