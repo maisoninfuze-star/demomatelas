@@ -10,6 +10,31 @@
   const fmt = (n) =>
     n.toLocaleString("fr-CA", { maximumFractionDigits: 0 }).replace(/ /g, " ") + " $";
 
+
+  /* ---------- Prix affiché ----------
+     Sur une fiche d'ensemble, les variantes mêlent l'ensemble complet et
+     ses pièces vendues à l'unité. Prendre le minimum brut affichait la
+     table de nuit comme prix de l'ensemble : « Amelia — dès 320 $ » pour
+     un ensemble à 2 699,98 $. On s'ancre donc sur les variantes qui
+     désignent l'ensemble lui-même, et « dès » n'apparaît que s'il existe
+     réellement plusieurs prix. */
+  const RE_ENSEMBLE = /^ensemble|ensemble\s+(de\s+)?(chambre|salle)|\d\s*pc\b|\d\s*pi[èe]ces/i;
+  const prixAffiche = (p) => {
+    const v = (p && p.variants) || [];
+    const tous = [...new Set(v.map((x) => x.p).filter((n) => n > 0))];
+    if (!tous.length) return { val: (p && p.from) || 0, multi: false };
+    if (p.type === "bedroom-set" || p.type === "dining-set") {
+      const ens = [...new Set(v.filter((x) => RE_ENSEMBLE.test(x.t)).map((x) => x.p).filter((n) => n > 0))];
+      if (ens.length) return { val: Math.min(...ens), multi: ens.length > 1 };
+    }
+    return { val: Math.min(...tous), multi: tous.length > 1 };
+  };
+  const prixHTML = (p) => {
+    const { val, multi } = prixAffiche(p);
+    if (!(val > 0)) return `<span class="val">Sur demande</span>`;
+    return `${multi ? `<span class="from">dès</span>` : ""}<span class="val">${fmt(val)}</span>`;
+  };
+
   /* ---------- Lenis (défilement inertiel) ---------- */
   let lenis = null;
   if (window.Lenis && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -536,7 +561,7 @@
             <span class="pc-cat">${p.sub ? p.sub.split("—")[0].slice(0, 46) : CARD_KICKERS[p.cat]}</span>
             <h3 class="pc-name"><a href="produit.html?p=${encodeURIComponent(p.h)}">${p.name}</a></h3>
             <div class="pc-foot">
-              <span class="pc-price">${multi ? `<span class="from">dès</span>` : ""}<span class="val">${fmt(p.from)}</span></span>
+              <span class="pc-price">${prixHTML(p)}</span>
               <button class="pc-add" data-add="${p.h}">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
                 Panier
@@ -777,7 +802,7 @@
             <span class="pc-cat">${KICKERS[r.cat]}</span>
             <h3 class="pc-name"><a href="produit.html?p=${encodeURIComponent(r.h)}">${r.name}</a></h3>
             <div class="pc-foot">
-              <span class="pc-price">${r.variants.length > 1 ? `<span class="from">dès</span>` : ""}<span class="val">${fmt(r.from)}</span></span>
+              <span class="pc-price">${prixHTML(r)}</span>
               <button class="pc-add" data-add="${r.h}">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
                 Panier
@@ -796,10 +821,7 @@
      ============================================================ */
   const imgW = (u, w) => (u ? u + (u.includes("?") ? "&" : "?") + "width=" + w : "");
   const KICK = { matelas: "Matelas", ensembles: "Ensemble de chambre", lits: "Lit & tête de lit", sectionnels: "Sectionnel-lit", salon: "Salon", salle: "Salle à manger", pieces: "Pièce à l'unité", divers: "Bureau & divers" };
-  const priceLabel = (p) =>
-    p.from > 0
-      ? `${p.variants.length > 1 ? '<span class="from">dès</span>' : ""}<span class="val">${fmt(p.from)}</span>`
-      : `<span class="val">Sur demande</span>`;
+  const priceLabel = (p) => (p.from > 0 ? prixHTML(p) : `<span class="val">Sur demande</span>`);
 
   function prodCardHTML(p, i) {
     const img = imgW(p.imgs[0], 600), img2 = imgW(p.imgs[1], 600);
@@ -992,5 +1014,5 @@
   }
   new MutationObserver(syncLock).observe(document.body, { attributes: true, attributeFilter: ["class"] });
 
-  window.LDA = { addToCart, openCart, toast, fmt, byHandle, loadCart, renderCart };
+  window.LDA = { addToCart, openCart, toast, fmt, byHandle, loadCart, renderCart, prixAffiche, prixHTML };
 })();

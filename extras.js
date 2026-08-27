@@ -170,7 +170,7 @@
         <span>${esc((p.sub || "").split("—")[0].trim() || p.cat)}</span>
       </span>
       <span class="pal-side">
-        <span class="pal-price">${multi ? "dès " : ""}${(LDA.fmt || String)(p.from)}</span>
+        <span class="pal-price">${(() => { const q = LDA.prixAffiche ? LDA.prixAffiche(p) : { val: p.from, multi }; return (q.multi ? "dès " : "") + (LDA.fmt || String)(q.val); })()}</span>
         <button class="pal-add" data-h="${esc(p.h)}" aria-label="Ajouter au panier" title="Ajouter au panier">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
         </button>
@@ -401,7 +401,7 @@
             <div class="q-info">
               <b>${esc(r.p.name)}</b>
               <span class="q-why">${r.why.slice(0, 3).map((w) => `<i>${esc(w)}</i>`).join("")}</span>
-              <span class="q-price">dès ${(LDA.fmt || String)(r.p.from)}</span>
+              <span class="q-price">${(() => { const q = LDA.prixAffiche ? LDA.prixAffiche(r.p) : { val: r.p.from, multi: true }; return (q.multi ? "dès " : "") + (LDA.fmt || String)(q.val); })()}</span>
               <span class="q-acts">
                 <a class="btn q-see" href="produit.html?p=${encodeURIComponent(r.p.h)}">Voir le matelas</a>
                 <button class="q-add" data-h="${esc(r.p.h)}">Ajouter au panier</button>

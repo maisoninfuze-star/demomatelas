@@ -217,10 +217,33 @@ export function styleOf(p) {
   return "";
 }
 
+
+/* Un ensemble doit être corroboré par ses variantes.
+   La sous-ligne « Ensemble de chambre — collection fournisseur IFDC » est un
+   texte générique collé sur toutes les fiches IFDC, y compris sur des tables
+   de nuit vendues seules. S'y fier classait « IF-3430 » (une table de nuit
+   noire à 139,98 $) comme ensemble de chambre. On rétrograde donc vers le
+   composant quand aucune variante ne désigne l'ensemble ni un lit, et que
+   toutes nomment une pièce détachée. */
+const RE_ENS_VAR = /^ensemble|ensemble\s+(de\s+)?(chambre|salle)|\d\s*pc\b|\d\s*pi[èe]ces/i;
+const RE_LIT_VAR = /\blit\b|\bbed\b|matelas/i;
+const RE_PIECE_VAR = /table\s+de\s+nuit|commode|chiffonnier|dressoir|miroir|nightstand|dresser|\bchest\b|banc/i;
+function demoteSet(p, type) {
+  if (type !== "bedroom-set" && type !== "dining-set") return type;
+  const v = (p.variants || []).filter((x) => x.p > 0);
+  if (!v.length) return type;
+  if (v.some((x) => RE_ENS_VAR.test(x.t))) return type;   // l'ensemble est nommé
+  if (v.some((x) => RE_LIT_VAR.test(x.t))) return type;   // un lit ⇒ vrai ensemble
+  if (!v.every((x) => RE_PIECE_VAR.test(x.t))) return type; // « Default Title » ⇒ on ne touche pas
+  const dominante = v.slice().sort((a, b) => b.p - a.p)[0].t;
+  for (const r of RULES) if (r.re.test(dominante)) return r.t;
+  return type;
+}
+
 export function classify(p) {
   const tName = typeOfName(p);            // d'après le nom seul — fait autorité
   const tBoth = typeOf(p);                // nom + sous-ligne — filet de sécurité
-  const type = tName || tBoth;
+  const type = demoteSet(p, tName || tBoth);
   const [department, subcategory] = MAP[type] || ["", ""];
 
   /* Conflit de source : le nom et la sous-ligne décrivent deux produits
