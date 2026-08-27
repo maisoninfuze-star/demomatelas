@@ -1,0 +1,209 @@
+{
+ "matelas": [
+  {
+   "k": "matelas",
+   "label": "Matelas",
+   "types": [
+    "mattress"
+   ]
+  },
+  {
+   "k": "bases",
+   "label": "Bases ajustables",
+   "types": [
+    "adjustable-base"
+   ]
+  },
+  {
+   "k": "sommiers",
+   "label": "Sommiers",
+   "types": [
+    "box-spring"
+   ]
+  }
+ ],
+ "lits": [
+  {
+   "k": "lits",
+   "label": "Lits",
+   "types": [
+    "bed"
+   ]
+  },
+  {
+   "k": "tetes",
+   "label": "Têtes de lit",
+   "types": [
+    "headboard"
+   ]
+  },
+  {
+   "k": "superpose",
+   "label": "Superposés",
+   "style": "superpose"
+  },
+  {
+   "k": "dejour",
+   "label": "De jour & gigognes",
+   "style": "dejour"
+  },
+  {
+   "k": "coffre",
+   "label": "Coffre & rangement",
+   "style": "coffre"
+  },
+  {
+   "k": "bancs",
+   "label": "Bancs & coffres",
+   "types": [
+    "bench",
+    "chest"
+   ]
+  }
+ ],
+ "pieces": [
+  {
+   "k": "commodes",
+   "label": "Commodes & dressoirs",
+   "types": [
+    "dresser"
+   ]
+  },
+  {
+   "k": "tnuit",
+   "label": "Tables de nuit",
+   "types": [
+    "nightstand"
+   ]
+  },
+  {
+   "k": "chiffonniers",
+   "label": "Chiffonniers & coffres",
+   "types": [
+    "chest"
+   ]
+  }
+ ],
+ "salon": [
+  {
+   "k": "sectionnels",
+   "label": "Sectionnels",
+   "types": [
+    "sectional"
+   ]
+  },
+  {
+   "k": "inclinables",
+   "label": "Fauteuils inclinables",
+   "types": [
+    "recliner"
+   ]
+  },
+  {
+   "k": "sofas",
+   "label": "Sofas & causeuses",
+   "types": [
+    "sofa"
+   ]
+  },
+  {
+   "k": "sofaslits",
+   "label": "Sofas-lits & futons",
+   "types": [
+    "sofa-bed"
+   ]
+  },
+  {
+   "k": "fauteuils",
+   "label": "Fauteuils & ottomans",
+   "types": [
+    "accent-chair",
+    "ottoman"
+   ]
+  },
+  {
+   "k": "tables",
+   "label": "Tables de salon",
+   "types": [
+    "coffee-table",
+    "end-table",
+    "console-table"
+   ]
+  },
+  {
+   "k": "tele",
+   "label": "Meubles télé",
+   "types": [
+    "tv-stand"
+   ]
+  },
+  {
+   "k": "bancs",
+   "label": "Bancs",
+   "types": [
+    "bench"
+   ]
+  }
+ ],
+ "salle": [
+  {
+   "k": "ensembles",
+   "label": "Ensembles",
+   "types": [
+    "dining-set"
+   ]
+  },
+  {
+   "k": "tables",
+   "label": "Tables",
+   "types": [
+    "dining-table"
+   ]
+  },
+  {
+   "k": "chaises",
+   "label": "Chaises",
+   "types": [
+    "dining-chair"
+   ]
+  },
+  {
+   "k": "tabourets",
+   "label": "Tabourets",
+   "types": [
+    "bar-stool"
+   ]
+  }
+ ],
+ "divers": [
+  {
+   "k": "bureaux",
+   "label": "Bureaux",
+   "types": [
+    "desk"
+   ]
+  },
+  {
+   "k": "chaisesbureau",
+   "label": "Chaises de bureau",
+   "types": [
+    "office-chair"
+   ]
+  },
+  {
+   "k": "etageres",
+   "label": "Étagères & bibliothèques",
+   "types": [
+    "shelving",
+    "bookcase"
+   ]
+  },
+  {
+   "k": "rangement",
+   "label": "Rangement & entrée",
+   "types": [
+    "coat-rack"
+   ]
+  }
+ ]
+}

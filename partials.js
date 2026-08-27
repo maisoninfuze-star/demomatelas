@@ -23,18 +23,45 @@
   const MAPS = "https://maps.google.com/?q=3512+Boulevard+Industriel+Montréal";
   const EMAIL = "literiedamitieinc@outlook.com";
 
+  /* Canonical dynamique.
+     La balise statique du <head> pointe la page nue. Or /matelas?cat=salon
+     et /produit?p=roxy sont des pages à part entière, listées au sitemap :
+     sans cette mise à jour, la canonical les déclarerait doublons et Google
+     les désindexerait. On ne garde que les paramètres qui font le contenu —
+     cb, utm et consorts sont écartés. */
+  (function canonical() {
+    const lien = document.querySelector('link[rel="canonical"]');
+    if (!lien) return;
+    const ici = new URL(location.href);
+    const garder = ["cat", "sub", "size", "p"];
+    const propre = new URL(ici.pathname.replace(/\.html$/, "").replace(/\/index$/, "/"), "https://literiedamitie.com");
+    garder.forEach((k) => ici.searchParams.get(k) && propre.searchParams.set(k, ici.searchParams.get(k)));
+    // « sectionnels » est un alias hérité : il se canonise vers sa forme réelle.
+    if (propre.searchParams.get("cat") === "sectionnels") {
+      propre.searchParams.set("cat", "salon");
+      propre.searchParams.set("sub", "sectionnels");
+    }
+    lien.setAttribute("href", propre.toString());
+  })();
+
   const DEPTS = [
     { cat: "matelas", label: "Matelas & sommiers" },
     { cat: "lits", label: "Lits & têtes de lit" },
     { cat: "ensembles", label: "Ensembles de chambre" },
     { cat: "pieces", label: "Commodes & tables de nuit" },
-    { cat: "sectionnels", label: "Sectionnels-lits" },
     { cat: "salon", label: "Salon" },
+    { cat: "salon", sub: "sectionnels", key: "sectionnels", label: "Sectionnels-lits" },
     { cat: "salle", label: "Salle à manger" },
-    { cat: "divers", label: "Bureau & divers" },
+    { cat: "divers", label: "Bureau, rangement & décor" },
   ];
   const deptCounts = {};
   (window.CATALOG || []).forEach((p) => (deptCounts[p.cat] = (deptCounts[p.cat] || 0) + 1));
+  // Les sectionnels sont désormais une sous-catégorie du salon : ils gardent
+  // leur entrée de menu, avec le compte réel de la sous-catégorie.
+  const subCounts = {};
+  (window.CATALOG || []).forEach((p) => p.type && (subCounts[p.type] = (subCounts[p.type] || 0) + 1));
+  deptCounts.sectionnels = subCounts.sectional || 0;
+  const deptHref = (d) => (d.sub ? `matelas.html?cat=${d.cat}&sub=${d.sub}` : `matelas.html?cat=${d.cat}`);
   const deptTotal = (window.CATALOG || []).length;
 
   const NAV = [
@@ -58,7 +85,7 @@
   const arrowSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>`;
 
   const dropPanel = `<div class="nav-drop" role="menu" aria-label="Départements">
-      ${DEPTS.map((d) => `<a role="menuitem" href="matelas.html?cat=${d.cat}">${d.label}<span>${deptCounts[d.cat] || 0}</span></a>`).join("")}
+      ${DEPTS.map((d) => `<a role="menuitem" href="${deptHref(d)}">${d.label}<span>${deptCounts[d.key || d.cat] || 0}</span></a>`).join("")}
       <a role="menuitem" class="nav-drop-all" href="matelas.html">Tout le catalogue<span>${deptTotal}</span></a>
     </div>`;
 
@@ -70,7 +97,7 @@
 
   const mobileLinks = NAV.map((n) =>
     n.drop
-      ? `<li><a href="${n.href}"${n.key === page ? ' class="is-active"' : ""}>${n.label}</a><ul class="mm-depts">${DEPTS.map((d) => `<li><a href="matelas.html?cat=${d.cat}">${d.label} <em>${deptCounts[d.cat] || 0}</em></a></li>`).join("")}</ul></li>`
+      ? `<li><a href="${n.href}"${n.key === page ? ' class="is-active"' : ""}>${n.label}</a><ul class="mm-depts">${DEPTS.map((d) => `<li><a href="${deptHref(d)}">${d.label} <em>${deptCounts[d.key || d.cat] || 0}</em></a></li>`).join("")}</ul></li>`
       : `<li><a href="${n.href}"${n.key === page ? ' class="is-active"' : ""}>${n.label}</a></li>`
   ).join("");
 

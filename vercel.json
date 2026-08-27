@@ -7,5 +7,57 @@
       "path": "/api/purge",
       "schedule": "0 4 * * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/products/:handle",
+      "destination": "/produit?p=:handle",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:handle",
+      "destination": "/collection?c=:handle",
+      "permanent": true
+    },
+    {
+      "source": "/pages/contact",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/pages/livraison",
+      "destination": "/livraison",
+      "permanent": true
+    },
+    {
+      "source": "/pages/:slug",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/cart",
+      "destination": "/matelas",
+      "permanent": false
+    },
+    {
+      "source": "/account/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/en/:path*",
+      "destination": "/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/sectionnels",
+      "destination": "/matelas?cat=salon&sub=sectionnels",
+      "permanent": true
+    }
   ]
 }

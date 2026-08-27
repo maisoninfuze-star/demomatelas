@@ -397,16 +397,22 @@
     let cat = params.get("cat") || "tous";
     let size = (params.get("size") || "").toLowerCase();
 
+    /* « sectionnels » était un département de premier niveau ; c'est en
+       réalité une sous-catégorie du salon. Les anciennes URL et les liens
+       déjà partagés continuent de fonctionner : on les traduit ici. */
+    const CAT_ALIAS = { sectionnels: ["salon", "sectionnels"] };
+    let aliasSub = "";
+    if (CAT_ALIAS[cat]) [cat, aliasSub] = CAT_ALIAS[cat];
+
     const CAT_LABELS = {
       tous: "Tous",
       matelas: "Matelas",
       ensembles: "Chambres à coucher",
       lits: "Lits & têtes de lit",
-      sectionnels: "Sectionnels-lits",
       salon: "Salon",
       salle: "Salle à manger",
-      pieces: "Commodes & tables",
-      divers: "Bureau & divers",
+      pieces: "Commodes & tables de nuit",
+      divers: "Bureau, rangement & décor",
     };
     const SIZE_MATCH = {
       simple: ["simple", "single", "twin", "39"],
@@ -422,42 +428,60 @@
         : p.variants.some((v) => SIZE_MATCH[size].some((m) => v.t.toLowerCase().includes(m)));
     const matches = (p) => (cat === "tous" || catOf(p) === cat) && (size ? (p.cat === "matelas" && matchSize(p)) : true) && matchSub(p);
 
-    // Sous-filtres par département (testés sur sub + nom)
+    /* Sous-filtres pilotés par les données.
+       Chaque puce liste des `type` canoniques stockés sur le produit. Les
+       types étant exclusifs, un produit tombe dans exactement une puce —
+       fini les 62 inclinables comptés à la fois en « inclinables » et en
+       « sofas », et les 83 produits qu'aucun filtre n'attrapait. */
     const SUBS = {
+      matelas: [
+        { k: "matelas", label: "Matelas", types: ["mattress"] },
+        { k: "bases", label: "Bases ajustables", types: ["adjustable-base"] },
+        { k: "sommiers", label: "Sommiers", types: ["box-spring"] },
+      ],
       lits: [
-        { k: "simple", label: "Simple 39″", re: /lit simple|lit de jour|trundle/i },
-        { k: "double", label: "Double 54″", re: /double 54|lit double/i },
-        { k: "queen", label: "Queen 60″", re: /queen/i },
-        { k: "king", label: "King 78″", re: /king/i },
-        { k: "ajustable", label: "Électriques", re: /électrique|ajustable/i },
-        { k: "coffre", label: "Lits coffre", re: /coffre|rangement/i },
-      ],
-      salle: [
-        { k: "ens7", label: "Ensembles 7 pièces", re: /7 pièces/i },
-        { k: "ens5", label: "Ensembles 5 pièces", re: /5 pièces/i },
-        { k: "ens3", label: "Ensembles 3 pièces", re: /3 pièces/i },
-        { k: "tables", label: "Tables seules", re: /table seulement/i },
-        { k: "chaises", label: "Chaises", re: /^chaise/i },
-        { k: "tabourets", label: "Tabourets", re: /tabouret/i },
-      ],
-      salon: [
-        { k: "inclinables", label: "Fauteuils inclinables", re: /recliner/i },
-        { k: "sofas", label: "Sofas & causeuses", re: /sofa|causeuse|loveseat/i },
-        { k: "tbasses", label: "Tables basses & café", re: /table basse|coffee set|table d'appoint/i },
-        { k: "bancs", label: "Bancs & ottomans", re: /banc|ottoman/i },
+        { k: "lits", label: "Lits", types: ["bed"] },
+        { k: "tetes", label: "Têtes de lit", types: ["headboard"] },
+        { k: "superpose", label: "Superposés", style: "superpose" },
+        { k: "dejour", label: "De jour & gigognes", style: "dejour" },
+        { k: "coffre", label: "Coffre & rangement", style: "coffre" },
+        { k: "bancs", label: "Bancs & coffres", types: ["bench", "chest"] },
       ],
       pieces: [
-        { k: "commodes", label: "Commodes & dressoirs", re: /commode|dressoir/i },
-        { k: "tnuit", label: "Tables de nuit", re: /table de nuit/i },
-        { k: "chiffonniers", label: "Chiffonniers & coffres", re: /chiffonnier|chiffonier|coffre|chest/i },
+        { k: "commodes", label: "Commodes & dressoirs", types: ["dresser"] },
+        { k: "tnuit", label: "Tables de nuit", types: ["nightstand"] },
+        { k: "chiffonniers", label: "Chiffonniers & coffres", types: ["chest"] },
+      ],
+      salon: [
+        { k: "sectionnels", label: "Sectionnels", types: ["sectional"] },
+        { k: "inclinables", label: "Fauteuils inclinables", types: ["recliner"] },
+        { k: "sofas", label: "Sofas & causeuses", types: ["sofa"] },
+        { k: "sofaslits", label: "Sofas-lits & futons", types: ["sofa-bed"] },
+        { k: "fauteuils", label: "Fauteuils & ottomans", types: ["accent-chair", "ottoman"] },
+        { k: "tables", label: "Tables de salon", types: ["coffee-table", "end-table", "console-table"] },
+        { k: "tele", label: "Meubles télé", types: ["tv-stand"] },
+        { k: "bancs", label: "Bancs", types: ["bench"] },
+      ],
+      salle: [
+        { k: "ensembles", label: "Ensembles", types: ["dining-set"] },
+        { k: "tables", label: "Tables", types: ["dining-table"] },
+        { k: "chaises", label: "Chaises", types: ["dining-chair"] },
+        { k: "tabourets", label: "Tabourets", types: ["bar-stool"] },
+      ],
+      divers: [
+        { k: "bureaux", label: "Bureaux", types: ["desk"] },
+        { k: "chaisesbureau", label: "Chaises de bureau", types: ["office-chair"] },
+        { k: "etageres", label: "Étagères & bibliothèques", types: ["shelving", "bookcase"] },
+        { k: "rangement", label: "Rangement & entrée", types: ["coat-rack"] },
       ],
     };
-    let sub = "";
-    const subText = (p) => ((p.sub || "") + " " + p.name).toLowerCase();
+    const inSub = (p, d) => (d.style ? p.style === d.style : (d.types || []).includes(p.type));
+
+    let sub = aliasSub || params.get("sub") || "";
     const matchSub = (p) => {
       if (!sub) return true;
-      const def = (SUBS[cat] || []).find((s) => s.k === sub);
-      return def ? def.re.test(subText(p)) : true;
+      const def = (SUBS[cat] || []).find((d) => d.k === sub);
+      return def ? inSub(p, def) : true;
     };
 
     // barre de filtres
@@ -479,7 +503,7 @@
         `<button class="schip ${!sub ? "on" : ""}" data-sub="">Tout</button>` +
         defs
           .map((s) => {
-            const n = base.filter((p) => s.re.test(subText(p))).length;
+            const n = base.filter((p) => inSub(p, s)).length;
             return n ? `<button class="schip ${sub === s.k ? "on" : ""}" data-sub="${s.k}">${s.label}<span>${n}</span></button>` : "";
           })
           .join("");
@@ -488,6 +512,9 @@
       const c = e.target.closest(".schip");
       if (!c) return;
       sub = c.dataset.sub;
+      const u = new URL(location.href);
+      sub ? u.searchParams.set("sub", sub) : u.searchParams.delete("sub");
+      history.replaceState(null, "", u);
       $$(".schip", subBar).forEach((x) => x.classList.toggle("on", x === c));
       shown = PAGE;
       renderGrid();
@@ -566,8 +593,11 @@
       $$(".fchip", bar).forEach((c) => c.classList.toggle("on", c === chip));
       const url = new URL(location);
       url.searchParams.delete("size");
+      url.searchParams.delete("sub");
+      sub = "";
       cat === "tous" ? url.searchParams.delete("cat") : url.searchParams.set("cat", cat);
       history.replaceState(null, "", url);
+      renderSubBar();
       renderGrid();
     });
 
@@ -576,7 +606,7 @@
       if (size) heroTitle.innerHTML = `Matelas <em>${size.charAt(0).toUpperCase() + size.slice(1)}</em>`;
       else if (cat === "ensembles") heroTitle.innerHTML = `Chambres <em>à coucher</em>`;
       else if (cat === "lits") heroTitle.innerHTML = `Lits &amp; <em>têtes de lit</em>`;
-      else if (cat === "sectionnels") heroTitle.innerHTML = `Sectionnels<em>-lits</em>`;
+      else if (sub === "sectionnels") heroTitle.innerHTML = `Sectionnels<em>-lits</em>`;
       else if (cat === "salon") heroTitle.innerHTML = `Le <em>salon</em>`;
       else if (cat === "salle") heroTitle.innerHTML = `Salle à <em>manger</em>`;
       else if (cat === "pieces") heroTitle.innerHTML = `Commodes <em>&amp; tables</em>`;

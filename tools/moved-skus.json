@@ -1,0 +1,418 @@
+[
+ {
+  "sku": "IF-9032",
+  "nom": "Sectionnel-lit IF-9032",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9065",
+  "nom": "Sectionnel IF-9065",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-100",
+  "nom": "Madison IF-100 — Lit",
+  "de": "ensembles",
+  "vers": "lits",
+  "type": "bed",
+  "coll": "Madison"
+ },
+ {
+  "sku": "IF-9470/9471",
+  "nom": "Sectionnel-lit IF-9470/9471",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9095",
+  "nom": "Sectionnel IF-9095",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9028",
+  "nom": "Sectionnel-lit IF-9028",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9024",
+  "nom": "Sectionnel IF-9024",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "",
+  "nom": "Pompei (Blanc) — Lit",
+  "de": "ensembles",
+  "vers": "lits",
+  "type": "bed",
+  "coll": "Pompei"
+ },
+ {
+  "sku": "",
+  "nom": "Athens",
+  "de": "pieces",
+  "vers": "ensembles",
+  "type": "bedroom-set",
+  "coll": "Athens"
+ },
+ {
+  "sku": "IF-3420",
+  "nom": "IF-3420",
+  "de": "pieces",
+  "vers": "ensembles",
+  "type": "bedroom-set",
+  "coll": ""
+ },
+ {
+  "sku": "IF-3421",
+  "nom": "IF-3421",
+  "de": "pieces",
+  "vers": "ensembles",
+  "type": "bedroom-set",
+  "coll": ""
+ },
+ {
+  "sku": "IF-3430",
+  "nom": "IF-3430",
+  "de": "pieces",
+  "vers": "ensembles",
+  "type": "bedroom-set",
+  "coll": ""
+ },
+ {
+  "sku": "IF-3432",
+  "nom": "IF-3432",
+  "de": "pieces",
+  "vers": "ensembles",
+  "type": "bedroom-set",
+  "coll": ""
+ },
+ {
+  "sku": "IF-3520",
+  "nom": "Lit électrique ajustable IF-3520",
+  "de": "lits",
+  "vers": "matelas",
+  "type": "adjustable-base",
+  "coll": ""
+ },
+ {
+  "sku": "IF-3521",
+  "nom": "Lit électrique ajustable IF-3521",
+  "de": "lits",
+  "vers": "matelas",
+  "type": "adjustable-base",
+  "coll": ""
+ },
+ {
+  "sku": "IF-3522",
+  "nom": "Lit électrique ajustable IF-3522",
+  "de": "lits",
+  "vers": "matelas",
+  "type": "adjustable-base",
+  "coll": ""
+ },
+ {
+  "sku": "IF-3610",
+  "nom": "Lit électrique ajustable IF-3610",
+  "de": "lits",
+  "vers": "matelas",
+  "type": "adjustable-base",
+  "coll": ""
+ },
+ {
+  "sku": "IF-3611",
+  "nom": "Lit électrique ajustable IF-3611",
+  "de": "lits",
+  "vers": "matelas",
+  "type": "adjustable-base",
+  "coll": ""
+ },
+ {
+  "sku": "IF-3612",
+  "nom": "Lit électrique ajustable IF-3612",
+  "de": "lits",
+  "vers": "matelas",
+  "type": "adjustable-base",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9005",
+  "nom": "Sectionnel IF-9005",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9006",
+  "nom": "Sectionnel IF-9006",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9010",
+  "nom": "Sectionnel IF-9010",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9020",
+  "nom": "Sectionnel IF-9020",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9021",
+  "nom": "Sectionnel IF-9021",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9022",
+  "nom": "Sectionnel IF-9022",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9023",
+  "nom": "Sectionnel IF-9023",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9025",
+  "nom": "Sectionnel IF-9025",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9026",
+  "nom": "Sectionnel IF-9026",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9027",
+  "nom": "Sectionnel IF-9027",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9031",
+  "nom": "Sectionnel IF-9031",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9035",
+  "nom": "Sectionnel IF-9035",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9040",
+  "nom": "Sectionnel IF-9040",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9045",
+  "nom": "Sectionnel IF-9045",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9046",
+  "nom": "Sectionnel IF-9046",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9047",
+  "nom": "Sectionnel IF-9047",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9048",
+  "nom": "Sectionnel IF-9048",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9050",
+  "nom": "Sectionnel IF-9050",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9051",
+  "nom": "Sectionnel IF-9051",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9060",
+  "nom": "Sectionnel IF-9060",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9061",
+  "nom": "Sectionnel IF-9061",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9075",
+  "nom": "Sectionnel IF-9075",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9076",
+  "nom": "Sectionnel IF-9076",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9080",
+  "nom": "Sectionnel IF-9080",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9081",
+  "nom": "Sectionnel IF-9081",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9085",
+  "nom": "Sectionnel IF-9085",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9086",
+  "nom": "Sectionnel IF-9086",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9090",
+  "nom": "Sectionnel IF-9090",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9280",
+  "nom": "Sectionnel IF-9280",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9320",
+  "nom": "Sectionnel IF-9320",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-9325",
+  "nom": "Sectionnel IF-9325",
+  "de": "sectionnels",
+  "vers": "salon",
+  "type": "sectional",
+  "coll": ""
+ },
+ {
+  "sku": "IF-3250",
+  "nom": "Geometric Display Shelf IF-3250",
+  "de": "salon",
+  "vers": "divers",
+  "type": "shelving",
+  "coll": ""
+ },
+ {
+  "sku": "IF-4001",
+  "nom": "Coat Rack IF-4001",
+  "de": "salon",
+  "vers": "divers",
+  "type": "coat-rack",
+  "coll": ""
+ }
+]

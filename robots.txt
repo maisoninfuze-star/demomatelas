@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Paramètres de suivi et de panier : sans valeur pour l'index.
+Disallow: /*?*utm_
+Disallow: /*?*cb=
+Disallow: /merci
+
+Sitemap: https://literiedamitie.com/sitemap.xml
