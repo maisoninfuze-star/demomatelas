@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=37">
+  <link rel="stylesheet" href="styles.css?v=38">
 </head>
 <body data-page="textos">
   <a class="skip-link" href="#main">Aller au contenu</a>
@@ -34,61 +34,41 @@
 
         <div class="sms-grid">
           <!-- ============ FORMULAIRE D'ADHÉSION ============ -->
-          <div class="sms-form-card">
-            <form id="smsForm" data-key="" novalidate>
-              <h2>S'inscrire aux alertes</h2>
-
-              <div class="form-field full">
-                <label for="sm-nom">Nom <span class="opt">(facultatif)</span></label>
-                <input id="sm-nom" name="nom" type="text" autocomplete="name" maxlength="80">
-              </div>
-
-              <div class="form-field full">
-                <label for="sm-tel">Numéro de téléphone mobile <span class="req">*</span></label>
-                <input id="sm-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel"
-                       maxlength="20" placeholder="514 555-1234" required aria-describedby="err-sm-tel">
-                <p class="field-error" id="err-sm-tel"></p>
-              </div>
-
-              <!-- Deux consentements distincts, jamais cochés d'avance : les
-                   transporteurs refusent qu'une seule case couvre à la fois le
-                   service et la promotion. Cochez l'un, l'autre, ou les deux. -->
-              <label class="coord-optin" for="sm-service">
-                <input type="checkbox" id="sm-service" name="consent_service" value="oui">
-                <span>
-                  <b>Alertes de commande et de livraison</b>
-                  <em>J'accepte de recevoir des messages texte non promotionnels de Literie d'Amitié Inc. concernant la confirmation de commande, la planification de la livraison et le service à la clientèle. La fréquence des messages peut varier. Des frais de messagerie et de données peuvent s'appliquer. Répondez <b>HELP</b> pour de l'assistance, <b>STOP</b> pour vous désabonner.</em>
-                </span>
-              </label>
-
-              <label class="coord-optin" for="sm-promo">
-                <input type="checkbox" id="sm-promo" name="consent_promo" value="oui">
-                <span>
-                  <b>Promotions et nouveautés</b>
-                  <em>J'accepte de recevoir des messages texte de marketing de Literie d'Amitié Inc. — offres spéciales, rabais et nouveautés — au numéro fourni. La fréquence des messages peut varier. Des frais de messagerie et de données peuvent s'appliquer. Répondez <b>HELP</b> pour de l'assistance, <b>STOP</b> pour vous désabonner.</em>
-                </span>
-              </label>
-              <p class="field-error" id="err-sm-consent"></p>
-              <p class="coord-note" style="text-align:left;margin-top:10px">
-                Cochez au moins une case. Consultez nos <a href="conditions.html#sms">conditions d'utilisation</a> et notre <a href="confidentialite.html">politique de confidentialité</a>.
-              </p>
-
-              <button class="btn coord-go" type="submit" id="smsGo">
-                M'inscrire aux alertes
-                <span class="btn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-              </button>
-
-              <p class="coord-note">
-                Le consentement aux messages promotionnels n'est <b>jamais une condition d'achat</b>.<br>
-                Vous devez être titulaire de la ligne mobile fournie, ou avoir la permission du titulaire, et avoir au moins 18 ans.
-              </p>
-            </form>
-
-            <div class="sms-ok" id="smsOk" hidden>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 0-10-10 10 10 0 0 0 10 10Z"/><path d="m8 12 3 3 5-6"/></svg>
-              <h3>C'est noté&nbsp;!</h3>
-              <p>Vous recevrez un message de confirmation. Répondez <b>STOP</b> en tout temps pour vous désabonner.</p>
-            </div>
+          <!-- ============ ADHÉSION PAR LE WIDGET ============ -->
+          <!-- Le formulaire d'origine recueillait le numéro et deux
+               consentements. Il a été retiré le 2026-08-26 : l'enregistrement
+               A2P exige que le widget de clavardage soit la seule source
+               d'adhésion sur la page où il est intégré, et le vérificateur
+               automatique de GoHighLevel détecte tout champ téléphone. Les deux
+               consentements distincts existent toujours — ils sont maintenant
+               dans le widget, cases décochées et indépendantes. -->
+          <div class="sms-form-card sms-widget-card">
+            <h2>S'inscrire aux alertes</h2>
+            <p class="sms-widget-lede">
+              Ouvrez la fenêtre de clavardage en bas à droite de cette page.
+              Laissez-nous votre nom et votre numéro de mobile, puis cochez ce
+              que vous voulez recevoir&nbsp;— les alertes de commande et de
+              livraison, les promotions, ou les deux.
+            </p>
+            <ol class="sms-steps">
+              <li><b>Ouvrez le clavardage</b><span>La bulle en bas à droite.</span></li>
+              <li><b>Entrez votre mobile</b><span>Nom et numéro, rien d'autre.</span></li>
+              <li><b>Choisissez vos alertes</b><span>Deux cases, cochez l'une, l'autre, ou les deux.</span></li>
+            </ol>
+            <p class="coord-note" style="text-align:left">
+              Aucune des deux cases n'est cochée d'avance et le consentement aux
+              promotions n'est <b>jamais une condition d'achat</b>. Fréquence
+              variable&nbsp;; des frais de messagerie et de données peuvent
+              s'appliquer. Répondez <b>STOP</b> pour vous désabonner,
+              <b>HELP</b> pour de l'aide. Consultez nos
+              <a href="conditions.html#sms">conditions</a> et notre
+              <a href="confidentialite.html">politique de confidentialité</a>.
+            </p>
+            <p class="coord-note" style="text-align:left">
+              Vous préférez la voix&nbsp;? Appelez le
+              <a href="tel:+14383754949">438-375-4949</a> et on vous inscrit
+              pendant l'appel.
+            </p>
           </div>
 
           <!-- ============ CE QU'ON ENVOIE ============ -->
@@ -139,56 +119,16 @@
 
   <div data-footer><div class="footer-fallback"><a href="confidentialite.html">Politique de confidentialité</a> · <a href="conditions.html">Conditions de vente</a> · <a href="textos.html">Alertes par texto</a> · Literie d'Amitié Inc., 3512 boul. Industriel, Montréal-Nord (Québec) H1H 2Y4 · 438-375-4949</div></div>
 
-  <script src="zones.js?v=37"></script>
-  <script src="data.js?v=37"></script>
-  <script src="partials.js?v=37"></script>
-  <script src="app.js?v=37"></script>
-  <script src="commande.js?v=37"></script>
-  <script>
-    // Inscription SMS — même principe que le formulaire de contact : tant que la
-    // clé Web3Forms n'est pas remplie (data-key), on n'annonce pas un succès qui
-    // n'a pas eu lieu ; on renvoie vers le téléphone.
-    (function () {
-      var f = document.getElementById("smsForm");
-      if (!f) return;
-      var digits = function (v) { return String(v || "").replace(/\D/g, ""); };
-      function telOk(v) {
-        var d = digits(v);
-        if (d.length === 11 && d[0] === "1") d = d.slice(1);
-        return d.length === 10 && /^[2-9]/.test(d);
-      }
-      f.addEventListener("submit", async function (e) {
-        e.preventDefault();
-        var okTel = telOk(f.elements.tel.value);
-        var okConsent = f.elements.consent_service.checked || f.elements.consent_promo.checked;
-        document.getElementById("err-sm-tel").textContent = okTel ? "" : "Entrez un numéro mobile à 10 chiffres, par exemple 514 555-1234.";
-        document.getElementById("err-sm-consent").textContent = okConsent ? "" : "Cochez au moins une case pour confirmer votre consentement.";
-        f.elements.tel.classList.toggle("is-bad", !okTel);
-        if (!okTel || !okConsent) return;
-
-        var KEY = f.dataset.key || "";
-        if (!KEY) {
-          window.LDA && LDA.toast && LDA.toast("Appelez le 438-375-4949 pour vous inscrire — nous ajoutons votre numéro sur-le-champ.");
-          return;
-        }
-        var btn = document.getElementById("smsGo");
-        btn.disabled = true; btn.textContent = "Inscription…";
-        try {
-          var fd = new FormData(f);
-          fd.append("access_key", KEY);
-          fd.append("subject", "Nouvelle adhésion SMS — literiedamitie.com");
-          fd.append("consentement_horodatage", new Date().toISOString());
-          var r = await fetch("https://api.web3forms.com/submit", { method: "POST", body: fd });
-          var d = await r.json().catch(function () { return {}; });
-          if (!d.success) throw new Error(d.message || "Envoi impossible");
-          f.hidden = true;
-          document.getElementById("smsOk").hidden = false;
-        } catch (err) {
-          btn.disabled = false; btn.textContent = "M'inscrire aux alertes";
-          window.LDA && LDA.toast && LDA.toast("Inscription impossible — appelez le 438-375-4949.");
-        }
-      });
-    })();
-  </script>
+  <script src="zones.js?v=38"></script>
+  <script src="data.js?v=38"></script>
+  <script src="partials.js?v=38"></script>
+  <script src="app.js?v=38"></script>
+  <!-- Widget « A2P Compliance Chat Widget Mixed » — unique méthode d'adhésion
+       SMS du site. Cette page est la seule à le porter, et elle ne contient
+       aucun formulaire : c'est la condition posée par la vérification A2P. -->
+  <script src="https://widgets.leadconnectorhq.com/loader.js"
+          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          data-widget-id="6a87aa5764c286aff3733396"
+          data-source="WEB_USER"></script>
 </body>
 </html>

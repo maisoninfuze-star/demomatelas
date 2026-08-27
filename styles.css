@@ -1798,3 +1798,28 @@ body.quiz-on #lc_text-widget {
 }
 chat-widget,
 #lc_text-widget { transition: opacity 0.22s ease; }
+
+/* ============================================================
+   PAGE D'ADHÉSION SMS
+   Le widget de clavardage y est la seule source d'adhésion : la
+   page ne porte aucun formulaire, aucun champ téléphone, et le
+   module de commande n'y est pas chargé. C'est la condition posée
+   par la vérification A2P de GoHighLevel.
+   ============================================================ */
+.sms-widget-card .sms-widget-lede { font-size: 0.95rem; line-height: 1.65; color: var(--text); margin: 0 0 22px; }
+.sms-steps { list-style: none; counter-reset: st; margin: 0 0 24px; padding: 0; display: grid; gap: 12px; }
+.sms-steps li {
+  counter-increment: st; display: grid; grid-template-columns: 30px 1fr; gap: 12px;
+  align-items: baseline; font-size: 0.92rem;
+}
+.sms-steps li::before {
+  content: counter(st); grid-row: span 2; font-family: var(--sans); font-size: 0.78rem;
+  font-weight: 700; color: var(--paper); background: var(--ink); width: 26px; height: 26px;
+  border-radius: 50%; display: grid; place-items: center;
+}
+.sms-steps b { display: block; font-weight: 600; }
+.sms-steps span { display: block; color: var(--muted); font-size: 0.85rem; margin-top: 1px; }
+
+/* Sans commande.js, « Passer la commande » ne mène nulle part ici :
+   on retire le panier de cette page plutôt que d'offrir un cul-de-sac. */
+body[data-page="textos"] #cartOpen { display: none; }
