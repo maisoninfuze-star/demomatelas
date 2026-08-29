@@ -22,12 +22,14 @@
   const prixAffiche = (p) => {
     const v = (p && p.variants) || [];
     const tous = [...new Set(v.map((x) => x.p).filter((n) => n > 0))];
-    if (!tous.length) return { val: (p && p.from) || 0, multi: false };
+    if (!tous.length) return { val: (p && p.from) || 0, multi: false, idx: 0 };
+    const idxDe = (prix) => Math.max(0, v.findIndex((x) => x.p === prix));
     if (p.type === "bedroom-set" || p.type === "dining-set") {
       const ens = [...new Set(v.filter((x) => RE_ENSEMBLE.test(x.t)).map((x) => x.p).filter((n) => n > 0))];
-      if (ens.length) return { val: Math.min(...ens), multi: ens.length > 1 };
+      if (ens.length) { const m = Math.min(...ens); return { val: m, multi: ens.length > 1, idx: idxDe(m) }; }
     }
-    return { val: Math.min(...tous), multi: tous.length > 1 };
+    const m = Math.min(...tous);
+    return { val: m, multi: tous.length > 1, idx: idxDe(m) };
   };
   const prixHTML = (p) => {
     const { val, multi } = prixAffiche(p);
@@ -343,9 +345,15 @@
     }
   }
 
-  function addToCart(handle, variantIdx = 0, qty = 1) {
+  /* variantIdx = null ⇒ « celle dont le prix est affiché ».
+     Ces fiches fournisseur mélangent l'ensemble et ses pièces, dans un ordre
+     arbitraire : variants[0] n'a aucun rapport avec le prix de la carte. Le
+     bouton « Panier » ajoutait donc autre chose que ce qui était annoncé —
+     un ensemble à 2 199,98 $ sous une carte affichant 459,98 $. */
+  function addToCart(handle, variantIdx = null, qty = 1) {
     const p = byHandle(handle) || (window.LDA_TOUT || []).find((x) => x.h === handle);
     if (!p) return;
+    if (variantIdx === null || variantIdx === undefined) variantIdx = prixAffiche(p).idx;
     // Retiré chez IFDC entre-temps : mieux vaut un refus net qu'une commande
     // qu'on ne pourra pas honorer.
     if (p.off) return toast(`${p.name} n'est plus offert — appelez-nous au 438-375-4949`);
@@ -430,7 +438,7 @@
   // boutons "Panier" (ajout rapide = premier format)
   document.addEventListener("click", (e) => {
     const b = e.target.closest("[data-add]");
-    if (b) { e.preventDefault(); addToCart(b.dataset.add, 0, 1); }
+    if (b) { e.preventDefault(); addToCart(b.dataset.add, null, 1); }
   });
 
   renderCart();
@@ -960,7 +968,7 @@
             </div>
           </div>`;
         const ba = $("#bundleAdd");
-        if (ba) ba.addEventListener("click", () => { addToCart(setProd.h, 0, 1); openCart(); });
+        if (ba) ba.addEventListener("click", () => { addToCart(setProd.h, null, 1); openCart(); });
       }
 
       const rel = COLLECTIONS.filter((x) => x.slug !== c.slug).slice(0, 3);

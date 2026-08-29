@@ -200,7 +200,7 @@
     $$(".pal-add", palBody).forEach((b) =>
       b.addEventListener("click", (e) => {
         e.preventDefault(); e.stopPropagation();
-        LDA.addToCart && LDA.addToCart(b.dataset.h, 0, 1);
+        LDA.addToCart && LDA.addToCart(b.dataset.h, null, 1);
       })
     );
   }
@@ -411,7 +411,7 @@
         </div>
         <button class="q-restart" id="qRestart">↺ Recommencer le quiz</button>`;
       $$(".q-add", body).forEach((b) =>
-        b.addEventListener("click", () => { LDA.addToCart && LDA.addToCart(b.dataset.h, 0, 1); closeQuiz(); LDA.openCart && LDA.openCart(); })
+        b.addEventListener("click", () => { LDA.addToCart && LDA.addToCart(b.dataset.h, null, 1); closeQuiz(); LDA.openCart && LDA.openCart(); })
       );
       $("#qRestart").addEventListener("click", openQuiz);
     }
