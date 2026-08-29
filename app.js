@@ -379,6 +379,27 @@
 
   // Paiement — on passe d'abord par « Vos coordonnées » (commande.js), puis
   // Stripe. Le repli direct sert si ce script n'a pas pu charger.
+  /* Chargement à la demande du module de commande.
+     Le formulaire de coordonnées — dont le champ téléphone obligatoire pour
+     planifier la livraison — n'a rien à faire dans le DOM des pages de
+     catalogue : il n'entre dans la page qu'au moment où le client passe à la
+     caisse. Moins de DOM sur chaque page, et aucun champ requis caché sur
+     des pages où l'on ne commande pas. */
+  const VERSION = ((document.currentScript && document.currentScript.src.match(/\?v=\d+/)) || [""])[0];
+  let promesseCommande = null;
+  const chargerCommande = () => {
+    if (window.LDA_COMMANDE) return Promise.resolve();
+    if (!promesseCommande)
+      promesseCommande = new Promise((ok, ko) => {
+        const sc = document.createElement("script");
+        sc.src = "commande.js" + VERSION;
+        sc.onload = ok;
+        sc.onerror = ko;
+        document.head.appendChild(sc);
+      }).catch(() => { promesseCommande = null; throw new Error("commande.js"); });
+    return promesseCommande;
+  };
+
   const checkoutBtn = $("#checkoutBtn");
   checkoutBtn && checkoutBtn.addEventListener("click", async () => {
     const c = loadCart();
@@ -386,6 +407,7 @@
     // Le serveur refuserait de toute façon : autant le dire ici, clairement.
     const partis = c.filter((i) => { const p = byHandle(i.h); return p && p.off; });
     if (partis.length) { openCart(); toast(`${partis[0].name} n'est plus offert — retirez-le du panier`); return; }
+    try { await chargerCommande(); } catch (e) { /* on retombe sur le téléphone */ }
     if (window.LDA_COMMANDE) { window.LDA_COMMANDE.open(); return; }
     // Sans commande.js on n'a ni coordonnées ni adresse, et le serveur les
     // exige. Inutile de tenter l'appel : on oriente vers le téléphone.

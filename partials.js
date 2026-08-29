@@ -189,7 +189,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 Literie d'Amitié Inc. — 3512, boul. Industriel, Montréal-Nord (Québec) H1H 2Y4 · NEQ 1226580367</span>
+        <span>© 2026 Literie d'Amitié Inc. — 3512, boul. Industriel, Montréal-Nord (Québec) H1H 2Y4 · NEQ 1174575812</span>
         <div class="footer-legal">
           <a href="confidentialite.html">Confidentialité</a>
           <a href="conditions.html">Conditions de vente</a>
