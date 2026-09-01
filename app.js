@@ -365,6 +365,7 @@
     else c.push({ k: key, h: handle, name: p.name, v: v.t === "Default Title" ? "Format unique" : v.t, p: v.p, q: qty });
     saveCart(c);
     renderCart();
+    window.LDA_PIXEL && window.LDA_PIXEL.addToCart(p, v, qty);
     const cnt = $("#cartCount");
     if (cnt) { cnt.classList.remove("bump"); void cnt.offsetWidth; cnt.classList.add("bump"); }
     toast(`${p.name} — ajouté au panier`);
@@ -415,6 +416,7 @@
     // Le serveur refuserait de toute façon : autant le dire ici, clairement.
     const partis = c.filter((i) => { const p = byHandle(i.h); return p && p.off; });
     if (partis.length) { openCart(); toast(`${partis[0].name} n'est plus offert — retirez-le du panier`); return; }
+    window.LDA_PIXEL && window.LDA_PIXEL.initiateCheckout(c);
     try { await chargerCommande(); } catch (e) { /* on retombe sur le téléphone */ }
     if (window.LDA_COMMANDE) { window.LDA_COMMANDE.open(); return; }
     // Sans commande.js on n'a ni coordonnées ni adresse, et le serveur les
@@ -779,6 +781,7 @@
     $("#qtyVal") && $("#qtyPlus").addEventListener("click", () => { qty++; $("#qtyVal").textContent = qty; });
     $("#qtyVal") && $("#qtyMinus").addEventListener("click", () => { qty = Math.max(1, qty - 1); $("#qtyVal").textContent = qty; });
     $("#pAdd").addEventListener("click", () => { addToCart(p.h, vi, qty); openCart(); });
+    window.LDA_PIXEL && window.LDA_PIXEL.viewContent(p, p.variants[vi]);
 
     /* ---------- Article retiré chez le fournisseur ----------
        Un lien partagé ou indexé par Google reste vivant longtemps. Plutôt

@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=45">
+  <link rel="stylesheet" href="styles.css?v=46">
   <link rel="canonical" href="https://literiedamitie.com/merci">
   <meta name="robots" content="noindex,follow">
 </head>
@@ -44,10 +44,11 @@
 
   <div data-footer><div class="footer-fallback"><a href="confidentialite.html">Politique de confidentialité</a> · <a href="conditions.html">Conditions de vente</a> · <a href="textos.html">Alertes par texto</a> · Literie d'Amitié Inc., 3512 boul. Industriel, Montréal-Nord (Québec) H1H 2Y4 · 438-375-4949</div></div>
 
-  <script src="zones.js?v=45"></script>
-  <script src="data.js?v=45"></script>
-  <script src="partials.js?v=45"></script>
-  <script src="app.js?v=45"></script>
+  <script src="zones.js?v=46"></script>
+  <script src="data.js?v=46"></script>
+  <script src="partials.js?v=46"></script>
+  <script src="tracking.js?v=46"></script>
+  <script src="app.js?v=46"></script>
   <script>
     // Le panier est vidé au retour d'un paiement réussi, et les étapes
     // annoncées suivent le mode choisi : livrer et ramasser, ce n'est pas
@@ -67,12 +68,18 @@
           '<div class="ms-step"><b>3. Livraison soignée</b><span>Montréal et environs — on monte, on installe, on repart avec l\'emballage.</span></div>';
 
       if (!id) return;
+      // L'achat se déclare avant le vidage : après, le panier n'existe plus
+      // et la valeur de la commande serait perdue.
+      try {
+        var ref = new URLSearchParams(location.search).get("ref");
+        var panier = JSON.parse(localStorage.getItem("lda_cart_v1") || "[]");
+        window.LDA_PIXEL && window.LDA_PIXEL.purchase(panier, ref);
+      } catch (e) {}
       try {
         localStorage.removeItem("lda_cart_v1");
         sessionStorage.removeItem("lda_coord_v1"); // le brouillon a fait son temps
       } catch (e) {}
       var el = document.getElementById("merciRef");
-      var ref = new URLSearchParams(location.search).get("ref");
       el.hidden = false;
       el.querySelector("b").textContent = ref || id.slice(-12).toUpperCase();
       var c = document.getElementById("cartCount");
