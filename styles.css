@@ -278,7 +278,21 @@ body.menu-open .burger span:nth-child(2) { top: 20px; transform: translateX(-50%
   position: fixed; inset: 0; z-index: calc(var(--z-nav) - 1);
   background: rgba(13, 22, 38, 0.92);
   backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
-  display: grid; place-items: center; text-align: center;
+  display: grid; justify-items: center; text-align: center;
+  /* `place-items: center` centrait le contenu dans toute la fenêtre : dès que
+     la liste des rayons le rendait plus haut que l'écran, le débordement
+     passait SOUS l'en-tête collant, qui est au-dessus (z 100/101 contre 99).
+     Les premières entrées — « Boutique » et le premier rayon — devenaient
+     invisibles et surtout incliquables.
+     `safe center` centre tant qu'il y a la place et bascule en haut sinon,
+     et le rembourrage réserve la hauteur de l'en-tête pour que le bouton de
+     fermeture reste atteignable. */
+  align-content: safe center;
+  overflow-y: auto; overscroll-behavior: contain;
+  /* --entete-h est mesuré en JS : la hauteur de l'en-tête change avec la
+     largeur (la marque passe sur deux lignes en dessous de 560 px), donc
+     une valeur figée laisserait le premier lien sous le bandeau. */
+  padding: calc(var(--entete-h, 132px) + 22px) 20px 48px;
   opacity: 0; visibility: hidden; transition: opacity 0.55s var(--ease), visibility 0.55s;
 }
 body.menu-open .mobile-menu { opacity: 1; visibility: visible; }
@@ -296,6 +310,7 @@ body.menu-open .mobile-menu li:nth-child(3) > * { transition-delay: 0.2s; }
 body.menu-open .mobile-menu li:nth-child(4) > * { transition-delay: 0.26s; }
 body.menu-open .mobile-menu li:nth-child(5) > * { transition-delay: 0.32s; }
 body.menu-open .mobile-menu li:nth-child(6) > * { transition-delay: 0.4s; }
+.mobile-menu .mm-depts a { font-size: 1rem; font-family: var(--sans); padding: 6px 10px; }
 .mobile-menu .mm-info { margin-top: 34px; color: rgba(243, 236, 223, 0.55); font-size: 0.85rem; }
 .mobile-menu .mm-info a { font-family: var(--sans); font-size: 1rem; color: var(--brass-2); padding: 4px; }
 

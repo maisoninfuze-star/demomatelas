@@ -371,6 +371,21 @@
     toast(`${p.name} — ajouté au panier`);
   }
 
+  /* Hauteur réelle de l'en-tête, republiée à chaque redimensionnement.
+     Le menu plein écran s'en sert pour ne jamais glisser sous le bandeau. */
+  (function hauteurEntete() {
+    const mesurer = () => {
+      const nav = $(".nav-wrap");
+      if (!nav) return;
+      const bas = nav.getBoundingClientRect().bottom + (window.scrollY ? 0 : 0);
+      document.documentElement.style.setProperty("--entete-h", Math.round(Math.max(bas, 90)) + "px");
+    };
+    mesurer();
+    addEventListener("resize", mesurer, { passive: true });
+    addEventListener("orientationchange", mesurer);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(mesurer);
+  })();
+
   const drawer = $("#cartDrawer");
   const openCart = () => { document.body.classList.add("cart-open"); renderCart(); };
   const closeCart = () => document.body.classList.remove("cart-open");
