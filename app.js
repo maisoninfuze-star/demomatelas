@@ -362,7 +362,7 @@
     const key = handle + "::" + v.t;
     const found = c.find((i) => i.k === key);
     if (found) found.q += qty;
-    else c.push({ k: key, h: handle, name: p.name, v: v.t === "Default Title" ? "Format unique" : v.t, p: v.p, q: qty });
+    else c.push({ k: key, h: handle, name: p.name, v: v.t === "Default Title" ? ((p.type === "bedroom-set" || p.type === "dining-set") ? "Ensemble complet" : "Format unique") : v.t, p: v.p, q: qty });
     saveCart(c);
     renderCart();
     window.LDA_PIXEL && window.LDA_PIXEL.addToCart(p, v, qty);
@@ -882,6 +882,31 @@
       a.addEventListener("mouseleave", () => (im.src = a.dataset.img1));
     });
 
+  /* ---------- Prix d'une collection ----------
+     Le champ `from` stocké sur la collection est le prix de sa pièce la
+     moins chère : Madison s'annonçait « dès 220 $ » — le prix de la table
+     de nuit — pour un ensemble à 2 599,98 $. On recalcule donc à partir du
+     produit-ensemble réel, et le prix des pièces détachées devient une
+     mention distincte au lieu de se faire passer pour celui de la chambre. */
+  const handleDeLien = (lien) => {
+    const m = /[?&]p=([^&]+)/.exec(lien || "");
+    return m ? decodeURIComponent(m[1]) : null;
+  };
+  function produitsCollection(c) {
+    if (c.handles && c.handles.length) return c.handles.map(byHandle).filter(Boolean);
+    const h = handleDeLien(c.link);
+    const p = h && byHandle(h);
+    return p ? [p] : [];
+  }
+  function prixCollection(c) {
+    const prods = produitsCollection(c);
+    const set = prods.find((p) => p.type === "bedroom-set" || p.type === "dining-set");
+    const ensemble = set ? prixAffiche(set).val : 0;
+    const autres = [];
+    prods.forEach((p) => (p.variants || []).forEach((v) => { if (v.p > 0 && v.p !== ensemble) autres.push(v.p); }));
+    return { ensemble: ensemble, pieces: autres.length ? Math.min.apply(null, autres) : 0, set: set, prods: prods };
+  }
+
   function colCardHTML(c, i) {
     const href = c.link ? c.link : `collection.html?c=${c.slug}`;
     return `<a class="col-card" style="--d:${Math.min(i * 0.05, 0.4)}s" href="${href}">
@@ -891,7 +916,11 @@
         <span class="col-name">${c.name}</span>
         ${c.desc ? `<span class="col-desc">${c.desc}</span>` : ""}
         ${c.features ? `<span class="col-tags">${c.features.map((f) => `<span class="col-tag">${f}</span>`).join("")}</span>` : ""}
-        <span class="col-foot"><span class="col-price"><span class="from">dès</span><b>${fmt(c.from)}</b></span><span class="col-go">Découvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span>
+        <span class="col-foot"><span class="col-price">${(() => {
+          const q = prixCollection(c);
+          if (q.ensemble > 0) return `<b>${fmt(q.ensemble)}</b><span class="col-price-sub">Ensemble complet${q.pieces > 0 ? ` · pièces dès ${fmt(q.pieces)}` : ""}</span>`;
+          return `<span class="from">dès</span><b>${fmt(c.from)}</b>`;
+        })()}</span><span class="col-go">Découvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span>
       </span>
     </a>`;
   }
@@ -943,35 +972,69 @@
       $("#collGrid").innerHTML = prods.map((p, i) => prodCardHTML(p, i)).join("");
       hoverSwap($("#collGrid"));
 
-      // Module « acheter l'ensemble » : mettre en vedette le produit-ensemble.
-      const setProd = prods.find((p) => p.cat === "ensembles" && /ensemble de chambre/i.test((p.sub || "") + " " + p.name) && p.from > 0);
+      /* Module « acheter l'ensemble ».
+         L'ancienne version amorçait sa liste avec la clé de type de
+         l'ensemble lui-même : la description de Madison contient « lit
+         plateforme capitonné », la clé valait donc « bed », et le lit —
+         la pièce maîtresse — était exclu de la liste des pièces incluses.
+         On s'appuie maintenant sur le champ `type` canonique et on ne
+         retire que l'ensemble lui-même. */
+      const setProd = prods.find((p) => p.type === "bedroom-set" || p.type === "dining-set");
       if (setProd) {
-        const seen = new Set([typeKey(setProd)]);
-        const included = prods.filter((p) => {
-          if (p === setProd || p.from <= 0) return false;
-          const k = typeKey(p);
-          if (k === "other" || seen.has(k)) return false;
-          seen.add(k); return true;
-        });
+        const q = prixCollection(c);
+        const included = prods.filter((p) => p !== setProd && p.from > 0);
+
+        // Variantes qui désignent l'ensemble complet : ce sont les seules
+        // que l'on peut proposer au choix. « Default Title » n'est pas un
+        // format et ne doit jamais être présenté comme tel.
+        const RE_ENS = /^ensemble|ensemble\s+(de\s+)?(chambre|salle)|\d\s*pc\b|\d\s*pi[èe]ces/i;
+        const formats = (setProd.variants || [])
+          .map((v, i) => ({ v: v, i: i }))
+          .filter((x) => x.v.p > 0 && RE_ENS.test(x.v.t));
+        const choix = formats.length > 1;
+
+        // Formats offerts par le lit de la collection — utile quand
+        // l'ensemble n'en déclare aucun.
+        const litColl = prods.find((p) => p.type === "bed");
+        // Les libellés fournisseur portent souvent la couleur en préfixe
+        // (« noir / Lit plateforme 60" Queen ») : on ne garde que le format.
+        const litFormats = litColl
+          ? [...new Set((litColl.variants || [])
+              .map((v) => (v.t || "").split("/").pop().replace(/lit\s+plateforme\s*/i, "").trim())
+              .filter(Boolean))]
+          : [];
+
         $("#collBundleWrap").hidden = false;
         $("#collBundle").innerHTML = `
           <div class="bundle-grid">
             <div>
               <span class="eyebrow" style="color:var(--brass-2)">Achat groupé</span>
               <h2>Toute la chambre ${c.name}, d'un coup.</h2>
-              <p class="lede">L'ensemble complet — lit, commode, miroir et tables de nuit — livré ensemble par notre équipe montréalaise. Un seul prix, aucune majoration.</p>
-              ${included.length ? `<div class="bundle-list">${included.map((p) => `<div class="bundle-row"><span class="bundle-thumb"><img src="${imgW(p.imgs[0], 120)}" alt=""></span><span class="bn">${p.name}</span><span class="bp">inclus</span></div>`).join("")}</div>` : ""}
+              <p class="lede">L'ensemble complet, livré et installé par notre équipe montréalaise. Un seul prix, aucune majoration.</p>
+              ${included.length ? `<div class="bundle-list"><div class="bundle-head">Inclus dans cet ensemble</div>${included.map((p) => `<div class="bundle-row"><span class="bundle-thumb"><img src="${imgW(p.imgs[0], 120)}" alt=""></span><span class="bn">${p.name.replace(c.name + " — ", "")}</span><span class="bp">1 ×</span></div>`).join("")}</div>` : ""}
             </div>
             <div class="bundle-total">
-              <div class="bt-label">Ensemble à partir de</div>
-              <div class="bt-val">${fmt(setProd.from)}</div>
-              <div class="bt-note">Prix d'usine — livré &amp; installé</div>
-              <button class="btn btn--ivory" id="bundleAdd">Ajouter l'ensemble <span class="btn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></button>
+              <div class="bt-label">Ensemble complet</div>
+              <div class="bt-val">${fmt(q.ensemble || setProd.from)}</div>
+              ${choix ? `<label class="bt-choice"><span>Format du lit</span><select id="bundleSize">${formats.map((x) => `<option value="${x.i}">${x.v.t} — ${fmt(x.v.p)}</option>`).join("")}</select></label>`
+                      : litFormats.length ? `<div class="bt-note">Formats offerts pour le lit&nbsp;: ${litFormats.join(" · ")}. Confirmez le vôtre avec nous avant la livraison.</div>` : ""}
+              <div class="bt-note">Prix d'usine. Livraison et installation&nbsp;: +50&nbsp;$ dans le Grand Montréal, ou ramassage gratuit au showroom.</div>
+              <button class="btn btn--ivory" id="bundleAdd">${choix ? "Choisir et ajouter" : "Ajouter l'ensemble"} <span class="btn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></button>
               <a class="btn btn--ghost" href="tel:+14383754949" style="color:var(--ivory);border-color:var(--line-dark)">Conseil expert</a>
             </div>
           </div>`;
+
+        const sel = $("#bundleSize");
+        const btv = $(".bt-val");
+        if (sel && btv) sel.addEventListener("change", () => {
+          const v = setProd.variants[+sel.value];
+          if (v) btv.textContent = fmt(v.p);
+        });
         const ba = $("#bundleAdd");
-        if (ba) ba.addEventListener("click", () => { addToCart(setProd.h, null, 1); openCart(); });
+        if (ba) ba.addEventListener("click", () => {
+          addToCart(setProd.h, sel ? +sel.value : null, 1);
+          openCart();
+        });
       }
 
       const rel = COLLECTIONS.filter((x) => x.slug !== c.slug).slice(0, 3);

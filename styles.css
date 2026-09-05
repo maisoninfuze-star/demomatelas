@@ -1826,3 +1826,18 @@ chat-widget,
 /* Sans commande.js, « Passer la commande » ne mène nulle part ici :
    on retire le panier de cette page plutôt que d'offrir un cul-de-sac. */
 body[data-page="textos"] #cartOpen { display: none; }
+
+
+/* ---- Collections : prix de l'ensemble vs pièces à l'unité ---- */
+.col-price { display: flex; flex-direction: column; gap: 2px; }
+.col-price-sub { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.02em; color: var(--muted); }
+
+/* ---- Module « acheter l'ensemble » ---- */
+.bundle-head { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-2); margin-bottom: 10px; }
+.bt-choice { display: flex; flex-direction: column; gap: 6px; margin: 14px 0 4px; text-align: left; }
+.bt-choice span { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ivory); opacity: 0.72; }
+.bt-choice select {
+  width: 100%; padding: 11px 13px; border-radius: 10px; font: inherit; font-size: 0.92rem;
+  color: var(--ivory); background: rgba(255, 255, 255, 0.07); border: 1px solid var(--line-dark);
+}
+.bt-choice select option { color: #14161a; }
