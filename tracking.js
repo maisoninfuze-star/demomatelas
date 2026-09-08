@@ -18,7 +18,7 @@
 (function () {
   "use strict";
 
-  var PIXEL_ID = "";          // ← identifiant du jeu de données Meta
+  var PIXEL_ID = "3323503304502760";   // jeu de données Meta — Literie d'Amitié
   var DEVISE = "CAD";
 
   var actif = false;
