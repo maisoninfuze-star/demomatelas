@@ -264,7 +264,7 @@ export default async function handler(req, res) {
         sms_promo: c.sms === "oui" ? `consenti ${c.smsAt || ""}`.trim() : "non",
         // Ce que le client souhaite : l'équipe confirme le créneau réel au téléphone.
         souhait: [c.jour || "Jour : peu importe", c.plage || "Heure : peu importe"].join(" · "),
-        delai: commande ? "6–7 jours ouvrables (fournisseur)" : "24–48 h (en stock)",
+        delai: commande ? "6–7 jours ouvrables (fournisseur)" : "en stock — quelques jours ouvrables",
         articles: String(items.length),
       },
     }, { idempotencyKey: ref });

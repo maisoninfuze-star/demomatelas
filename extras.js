@@ -22,7 +22,7 @@
      ============================================================ */
   const PAGES = [
     { t: "Boutique — tous les produits", href: "matelas.html" },
-    { t: "Matelas — cousus à Montréal", href: "matelas.html?cat=matelas" },
+    { t: "Matelas — prix d'usine", href: "matelas.html?cat=matelas" },
     { t: "Chambres à coucher — collections", href: "collections.html" },
     { t: "Sectionnels-lits", href: "matelas.html?cat=sectionnels" },
     { t: "Bases & sommiers", href: "bases.html" },
@@ -257,7 +257,7 @@
         <div class="devis-head">
           <div class="devis-brand">
             <b>Literie d'Amitié</b>
-            <span>Matelassier · Montréal · depuis 2020</span>
+            <span>Entreprise québécoise · depuis 2019</span>
           </div>
           <div class="devis-meta">
             <b>Soumission ${num}</b>
@@ -287,7 +287,7 @@
         </div>
         <div class="devis-foot">
           <span>3512, boul. Industriel, Montréal QC · 438-375-4949 · literiedamitieinc@outlook.com</span>
-          <span>Showroom ouvert 7 jours · Lun–Ven 9 h–18 h · Sam 10 h–17 h · Dim 11 h–16 h</span>
+          <span>Showroom ouvert du lundi au samedi · Lun–Ven 10 h–17 h · Sam 11 h–17 h</span>
           <span class="devis-note">Soumission générée sur literiedamitie.com — les prix incluent la garantie 1 an. Taxes en sus, sauf indication contraire.</span>
         </div>
       </div>`;

@@ -119,7 +119,7 @@
     <nav class="nav" id="nav" aria-label="Navigation principale">
       <a class="brand brand--logo" href="index.html" aria-label="Literie d'Amitié — accueil">
         <img src="assets/logo-literie.png" alt="Literie d'Amitié" width="2172" height="724" fetchpriority="high">
-        <span class="brand-sub">Matelassier · Montréal</span>
+        <span class="brand-sub">Entreprise québécoise · Montréal</span>
       </a>
       <div class="nav-links">${navLinks}</div>
       <div class="nav-actions">
@@ -153,9 +153,9 @@
         <div>
           <a class="brand brand--logo brand--footer" href="index.html">
             <span class="brand-plate"><img src="assets/logo-literie.png" alt="Literie d'Amitié" width="2172" height="724" loading="lazy"></span>
-            <span class="brand-sub">Matelassier · Montréal · depuis 2020</span>
+            <span class="brand-sub">Entreprise québécoise · depuis 2019</span>
           </a>
-          <p class="footer-about">On fabrique, on entrepose et on livre nos matelas nous-mêmes, du Plateau à Brossard. Du vrai sommeil, à prix juste.</p>
+          <p class="footer-about">On choisit, on entrepose et on livre nos matelas nous-mêmes, du Plateau à Brossard. Du vrai sommeil, à prix juste.</p>
         </div>
         <div class="footer-col">
           <h4>Boutique</h4>
@@ -182,9 +182,9 @@
           <a href="${MAPS}" target="_blank" rel="noopener">3512, boul. Industriel<br>Montréal-Nord (Québec) H1H 2Y4</a>
           <a href="mailto:${EMAIL}">${EMAIL}</a>
           <ul>
-            <li class="foot-hours"><span>Lun – Ven</span><span>9 h – 18 h</span></li>
-            <li class="foot-hours"><span>Samedi</span><span>10 h – 17 h</span></li>
-            <li class="foot-hours"><span>Dimanche</span><span>11 h – 16 h</span></li>
+            <li class="foot-hours"><span>Lun – Ven</span><span>10 h – 17 h</span></li>
+            <li class="foot-hours"><span>Samedi</span><span>11 h – 17 h</span></li>
+            <li class="foot-hours"><span>Dimanche</span><span>Fermé</span></li>
           </ul>
         </div>
       </div>

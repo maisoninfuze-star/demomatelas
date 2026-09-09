@@ -345,7 +345,7 @@
     $("#prefTitre").textContent = liv ? "Votre préférence de livraison" : "Votre préférence de ramassage";
     $("#prefAide").textContent = liv
       ? `On fait l'impossible pour respecter votre choix — on confirme le créneau exact par téléphone. Délai prévu : ${delai}.`
-      : `On vous appelle dès que la commande est prête. Délai prévu : ${delai}. Showroom ouvert 7 jours.`;
+      : `On vous appelle dès que la commande est prête. Délai prévu : ${delai}. Showroom ouvert du lundi au samedi.`;
     if (!liv) { zoneBox.hidden = true; outOfZone = false; }
     else renderZone();
     renderRecap();
