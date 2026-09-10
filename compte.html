@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=58">
+  <link rel="stylesheet" href="styles.css?v=59">
   <link rel="canonical" href="https://literiedamitie.com/compte">
   <!-- Page personnelle : elle ne doit jamais atterrir dans un index. -->
   <meta name="robots" content="noindex,nofollow">
@@ -78,12 +78,12 @@
 
   <div data-footer><div class="footer-fallback"><a href="confidentialite.html">Politique de confidentialité</a> · <a href="conditions.html">Conditions de vente</a> · <a href="compte.html">Mes commandes</a> · <a href="textos.html">Alertes par texto</a> · Literie d'Amitié Inc., 3512 boul. Industriel, Montréal-Nord (Québec) H1H 2Y4 · 438-375-4949</div></div>
 
-  <script src="zones.js?v=58"></script>
-  <script src="data.js?v=58"></script>
-  <script src="partials.js?v=58"></script>
-  <script src="tracking.js?v=58"></script>
-  <script src="app.js?v=58"></script>
-  <script src="extras.js?v=58"></script>
+  <script src="zones.js?v=59"></script>
+  <script src="data.js?v=59"></script>
+  <script src="partials.js?v=59"></script>
+  <script src="tracking.js?v=59"></script>
+  <script src="app.js?v=59"></script>
+  <script src="extras.js?v=59"></script>
   <script>
   /* Trois états, un seul écran. Le jeton dans l'adresse décide lequel :
      présent, on tente de lire les commandes ; absent, on demande le lien. */
@@ -150,9 +150,18 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ courriel: mail }),
       })
-        .then(function () { voir("cptEnvoye"); })
+        /* fetch ne rejette que sur panne réseau : un 500 arrive ici en
+           réponse « réussie ». Sans vérifier r.ok, la page annonçait
+           « regardez vos courriels » alors que rien n'était parti — le
+           même défaut que le formulaire de contact qui jette les messages.
+           On ne dit au client qu'un lien est en route que si le serveur
+           l'a réellement accepté. */
+        .then(function (r) {
+          if (!r.ok) throw new Error(String(r.status));
+          voir("cptEnvoye");
+        })
         .catch(function () {
-          err.textContent = "Envoi impossible pour le moment. Appelez-nous au 438-375-4949.";
+          err.textContent = "Envoi impossible pour le moment. Appelez-nous au 438-375-4949 \u2014 on retrouve votre commande avec votre nom.";
           b.disabled = false;
           b.innerHTML = libelle;
         });
