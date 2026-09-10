@@ -596,7 +596,14 @@
 
     function card(p, i) {
       const img = p.imgs[0] ? p.imgs[0] + (p.imgs[0].includes("?") ? "&" : "?") + "width=600" : "";
-      const img2 = p.imgs[1] ? p.imgs[1] + (p.imgs[1].includes("?") ? "&" : "?") + "width=600" : "";
+      /* Sur la carte d'un ensemble, la photo de la pièce entière EST
+         l'argument de vente. La 2e image du fournisseur est souvent un
+         gros plan de la tête de lit : permuter au survol donnait
+         l'impression d'un zoom brutal sur un détail. On garde donc la
+         permutation pour les articles à l'unité, où la 2e image montre
+         un autre angle utile, et on la retire pour les ensembles. */
+      const estEnsemble = p.type === "bedroom-set" || p.type === "dining-set";
+      const img2 = !estEnsemble && p.imgs[1] ? p.imgs[1] + (p.imgs[1].includes("?") ? "&" : "?") + "width=600" : "";
       const multi = p.variants.length > 1;
       return `<article class="product-card" style="--d:${Math.min(i * 0.05, 0.45)}s">
         <div class="pc-core">
