@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mes commandes | Literie d'Amitié</title>
+  <meta name="theme-color" content="#0d1626">
+  <link rel="icon" type="image/png" href="assets/logo-badge.png">
+  <link rel="apple-touch-icon" href="assets/logo-badge.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=57">
+  <link rel="canonical" href="https://literiedamitie.com/compte">
+  <!-- Page personnelle : elle ne doit jamais atterrir dans un index. -->
+  <meta name="robots" content="noindex,nofollow">
+</head>
+<body data-page="compte">
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div data-header></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="merci-card cpt-card">
+
+          <!-- ÉTAT 1 — demander le lien d'accès -->
+          <div id="cptDemande">
+            <h1>Mes commandes</h1>
+            <p class="lede">Entrez le courriel utilisé lors de votre commande. On vous envoie un lien d'accès — pas de mot de passe à retenir.</p>
+            <form id="cptForm" class="cpt-form" novalidate>
+              <label for="cptMail">Votre courriel</label>
+              <input id="cptMail" name="courriel" type="email" inputmode="email" autocomplete="email"
+                     maxlength="254" required placeholder="vous@courriel.com">
+              <p class="field-error" id="cptErr"></p>
+              <button class="btn" type="submit" id="cptGo">Recevoir mon lien
+                <span class="btn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+              </button>
+            </form>
+            <p class="cpt-note">Votre compte est créé automatiquement lors de votre première commande. Vous n'avez rien à faire de plus.</p>
+          </div>
+
+          <!-- ÉTAT 2 — lien envoyé -->
+          <div id="cptEnvoye" hidden>
+            <span class="merci-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+            </span>
+            <h1>Regardez vos courriels.</h1>
+            <p class="lede">Si une commande existe à cette adresse, le lien d'accès vient d'y être envoyé. Il reste valide 14&nbsp;jours.</p>
+            <p class="cpt-note">Rien reçu&nbsp;? Vérifiez les indésirables, ou appelez-nous au <a href="tel:+14383754949">438-375-4949</a> — on retrouve votre commande avec votre nom.</p>
+          </div>
+
+          <!-- ÉTAT 3 — les commandes -->
+          <div id="cptListe" hidden>
+            <h1>Mes commandes</h1>
+            <p class="lede" id="cptQui"></p>
+            <div id="cptCommandes"></div>
+          </div>
+
+          <!-- ÉTAT 4 — lien invalide ou expiré -->
+          <div id="cptExpire" hidden>
+            <h1>Ce lien n'est plus valide.</h1>
+            <p class="lede">Les liens d'accès expirent après 14&nbsp;jours, par sécurité. Demandez-en un nouveau — c'est immédiat.</p>
+            <div class="hero-ctas">
+              <a class="btn" href="compte.html">Demander un nouveau lien
+                <span class="btn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+              <a class="btn btn--ghost" href="tel:+14383754949">438-375-4949</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-footer><div class="footer-fallback"><a href="confidentialite.html">Politique de confidentialité</a> · <a href="conditions.html">Conditions de vente</a> · <a href="compte.html">Mes commandes</a> · <a href="textos.html">Alertes par texto</a> · Literie d'Amitié Inc., 3512 boul. Industriel, Montréal-Nord (Québec) H1H 2Y4 · 438-375-4949</div></div>
+
+  <script src="zones.js?v=57"></script>
+  <script src="data.js?v=57"></script>
+  <script src="partials.js?v=57"></script>
+  <script src="tracking.js?v=57"></script>
+  <script src="app.js?v=57"></script>
+  <script src="extras.js?v=57"></script>
+  <script>
+  /* Trois états, un seul écran. Le jeton dans l'adresse décide lequel :
+     présent, on tente de lire les commandes ; absent, on demande le lien. */
+  (function () {
+    var $ = function (s) { return document.querySelector(s); };
+    var fmt = function (n) {
+      return n.toLocaleString("fr-CA", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " $";
+    };
+    var voir = function (id) {
+      ["cptDemande", "cptEnvoye", "cptListe", "cptExpire"].forEach(function (k) {
+        $("#" + k).hidden = k !== id;
+      });
+    };
+
+    var jeton = new URLSearchParams(location.search).get("t");
+
+    if (jeton) {
+      fetch("/api/compte?t=" + encodeURIComponent(jeton))
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+        .then(function (d) {
+          voir("cptListe");
+          $("#cptQui").textContent = d.courriel;
+          var box = $("#cptCommandes");
+          if (!d.commandes.length) {
+            box.innerHTML = '<p class="cpt-note">Aucune commande payée à cette adresse pour le moment.</p>';
+            return;
+          }
+          box.innerHTML = d.commandes.map(function (c) {
+            var d2 = new Date(c.date).toLocaleDateString("fr-CA", { year: "numeric", month: "long", day: "numeric" });
+            var lignes = (c.articles || []).map(function (a) {
+              return '<li><span>' + (a.q > 1 ? a.q + " × " : "") + esc(a.nom) + "</span><b>" + fmt(a.total) + "</b></li>";
+            }).join("");
+            return '<article class="cpt-cmd">' +
+              '<header><span class="cpt-ref">' + esc(c.commande) + "</span><time>" + d2 + "</time></header>" +
+              (lignes ? "<ul class=\"cpt-items\">" + lignes + "</ul>" : "") +
+              '<footer><span>' + esc(c.mode || "") + (c.delai ? " · " + esc(c.delai) : "") +
+              '</span><b class="cpt-total">' + fmt(c.total) + "</b></footer>" +
+              (c.adresse ? '<p class="cpt-adr">' + esc(c.adresse) + "</p>" : "") +
+              "</article>";
+          }).join("");
+        })
+        .catch(function () { voir("cptExpire"); });
+      return;
+    }
+
+    function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+
+    $("#cptForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var mail = $("#cptMail").value.trim();
+      var err = $("#cptErr");
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)) {
+        err.textContent = "Entrez une adresse courriel valide.";
+        $("#cptMail").focus();
+        return;
+      }
+      err.textContent = "";
+      var b = $("#cptGo");
+      b.disabled = true;
+      var libelle = b.innerHTML;
+      b.textContent = "Envoi…";
+      fetch("/api/compte", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ courriel: mail }),
+      })
+        .then(function () { voir("cptEnvoye"); })
+        .catch(function () {
+          err.textContent = "Envoi impossible pour le moment. Appelez-nous au 438-375-4949.";
+          b.disabled = false;
+          b.innerHTML = libelle;
+        });
+    });
+  })();
+  </script>
+
+  <!-- Widget de conversation LeadConnector (GoHighLevel) — unique mécanisme
+       d'adhésion SMS du site. Une seule instance par page, injectée ici.
+       Ne pas modifier ce script : il est fourni tel quel par GoHighLevel. -->
+  <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a87aa5764c286aff3733396" data-source="WEB_USER"></script>
+</body>
+</html>

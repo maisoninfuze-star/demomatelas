@@ -193,6 +193,7 @@
         <div class="footer-legal">
           <a href="confidentialite.html">Confidentialité</a>
           <a href="conditions.html">Conditions de vente</a>
+          <a href="compte.html">Mes commandes</a>
           <span>Paiement sécurisé par Stripe</span>
         </div>
       </div>
