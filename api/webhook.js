@@ -22,10 +22,11 @@
    échouer toutes les signatures.
    ============================================================ */
 import Stripe from "stripe";
+import { stripeSecret, stripeWebhookSecret, ghlWebhookUrl } from "./_env.js";
 
 export const config = { api: { bodyParser: false } };
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
+const stripe = new Stripe(stripeSecret(), { apiVersion: "2024-06-20" });
 
 /* Corps brut : on accumule les octets sans les interpréter.
    Vercel analyse le corps par défaut (api/checkout.js lit déjà req.body
@@ -56,7 +57,7 @@ function corpsBrut(req) {
    avant d'abandonner, puis on journalise bruyamment : une commande perdue
    se rattrape à la main depuis Stripe, mais encore faut-il le savoir. */
 async function versGHL(charge) {
-  const url = process.env.GHL_WEBHOOK_URL;
+  const url = ghlWebhookUrl();
   if (!url) { console.error("[webhook] GHL_WEBHOOK_URL absente — commande non transmise", charge.commande); return false; }
   for (let essai = 1; essai <= 3; essai++) {
     try {
@@ -78,7 +79,7 @@ async function versGHL(charge) {
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).end("Method Not Allowed");
 
-  const secret = process.env.STRIPE_WEBHOOK_SECRET;
+  const secret = stripeWebhookSecret();
   if (!secret) { console.error("[webhook] STRIPE_WEBHOOK_SECRET absente"); return res.status(500).end("config"); }
 
   let evenement;

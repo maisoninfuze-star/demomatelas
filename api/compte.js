@@ -31,15 +31,16 @@
    ============================================================ */
 import Stripe from "stripe";
 import crypto from "node:crypto";
+import { stripeSecret, compteSecret, ghlWebhookUrl, siteUrl } from "./_env.js";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
+const stripe = new Stripe(stripeSecret(), { apiVersion: "2024-06-20" });
 
 const JOURS_VALIDITE = 14;
 const b64 = (s) => Buffer.from(s).toString("base64url");
 const deb64 = (s) => Buffer.from(s, "base64url").toString("utf8");
 
 function signer(charge) {
-  return crypto.createHmac("sha256", process.env.COMPTE_SECRET).update(charge).digest("base64url");
+  return crypto.createHmac("sha256", compteSecret()).update(charge).digest("base64url");
 }
 
 function emettre(courriel) {
@@ -99,8 +100,8 @@ async function commandesDe(courriel) {
 }
 
 export default async function handler(req, res) {
-  if (!process.env.COMPTE_SECRET) {
-    console.error("[compte] COMPTE_SECRET absente");
+  if (!compteSecret()) {
+    console.error("[compte] ni COMPTE_SECRET ni STRIPE_SECRET_KEY : impossible de signer");
     return res.status(500).json({ erreur: "config" });
   }
 
@@ -123,8 +124,8 @@ export default async function handler(req, res) {
     }
 
     if (existe) {
-      const lien = `${(process.env.SITE_URL || "").replace(/\/$/, "")}/compte.html?t=${emettre(courriel)}`;
-      const url = process.env.GHL_WEBHOOK_URL;
+      const lien = `${siteUrl()}/compte.html?t=${emettre(courriel)}`;
+      const url = ghlWebhookUrl();
       if (url) {
         try {
           await fetch(url, {

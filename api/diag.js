@@ -23,6 +23,8 @@ const ATTENDUES = [
   "CRON_SECRET",
 ];
 
+import { stripeSecret, stripeWebhookSecret, ghlWebhookUrl, compteSecret, siteUrl } from "./_env.js";
+
 export default function handler(req, res) {
   const vues = {};
   for (const n of ATTENDUES) {
@@ -44,10 +46,21 @@ export default function handler(req, res) {
 
   const manquantes = ATTENDUES.filter((n) => !vues[n].presente);
 
+  /* Ce que le code RÉSOUT réellement, alias et dérivation compris :
+     c'est la seule ligne qui compte pour savoir si ça marche. */
+  const resolu = {
+    stripe_secret:   !!stripeSecret(),
+    stripe_webhook:  !!stripeWebhookSecret(),
+    ghl_webhook_url: !!ghlWebhookUrl(),
+    compte_secret:   !!compteSecret(),
+    site_url:        siteUrl(),
+  };
+
   res.setHeader("Cache-Control", "no-store");
   return res.status(200).json({
     attendues: vues,
     manquantes,
+    resolu,
     autres_noms_definis: voisines,
     note: "Aucune valeur n'est renvoyée. Supprimer api/diag.js après vérification.",
   });
