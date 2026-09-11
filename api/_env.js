@@ -45,4 +45,12 @@ export function compteSecret() {
   return crypto.createHmac("sha256", base).update("literie:compte:v1").digest("hex");
 }
 
-export const siteUrl = () => (env("SITE_URL", "PUBLIC_URL", "BASE_URL") || "https://literiedamitie.com").replace(/\/$/, "");
+/* Racine publique du site. On ne garde que l'ORIGINE de ce qui est saisi :
+   SITE_URL a déjà valu « https://demomatelas.vercel.app/index.html », et la
+   caisse en faisait « …/index.html/merci.html » — un 404 servi à chaque
+   client juste après son paiement. Un chemin dans cette variable ne doit
+   plus jamais pouvoir casser la redirection après achat. */
+export function siteUrl() {
+  const brut = env("SITE_URL", "PUBLIC_URL", "BASE_URL") || "https://literiedamitie.com";
+  try { return new URL(brut).origin; } catch { return "https://literiedamitie.com"; }
+}

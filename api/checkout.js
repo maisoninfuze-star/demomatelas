@@ -64,7 +64,11 @@ export default async function handler(req, res) {
     });
   }
 
-  const siteUrl = (process.env.SITE_URL || `https://${req.headers.host}`).replace(/\/$/, "");
+  // Origine seulement : un chemin laissé dans SITE_URL cassait success_url.
+  const siteUrl = (() => {
+    const brut = process.env.SITE_URL || `https://${req.headers.host}`;
+    try { return new URL(brut).origin; } catch { return `https://${req.headers.host}`; }
+  })();
   const stripe = new Stripe(key, { apiVersion: "2024-06-20" });
 
   try {
