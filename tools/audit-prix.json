@@ -1,0 +1,1442 @@
+[
+ {
+  "gravite": "bloquant",
+  "categorie": "ensemble-sans-lit",
+  "sku": "",
+  "h": "jordyn-white",
+  "nom": "Jordyn (Blanc)",
+  "type": "bedroom-set",
+  "titre": "La fiche promet un lit, mais ni les pièces ni les variantes n'en contiennent",
+  "detail": "pièces : nightstand, dresser, chest, bedroom-set, nightstand, dresser, chest"
+ },
+ {
+  "gravite": "bloquant",
+  "categorie": "ensemble-sans-lit",
+  "sku": "",
+  "h": "ava-jordyn-gris-ensemble-de-chambre-laque-gris-lit-plateforme-avec-rangement-tete-de-lit-eclairee",
+  "nom": "Jordyn « Ava » (Gris)",
+  "type": "bedroom-set",
+  "titre": "La fiche promet un lit, mais ni les pièces ni les variantes n'en contiennent",
+  "detail": "pièces : bedroom-set, nightstand, dresser, chest, nightstand, dresser, chest"
+ },
+ {
+  "gravite": "bloquant",
+  "categorie": "prix-ensemble",
+  "sku": "",
+  "h": "jordyn-white",
+  "nom": "Jordyn (Blanc)",
+  "type": "bedroom-set",
+  "titre": "Prix d'ensemble sans aucun lit parmi les pièces, alors que la fiche annonce un lit",
+  "detail": "ensemble 4199.98 $ · pièces sans lit 2170.00 $ · 2029.98 $ non justifiés"
+ },
+ {
+  "gravite": "bloquant",
+  "categorie": "prix-ensemble",
+  "sku": "",
+  "h": "ava-jordyn-gris-ensemble-de-chambre-laque-gris-lit-plateforme-avec-rangement-tete-de-lit-eclairee",
+  "nom": "Jordyn « Ava » (Gris)",
+  "type": "bedroom-set",
+  "titre": "Prix d'ensemble sans aucun lit parmi les pièces, alors que la fiche annonce un lit",
+  "detail": "ensemble 4199.98 $ · pièces sans lit 2170.00 $ · 2029.98 $ non justifiés"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "doublon",
+  "sku": "",
+  "h": "reid-black-night-stand",
+  "nom": "Reid (Noir) — Table de nuit",
+  "type": "nightstand",
+  "titre": "Même nom sur plusieurs fiches",
+  "detail": "reid-black-night-stand (270 $) · reid-table-de-nuit-noire (270 $)"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "doublon",
+  "sku": "",
+  "h": "pompei-white-night-stand",
+  "nom": "Pompei (Blanc) — Table de nuit",
+  "type": "nightstand",
+  "titre": "Même nom sur plusieurs fiches",
+  "detail": "pompei-white-night-stand (240 $) · table-de-nuit-pompei-blanc-metallique (240 $)"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "doublon",
+  "sku": "",
+  "h": "luna-riley-d-m",
+  "nom": "Luna « Riley » — Commode & miroir",
+  "type": "dresser",
+  "titre": "Même nom sur plusieurs fiches",
+  "detail": "luna-riley-d-m (1090 $) · luna-riley-chest (690 $)"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "doublon",
+  "sku": "C-1574",
+  "h": "ifdc-c-1574",
+  "nom": "Chaise C-1574",
+  "type": "dining-chair",
+  "titre": "Même nom sur plusieurs fiches",
+  "detail": "ifdc-c-1574 (100 $) · ifdc-c-1574-2 (100 $)"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "doublon",
+  "sku": "C-1575",
+  "h": "ifdc-c-1575",
+  "nom": "Chaise C-1575",
+  "type": "dining-chair",
+  "titre": "Même nom sur plusieurs fiches",
+  "detail": "ifdc-c-1575 (100 $) · ifdc-c-1575-2 (100 $)"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "doublon",
+  "sku": "C-1576",
+  "h": "ifdc-c-1576",
+  "nom": "Chaise C-1576",
+  "type": "dining-chair",
+  "titre": "Même nom sur plusieurs fiches",
+  "detail": "ifdc-c-1576 (100 $) · ifdc-c-1576-2 (100 $)"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "doublon",
+  "sku": "C-1577",
+  "h": "ifdc-c-1577",
+  "nom": "Chaise C-1577",
+  "type": "dining-chair",
+  "titre": "Même nom sur plusieurs fiches",
+  "detail": "ifdc-c-1577 (100 $) · ifdc-c-1577-2 (100 $)"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "doublon",
+  "sku": "C-1579",
+  "h": "ifdc-c-1579",
+  "nom": "Chaise C-1579",
+  "type": "dining-chair",
+  "titre": "Même nom sur plusieurs fiches",
+  "detail": "ifdc-c-1579 (100 $) · ifdc-c-1579-2 (100 $)"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "doublon",
+  "sku": "T-5067",
+  "h": "ifdc-t-5067",
+  "nom": "Table seulement T-5067",
+  "type": "dining-table",
+  "titre": "Même nom sur plusieurs fiches",
+  "detail": "ifdc-t-5067 (539.98 $) · ifdc-t-5067-2 (499.98 $)"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "echelle-formats",
+  "sku": "IF-5200",
+  "h": "ifdc-if-5200",
+  "nom": "Lit IF-5200",
+  "type": "bed",
+  "titre": "Un format plus grand coûte moins cher qu'un plus petit",
+  "detail": "« Lit Queen 60″ » 999.98 $  >  « Lit King 78″ » 539.98 $"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "format-annonce",
+  "sku": "",
+  "h": "pompei-blanc",
+  "nom": "Pompei (Blanc) — Lit",
+  "type": "bed",
+  "titre": "La sous-ligne annonce un format, le prix « dès » vient d'un autre",
+  "detail": "annonce « Tête de lit capitonnée, Queen ou King » · dès 719.98 $ = « blanc / 54\" Lit double (requiert sommier) »"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "format-annonce",
+  "sku": "IF-5125",
+  "h": "ifdc-if-5125",
+  "nom": "Lit IF-5125",
+  "type": "bed",
+  "titre": "La sous-ligne annonce un format, le prix « dès » vient d'un autre",
+  "detail": "annonce « Lit Queen 60″ » · dès 399.98 $ = « Lit Simple 39″ »"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "format-annonce",
+  "sku": "IF-5343",
+  "h": "ifdc-if-5343",
+  "nom": "Lit plateforme IF-5343",
+  "type": "bed",
+  "titre": "La sous-ligne annonce un format, le prix « dès » vient d'un autre",
+  "detail": "annonce « Lit Double 54″ » · dès 149.98 $ = « Lit plateforme Simple 39″ »"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "format-annonce",
+  "sku": "IF-5542",
+  "h": "ifdc-if-5542-black",
+  "nom": "Lit IF-5542 (noir)",
+  "type": "bed",
+  "titre": "La sous-ligne annonce un format, le prix « dès » vient d'un autre",
+  "detail": "annonce « Lit King 78″ » · dès 799.98 $ = « Lit Queen 60″ »"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "format-annonce",
+  "sku": "IF-5570",
+  "h": "ifdc-if-5570-grey",
+  "nom": "Lit IF-5570 (gris)",
+  "type": "bed",
+  "titre": "La sous-ligne annonce un format, le prix « dès » vient d'un autre",
+  "detail": "annonce « Lit King 78″ » · dès 559.98 $ = « Lit Queen 60″ »"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "format-annonce",
+  "sku": "IF-5652",
+  "h": "ifdc-if-5652-blue",
+  "nom": "Lit IF-5652 (bleu)",
+  "type": "bed",
+  "titre": "La sous-ligne annonce un format, le prix « dès » vient d'un autre",
+  "detail": "annonce « Lit King 78″ » · dès 459.98 $ = « 54\" Queen Bed »"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "format-annonce",
+  "sku": "IF-5891",
+  "h": "ifdc-if-5891-blue-velvet",
+  "nom": "Lit IF-5891 (bleu)",
+  "type": "bed",
+  "titre": "La sous-ligne annonce un format, le prix « dès » vient d'un autre",
+  "detail": "annonce « Lit King 78″ » · dès 659.98 $ = « Lit Double 54″ »"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "format-annonce",
+  "sku": "IF-392",
+  "h": "ifdc-if-392",
+  "nom": "78\" King IF-392",
+  "type": "bed",
+  "titre": "La sous-ligne annonce un format, le prix « dès » vient d'un autre",
+  "detail": "annonce « 78\" King » · dès 219.98 $ = « 39\" Single Folding Bed »"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "",
+  "h": "classic-sleep-matelas-8-5-a-ressorts-bonnell-tissu-bambou",
+  "nom": "Classic Sleep – Matelas 8.5\" à Ressorts Bonnell & Tissu Bambou",
+  "type": "mattress",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "matelas_classic_sleep_8.5_bonnell_bambou → Classic Sleep – Matelas 8.5\" à Ressorts Bonnell & Tissu Bambou [mattress] · Sommier (boîte à ressorts) [box-spring]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "IF-5542",
+  "h": "ifdc-if-5542-black",
+  "nom": "Lit IF-5542 (noir)",
+  "type": "bed",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "c1a65e_454d4f3f032f4619ba661f4a42370fea → Lit IF-5542 (noir) [bed] · Lit IF-5865 (gris) [bed] · Lit IF-5891 (bleu) [bed] · Ensemble salle à manger 3 pièces T-1210/ C-1210 [dining-set] · Table seulement T-1210 [dining-table] · Chaise C-1210 [dining-chair] · Ensemble salle à manger 7 pièces T-1810/ C-1825-7Pc [dining-set] · Ensemble salle à manger 5 pièces T-1810/ C-1825-5Pc [dining-set] · Ensemble salle à manger 7 pièces T-1810/ C-1826-7Pc [dining-set] · Ensemble salle à manger 5 pièces T-1810/ C-1826-5Pc [dining-set] · Table seulement T-1810 [dining-table] · Table basse IF-3201 [coffee-table]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "C-1033",
+  "h": "ifdc-t-toronto-c-1033",
+  "nom": "Ensemble salle à manger 3 pièces T Toronto/C-1033",
+  "type": "dining-set",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "42f26d2ceb26450689e56882e8ed6703~mv2.jpg → Ensemble salle à manger 3 pièces T Toronto/C-1033 [dining-set] · Table seulement T Toronto [dining-table]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "T-1023",
+  "h": "ifdc-t-1023",
+  "nom": "Table seulement T-1023",
+  "type": "dining-table",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "37e58547e57646febf2b82cec3c44c99~mv2.jpg → Table seulement T-1023 [dining-table] · Chaise C-1023 [dining-chair] · Ensemble salle à manger 3 pièces T-1025/ C-1023 [dining-set] · Table seulement T-1025 [dining-table]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "T-1026",
+  "h": "ifdc-t-1026",
+  "nom": "Table seulement T-1026",
+  "type": "dining-table",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "e9b8410afdd640a1a49b988eef126b71~mv2.png → Table seulement T-1026 [dining-table] · Chaise C-1026 [dining-chair] · Chaise C-1027 [dining-chair]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "T-1085",
+  "h": "ifdc-t-1085-c-1091",
+  "nom": "Ensemble salle à manger 5 pièces T-1085/ C-1091",
+  "type": "dining-set",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "ec59ea9d1c40467dbcddc149e26ed95f~mv2.jpg → Ensemble salle à manger 5 pièces T-1085/ C-1091 [dining-set] · Chaise C-1091 [dining-chair]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "T-1085",
+  "h": "ifdc-t-1085-c-1092",
+  "nom": "Ensemble salle à manger 5 pièces T-1085/ C-1092",
+  "type": "dining-set",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "5f6ed4f07979432cb7c088ce9a50e1b0~mv2.jpg → Ensemble salle à manger 5 pièces T-1085/ C-1092 [dining-set] · Chaise C-1092 [dining-chair]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "T-1240",
+  "h": "ifdc-t-1240-c-1241",
+  "nom": "Ensemble salle à manger 7 pièces T-1240/ C-1241",
+  "type": "dining-set",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "66ba161e7a3648a4afd3873c2eed55d0~mv2.png → Ensemble salle à manger 7 pièces T-1240/ C-1241 [dining-set] · Table seulement T-1240 [dining-table] · Chaise C-1241 [dining-chair]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "T-1429",
+  "h": "ifdc-t-1429",
+  "nom": "Table seulement T-1429",
+  "type": "dining-table",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "5fb5b54b56e54c51970d17f3307df344~mv2_d_4 → Table seulement T-1429 [dining-table] · Ensemble salle à manger 5 pièces T-1429/ C-5053 [dining-set] · Table seulement T-5053 [dining-table]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "T-1443",
+  "h": "ifdc-t-1443",
+  "nom": "Table seulement T-1443",
+  "type": "dining-table",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "0c8b90fa279f4f1c9d514b1cf79a0b12~mv2.jpg → Table seulement T-1443 [dining-table] · Ensemble salle à manger 7 pièces T-1448/ C-1579 [dining-set]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "T-1580",
+  "h": "ifdc-t-1580-c-1582",
+  "nom": "Ensemble salle à manger 5 pièces T-1580/ C-1582",
+  "type": "dining-set",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "e651d438a13a4380b4c25f4f9a8c77a2~mv2.png → Ensemble salle à manger 5 pièces T-1580/ C-1582 [dining-set] · Table seulement T-1580 [dining-table] · Chaise C-1582 [dining-chair]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "IF-2340",
+  "h": "ifdc-if-2340",
+  "nom": "Table basse IF-2340",
+  "type": "coffee-table",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "6b593c55f2164f35aa13e00a7442d708~mv2.jpg → Table basse IF-2340 [coffee-table] · Table d'appoint IF-2341-S [end-table]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "IF-2352",
+  "h": "ifdc-if-2352",
+  "nom": "3Pc Coffee Set IF-2352",
+  "type": "coffee-table",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "25cbce2885f94a039fd01b428c2d0032~mv2.jpg → 3Pc Coffee Set IF-2352 [coffee-table] · Table d'appoint IF-2353-S [end-table]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "IF-2360",
+  "h": "ifdc-if-2360",
+  "nom": "Table basse IF-2360",
+  "type": "coffee-table",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "946e8bb18ac94e4991507540ac609c47~mv2.jpg → Table basse IF-2360 [coffee-table] · Table d'appoint IF-2361-S [end-table]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "image-partagee",
+  "sku": "IF-2690",
+  "h": "ifdc-if-2690",
+  "nom": "3Pc Coffee Set IF-2690",
+  "type": "coffee-table",
+  "titre": "Même photo sur des produits de familles DIFFÉRENTES",
+  "detail": "24df6232df6d414598582c402c9dd5fc~mv2.jpg → 3Pc Coffee Set IF-2690 [coffee-table] · Table d'appoint IF-2691-ST [end-table]"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "prix-aberrant",
+  "sku": "",
+  "h": "ifdc-athens",
+  "nom": "Athens",
+  "type": "bedroom-set",
+  "titre": "Prix 8.4× SOUS la médiane de son type",
+  "detail": "320 $ · médiane bedroom-set = 2699.98 $"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "prix-aberrant",
+  "sku": "IF-3420",
+  "h": "ifdc-if-3420",
+  "nom": "IF-3420",
+  "type": "dresser",
+  "titre": "Prix 4.8× SOUS la médiane de son type",
+  "detail": "159.98 $ · médiane dresser = 770 $"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "prix-aberrant",
+  "sku": "IF-158",
+  "h": "ifdc-if-158",
+  "nom": "Lit IF-158",
+  "type": "bed",
+  "titre": "Prix 4.7× SOUS la médiane de son type",
+  "detail": "119.98 $ · médiane bed = 559.98 $"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "prix-aberrant",
+  "sku": "T-1540",
+  "h": "ifdc-t-1540",
+  "nom": "Table seulement T-1540",
+  "type": "dining-table",
+  "titre": "Prix 4.0× la médiane de son type",
+  "detail": "1359.98 $ · médiane dining-table = 339.98 $"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "prix-aberrant",
+  "sku": "T-1560",
+  "h": "ifdc-t-1560",
+  "nom": "Table seulement T-1560",
+  "type": "dining-table",
+  "titre": "Prix 4.2× la médiane de son type",
+  "detail": "1419.98 $ · médiane dining-table = 339.98 $"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "prix-ensemble",
+  "sku": "",
+  "h": "pompei-grey",
+  "nom": "Pompei (Gris)",
+  "type": "bedroom-set",
+  "titre": "Ensemble bien plus cher que la somme de ses pièces",
+  "detail": "ensemble 2519.98 $ · pièces 1300.00 $ · +94 %"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "prix-ensemble",
+  "sku": "",
+  "h": "logan-silver",
+  "nom": "Logan (Argent)",
+  "type": "bedroom-set",
+  "titre": "Ensemble bien plus cher que la somme de ses pièces",
+  "detail": "ensemble 3199.98 $ · pièces 2190.00 $ · +46 %"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "prix-ensemble",
+  "sku": "",
+  "h": "luna-riley",
+  "nom": "Luna « Riley »",
+  "type": "bedroom-set",
+  "titre": "Ensemble bien plus cher que la somme de ses pièces",
+  "detail": "ensemble 3399.98 $ · pièces 2140.00 $ · +59 %"
+ },
+ {
+  "gravite": "majeur",
+  "categorie": "prix-ensemble",
+  "sku": "",
+  "h": "lucia-white",
+  "nom": "Lucia (Blanc)",
+  "type": "bedroom-set",
+  "titre": "Ensemble bien plus cher que la somme de ses pièces",
+  "detail": "ensemble 1999.98 $ · pièces 1360.00 $ · +47 %"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-111",
+  "h": "ifdc-if-111",
+  "nom": "Lit IF-111",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit Simple 39″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-3520",
+  "h": "ifdc-if-3520",
+  "nom": "Lit électrique ajustable IF-3520",
+  "type": "adjustable-base",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit électrique ajustable — Simple XL 39″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-3521",
+  "h": "ifdc-if-3521",
+  "nom": "Lit électrique ajustable IF-3521",
+  "type": "adjustable-base",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit électrique ajustable — Double 54″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-3522",
+  "h": "ifdc-if-3522",
+  "nom": "Lit électrique ajustable IF-3522",
+  "type": "adjustable-base",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit électrique ajustable — Queen 60″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-3610",
+  "h": "ifdc-if-3610",
+  "nom": "Lit électrique ajustable IF-3610",
+  "type": "adjustable-base",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit électrique ajustable — Simple XL 39″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-3611",
+  "h": "ifdc-if-3611",
+  "nom": "Lit électrique ajustable IF-3611",
+  "type": "adjustable-base",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit électrique ajustable — Double 54″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-3612",
+  "h": "ifdc-if-3612",
+  "nom": "Lit électrique ajustable IF-3612",
+  "type": "adjustable-base",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit électrique ajustable — Queen 60″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5100",
+  "h": "ifdc-if-5100",
+  "nom": "Lit IF-5100",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit Queen 60″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5120",
+  "h": "ifdc-if-5120",
+  "nom": "Lit IF-5120",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit King 78″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5490",
+  "h": "ifdc-if-5490-black-pu",
+  "nom": "Lit IF-5490 (simili-cuir noir)",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit Queen 60″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5493",
+  "h": "ifdc-if-5493-grey-fabric",
+  "nom": "Lit IF-5493 (tissu gris)",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit Queen 60″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5520",
+  "h": "ifdc-if-5520",
+  "nom": "Lit IF-5520",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit King 78″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5540",
+  "h": "ifdc-if-5540-grey",
+  "nom": "Lit IF-5540 (gris)",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit Queen 60″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5541",
+  "h": "ifdc-if-5541-blue",
+  "nom": "Lit IF-5541 (bleu)",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit King 78″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5545",
+  "h": "ifdc-if-5545",
+  "nom": "Lit IF-5545",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit King 78″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5613",
+  "h": "ifdc-if-5613",
+  "nom": "Lit IF-5613",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit King 78″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5650",
+  "h": "ifdc-if-5650-grey",
+  "nom": "Lit IF-5650 (gris)",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit Queen 60″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5693",
+  "h": "ifdc-if-5693",
+  "nom": "Lit IF-5693",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit Queen 60″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5893",
+  "h": "ifdc-if-5893",
+  "nom": "Lit IF-5893",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit Queen 60″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5897",
+  "h": "ifdc-if-5897",
+  "nom": "Lit IF-5897",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit Queen 60″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5899",
+  "h": "ifdc-if-5899",
+  "nom": "Lit IF-5899",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit Queen 60″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-5945",
+  "h": "ifdc-if-5945",
+  "nom": "Lit IF-5945",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Lit King 78″ »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "B-1845",
+  "h": "ifdc-b-1845",
+  "nom": "Lit superposé B-1845",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « 39\"/39\" Bunk (Esp) »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "B-1846",
+  "h": "ifdc-b-1846",
+  "nom": "Lit superposé B-1846",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « 39\"/39\" Bunk (Grey) — gris »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "B-1847",
+  "h": "ifdc-b-1847",
+  "nom": "Lit superposé B-1847",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « 39\"/39\" Bunk (White) — blanc »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "B-1850",
+  "h": "ifdc-b-1850",
+  "nom": "Lit superposé B-1850",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « 39\"/54\" Bunk (Esp) »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "B-1851",
+  "h": "ifdc-b-1851",
+  "nom": "Lit superposé B-1851",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « 39\"/54\" Bunk (Grey) — gris »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "B-1852",
+  "h": "ifdc-b-1852",
+  "nom": "Lit superposé B-1852",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « 39\"/54\" Bunk (White) — blanc »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "B-1855",
+  "h": "ifdc-b-1855",
+  "nom": "Lit superposé B-1855",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « 54\"/54\" Bunk (Esp) »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "B-1856",
+  "h": "ifdc-b-1856",
+  "nom": "Lit superposé B-1856",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « 54\"/54\" Bunk (Grey) — gris »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "B-1857",
+  "h": "ifdc-b-1857",
+  "nom": "Lit superposé B-1857",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « 54\"/54\" Bunk (White) — blanc »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "B-1890",
+  "h": "ifdc-b-1890",
+  "nom": "Lit superposé B-1890",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « 39\"/39\" Bunk(Esp) »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "B-1892",
+  "h": "ifdc-b-1892",
+  "nom": "Lit superposé B-1892",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « 39\"/39\" Bunk(White) — blanc »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-390",
+  "h": "ifdc-if-390",
+  "nom": "54\" Double IF-390",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « 54\" Double »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-394",
+  "h": "ifdc-if-394",
+  "nom": "39\" Single Folding Bed IF-394",
+  "type": "bed",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « 39\" Single Folding Bed »"
+ },
+ {
+  "gravite": "mineur",
+  "categorie": "format-manquant",
+  "sku": "IF-663",
+  "h": "ifdc-if-663",
+  "nom": "Sofa IF-663",
+  "type": "sofa",
+  "titre": "Un seul prix alors que la sous-ligne mentionne des formats",
+  "detail": "sub : « Rocking Chaise »"
+ },
+ {
+  "gravite": "info",
+  "categorie": "convention",
+  "sku": "",
+  "h": "",
+  "nom": "—",
+  "type": "",
+  "titre": "Deux conventions de prix cohabitent",
+  "detail": "1127 prix en .98/.99 · 314 prix ronds"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "IF-5340",
+  "h": "ifdc-if-5340",
+  "nom": "IF-5340",
+  "type": "bedroom-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "0c3455aae20246288e4262f514d078c3~mv2.jpg → IF-5340 [bedroom-set] · Lit IF-5340 [bed]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1004",
+  "h": "ifdc-t-1004",
+  "nom": "Table seulement T-1004",
+  "type": "dining-table",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "a75c4cd7ffb345f99f4e59f6a354554b~mv2_d_3 → Table seulement T-1004 [dining-table] · Tabouret ST-1004 [bar-stool] · Tabouret de bar - White PU ST-1004 [bar-stool]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1012",
+  "h": "ifdc-t-1012",
+  "nom": "Table seulement T-1012",
+  "type": "dining-table",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "1f9768bebe5d4d8eb91f161eedac42cf~mv2.png → Table seulement T-1012 [dining-table] · Chaise C-1012 [dining-chair]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1025",
+  "h": "ifdc-t-1025-c-1025",
+  "nom": "Ensemble salle à manger 3 pièces T-1025/ C-1025",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "94af64f8ff414cebb9872c71083ad28e~mv2.jpg → Ensemble salle à manger 3 pièces T-1025/ C-1025 [dining-set] · Chaise C-1025 [dining-chair]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "IF-1027",
+  "h": "ifdc-if-1027",
+  "nom": "Ensemble salle à manger 7 pièces IF-1027",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "4aba2439bf104912ad53ba5237a80a43~mv2_d_2 → Ensemble salle à manger 7 pièces IF-1027 [dining-set] · Table seulement T-1027 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1030",
+  "h": "ifdc-t-1030-c-1031",
+  "nom": "Ensemble salle à manger 7 pièces T-1030/ C-1031",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "dd407bcc8a934837b8477f07e213e865~mv2.jpg → Ensemble salle à manger 7 pièces T-1030/ C-1031 [dining-set] · Table seulement T-1030 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1045",
+  "h": "ifdc-t-1045-c-1033",
+  "nom": "7Pc Din Set T-1045/ C-1033",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "f8755a2306054e48ac67bf9089493ce0~mv2.jpg → 7Pc Din Set T-1045/ C-1033 [dining-set] · Extension Table seulement T-1045 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1047",
+  "h": "ifdc-t-1047-c-1033",
+  "nom": "Ensemble salle à manger 5 pièces T-1047/ C-1033",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "399d560f156f4970bc5df91932f15730~mv2.jpg → Ensemble salle à manger 5 pièces T-1047/ C-1033 [dining-set] · Table seulement T-1047 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1048",
+  "h": "ifdc-t-1048-c-1011",
+  "nom": "Ensemble salle à manger 7 pièces T-1048/ C-1011",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "7e1c5c777db44c62a37523564836e30b~mv2.jpg → Ensemble salle à manger 7 pièces T-1048/ C-1011 [dining-set] · Table seulement T-1048 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1050",
+  "h": "ifdc-t-1050-c-1052",
+  "nom": "Ensemble salle à manger 5 pièces T-1050/ C-1052",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "c261083901d24442a30521ca80878b3b~mv2.jpg → Ensemble salle à manger 5 pièces T-1050/ C-1052 [dining-set] · Table seulement T-1050 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1051",
+  "h": "ifdc-t-1051-c-1052",
+  "nom": "Ensemble salle à manger 7 pièces T-1051/ C-1052",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "fee6478d0ac441f58db192c8dcd2f562~mv2.jpg → Ensemble salle à manger 7 pièces T-1051/ C-1052 [dining-set] · Table seulement T-1051 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1060",
+  "h": "ifdc-t-1060-c-1064",
+  "nom": "Ensemble salle à manger 5 pièces T-1060/ C-1064",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "3a38a5537fe648f3b88d218d63dc5493~mv2.jpg → Ensemble salle à manger 5 pièces T-1060/ C-1064 [dining-set] · Table seulement T-1060 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1079",
+  "h": "ifdc-t-1079-c-1081",
+  "nom": "Ensemble salle à manger 5 pièces T-1079/ C-1081",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "6314eeb8c37747db9ac4c69eaebb419a~mv2.jpg → Ensemble salle à manger 5 pièces T-1079/ C-1081 [dining-set] · Ensemble salle à manger 5 pièces T-1079/ C-1082 [dining-set] · Ensemble salle à manger 5 pièces T-1079/ C-1083 [dining-set] · Table seulement T-1079 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1080",
+  "h": "ifdc-t-1080-c-1081",
+  "nom": "Ensemble salle à manger 7 pièces T-1080/ C-1081",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "2119894c5853482e8f08aab20e26a7fd~mv2.jpg → Ensemble salle à manger 7 pièces T-1080/ C-1081 [dining-set] · Table seulement T-1080 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1085",
+  "h": "ifdc-t-1085-c-1085",
+  "nom": "Ensemble salle à manger 5 pièces T-1085/ C-1085",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "67d2aa2cc33a4e92922634e7fe9f3440~mv2.jpg → Ensemble salle à manger 5 pièces T-1085/ C-1085 [dining-set] · Table seulement T-1085 [dining-table] · Chaise C-1085 [dining-chair]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1095",
+  "h": "ifdc-t-1095-c-1099",
+  "nom": "Ensemble salle à manger 7 pièces T-1095/ C-1099",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "7a455d5c9c9f4abb800535257dffeb67~mv2.jpg → Ensemble salle à manger 7 pièces T-1095/ C-1099 [dining-set] · Table seulement T-1095 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1211",
+  "h": "ifdc-t-1211-c-1211",
+  "nom": "Ensemble salle à manger 3 pièces T-1211/ C-1211",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "17126e70072140728a907a4b1c16adf0~mv2_d_2 → Ensemble salle à manger 3 pièces T-1211/ C-1211 [dining-set] · Table seulement T-1211 [dining-table] · Chaise C-1211 [dining-chair]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1274",
+  "h": "ifdc-t-1274-c-1250",
+  "nom": "Ensemble salle à manger 7 pièces T-1274/ C-1250",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "0554033f8f9a47e492ab683927e9e995~mv2.jpg → Ensemble salle à manger 7 pièces T-1274/ C-1250 [dining-set] · Ensemble salle à manger 7 pièces T-1274/ C-1251 [dining-set] · Ensemble salle à manger 7 pièces T-1274/ C-1253 [dining-set] · Table seulement T-1274 [dining-table] · Ensemble salle à manger 7 pièces T-1274/ C-1260 [dining-set] · Ensemble salle à manger 7 pièces T-1274/ C-1262 [dining-set] · Ensemble salle à manger 7 pièces T-1274/ C-1263 [dining-set]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1275",
+  "h": "ifdc-t-1275-c-1285",
+  "nom": "Ensemble salle à manger 7 pièces T-1275/ C-1285",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "3ba14a03d4294bfea7183786bc5c6858~mv2.jpg → Ensemble salle à manger 7 pièces T-1275/ C-1285 [dining-set] · Table seulement T-1275 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1402",
+  "h": "ifdc-t-1402-c-1782",
+  "nom": "Ensemble salle à manger 7 pièces T-1402/ C-1782",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "c862d77927c743f2b5d8bb46de2d5576~mv2.jpg → Ensemble salle à manger 7 pièces T-1402/ C-1782 [dining-set] · Ensemble salle à manger 5 pièces T-1402/ C-1782 [dining-set] · Table seulement T-1402 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1405",
+  "h": "ifdc-t-1405-c-1421",
+  "nom": "Ensemble salle à manger 5 pièces T-1405/ C-1421",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "37da4fb29363441781e6536367a5176d~mv2.jpg → Ensemble salle à manger 5 pièces T-1405/ C-1421 [dining-set] · Table Eiffel T-1405 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1408",
+  "h": "ifdc-t-1408-c-1413",
+  "nom": "Ensemble salle à manger 5 pièces T-1408/ C-1413",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "29aa01de55e24f3494de743bc10540ff~mv2.jpg → Ensemble salle à manger 5 pièces T-1408/ C-1413 [dining-set] · Table seulement T-1408 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1410",
+  "h": "ifdc-t-1410-c-1412",
+  "nom": "Ensemble salle à manger 7 pièces T-1410/ C-1412",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "f50e095fb03d47639c3657d6e0eccf34~mv2.jpg → Ensemble salle à manger 7 pièces T-1410/ C-1412 [dining-set] · Table seulement T-1410 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1430",
+  "h": "ifdc-t-1430",
+  "nom": "Table seulement T-1430",
+  "type": "dining-table",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "8780ecb6a0c442f58f770ed6ff2627ff~mv2_d_1 → Table seulement T-1430 [dining-table] · Ensemble salle à manger 5 pièces T-1430/ C-1771 [dining-set]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1435",
+  "h": "ifdc-t-1435-c-1436",
+  "nom": "Ensemble salle à manger 5 pièces T-1435/ C-1436",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "2894de74d3714d359cbfbb5b1262c420~mv2.jpg → Ensemble salle à manger 5 pièces T-1435/ C-1436 [dining-set] · Table seulement T-1435 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1442",
+  "h": "ifdc-t-1442-c-1878",
+  "nom": "Ensemble salle à manger 7 pièces T-1442/ C-1878",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "97b48efe585549c6a7c3c344fdf459cf~mv2.jpg → Ensemble salle à manger 7 pièces T-1442/ C-1878 [dining-set] · Table seulement T-1442 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1445",
+  "h": "ifdc-t-1445-c-1762",
+  "nom": "Ensemble salle à manger 5 pièces T-1445/ C-1762",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "2dd125e019824d05aabe721bd1191a0e~mv2.jpg → Ensemble salle à manger 5 pièces T-1445/ C-1762 [dining-set] · Table seulement T-1445 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1446",
+  "h": "ifdc-t-1446-c-1761",
+  "nom": "Ensemble salle à manger 5 pièces T-1446/ C-1761",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "ea58a8eda586413fa35920d4cb619522~mv2.jpg → Ensemble salle à manger 5 pièces T-1446/ C-1761 [dining-set] · Table seulement T-1446 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1447",
+  "h": "ifdc-t-1447",
+  "nom": "Table seulement T-1447",
+  "type": "dining-table",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "4d0d533ca1af454ca26a689051558ba2~mv2_d_4 → Table seulement T-1447 [dining-table] · Ensemble salle à manger 5 pièces T-1447/ C-1762 [dining-set]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1448",
+  "h": "ifdc-t-1448",
+  "nom": "Table seulement T-1448",
+  "type": "dining-table",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "821aa944a0074d57ab6cfb1261ebf99e~mv2_d_4 → Table seulement T-1448 [dining-table] · Ensemble salle à manger 7 pièces T-1448/ C-1877 [dining-set]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1449",
+  "h": "ifdc-t-1449",
+  "nom": "Table seulement T-1449",
+  "type": "dining-table",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "48c83e1bc6e546ca8cfcfbf612d7b727~mv2.jpg → Table seulement T-1449 [dining-table] · Ensemble salle à manger 7 pièces T-1449 C-1871 [dining-set]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1472",
+  "h": "ifdc-t-1472-c-1473",
+  "nom": "Ensemble salle à manger 7 pièces T-1472/ C-1473",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "c1bff4abd7d04b44a79646ec42a2431d~mv2.jpg → Ensemble salle à manger 7 pièces T-1472/ C-1473 [dining-set] · Table seulement T-1472 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1510",
+  "h": "ifdc-t-1510-c-1512",
+  "nom": "Ensemble salle à manger 7 pièces T-1510/ C-1512",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "6227fc5c69e34e8e8d545326720ed2d6~mv2.jpg → Ensemble salle à manger 7 pièces T-1510/ C-1512 [dining-set] · Table seulement T-1510 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "IF-1520",
+  "h": "ifdc-if-1520",
+  "nom": "Ensemble salle à manger 5 pièces IF-1520",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "1caf21f1581042bd927dfbd01e12a7c4~mv2.jpg → Ensemble salle à manger 5 pièces IF-1520 [dining-set] · Table seulement T-1520 [dining-table] · Chaise C-1520 [dining-chair]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "IF-1526",
+  "h": "ifdc-if-1526",
+  "nom": "Ensemble salle à manger 5 pièces IF-1526",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "8b2b15467626498ca2102f1aea440d90~mv2.jpg → Ensemble salle à manger 5 pièces IF-1526 [dining-set] · Table seulement T-1526 [dining-table] · Chaise C-1526 [dining-chair]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1530",
+  "h": "ifdc-t-1530",
+  "nom": "Table seulement T-1530",
+  "type": "dining-table",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "12a4a147bae84fdf88f7ab2850e2b772~mv2.jpg → Table seulement T-1530 [dining-table] · Ensemble salle à manger 7 pièces T-1530/ C-1535 [dining-set]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1540",
+  "h": "ifdc-t-1540-c-1541",
+  "nom": "Ensemble salle à manger 7 pièces T-1540/ C-1541",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "c056718fb17c48cabc3979fe4ef78da4~mv2.jpg → Ensemble salle à manger 7 pièces T-1540/ C-1541 [dining-set] · Table seulement T-1540 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1545",
+  "h": "ifdc-t-1545",
+  "nom": "Table seulement T-1545",
+  "type": "dining-table",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "813a4d9a0d284e02a48a46ad5923710a~mv2.jpg → Table seulement T-1545 [dining-table] · Ensemble salle à manger 7 pièces T-1545/ C-1561 [dining-set]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1550",
+  "h": "ifdc-t-1550-c-1551",
+  "nom": "Ensemble salle à manger 7 pièces T-1550/ C-1551",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "a2010f2f0001424199372a14eceb43df~mv2.jpg → Ensemble salle à manger 7 pièces T-1550/ C-1551 [dining-set] · Table seulement T-1550 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1560",
+  "h": "ifdc-t-1560-c-1561",
+  "nom": "Ensemble salle à manger 7 pièces T-1560/ C-1561",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "fc05fa1c751a400fa5c009da222af1fe~mv2.jpg → Ensemble salle à manger 7 pièces T-1560/ C-1561 [dining-set] · Table seulement T-1560 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1570",
+  "h": "ifdc-t-1570-c-1571",
+  "nom": "Ensemble salle à manger 7 pièces T-1570/ C-1571",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "fad2a8e3d834409baf5200bb461553cd~mv2.jpg → Ensemble salle à manger 7 pièces T-1570/ C-1571 [dining-set] · Table seulement T-1570 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1590",
+  "h": "ifdc-t-1590-c-1593",
+  "nom": "Ensemble salle à manger 5 pièces T-1590/ C-1593",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "f7de74a5c8b04c5392c622bd44c15b20~mv2.jpg → Ensemble salle à manger 5 pièces T-1590/ C-1593 [dining-set] · Table seulement T-1590 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "IF-1620",
+  "h": "ifdc-if-1620",
+  "nom": "Ensemble salle à manger 7 pièces IF-1620",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "e2ee1538f6fd43208570cc9ee1996132~mv2.jpg → Ensemble salle à manger 7 pièces IF-1620 [dining-set] · Table seulement T-1620 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1630",
+  "h": "ifdc-t-1630-c-1632",
+  "nom": "Ensemble salle à manger 5 pièces T-1630/ C-1632",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "56a03c5338fa448396c061be53f37e46~mv2.jpg → Ensemble salle à manger 5 pièces T-1630/ C-1632 [dining-set] · Table seulement T-1630 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1640",
+  "h": "ifdc-t-1640-c-1644",
+  "nom": "Ensemble salle à manger 5 pièces T-1640/ C-1644",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "0a9036ff1869451b8633b5deadfe5e28~mv2.jpg → Ensemble salle à manger 5 pièces T-1640/ C-1644 [dining-set] · Table seulement T-1640 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1641",
+  "h": "ifdc-t-1641-c-1644",
+  "nom": "Ensemble salle à manger 7 pièces T-1641/ C-1644",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "3e62848739264d8593c968547f5b470b~mv2.jpg → Ensemble salle à manger 7 pièces T-1641/ C-1644 [dining-set] · Table seulement T-1641 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1642",
+  "h": "ifdc-t-1642-c-1645",
+  "nom": "Ensemble salle à manger 5 pièces T-1642/ C-1645",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "0f169b6394cb46ac92b2b5fd509a849b~mv2.jpg → Ensemble salle à manger 5 pièces T-1642/ C-1645 [dining-set] · Table seulement T-1642 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1643",
+  "h": "ifdc-t-1643-c-1644",
+  "nom": "Ensemble salle à manger 7 pièces T-1643/ C-1644",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "c0a3ec4ad64042a5a562bdb7eb80c911~mv2.jpg → Ensemble salle à manger 7 pièces T-1643/ C-1644 [dining-set] · Table seulement T-1643 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1650",
+  "h": "ifdc-t-1650-c-1651",
+  "nom": "Ensemble salle à manger 5 pièces T-1650/ C-1651",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "ee6c32fe7c784513b405859b1076132e~mv2.jpg → Ensemble salle à manger 5 pièces T-1650/ C-1651 [dining-set] · Table seulement T-1650 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1808",
+  "h": "ifdc-t-1808-c-1820",
+  "nom": "Ensemble salle à manger 7 pièces T-1808/ C-1820",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "bf831eeb12014572a1eed15109bf833c~mv2.jpg → Ensemble salle à manger 7 pièces T-1808/ C-1820 [dining-set] · Table seulement T-1808 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1811",
+  "h": "ifdc-t-1811-c-1826-7pc",
+  "nom": "Ensemble salle à manger 7 pièces T-1811/ C-1826-7Pc",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "0c6686e940a04b13b0326cdca0e1db7a~mv2.jpg → Ensemble salle à manger 7 pièces T-1811/ C-1826-7Pc [dining-set] · Ensemble salle à manger 5 pièces T-1811/ C-1826-5Pc [dining-set] · Table seulement T-1811 [dining-table] · Ensemble salle à manger 7 pièces T-1811/ C-1835-7Pc [dining-set] · Ensemble salle à manger 5 pièces T-1811/ C-1835-5Pc [dining-set]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1812",
+  "h": "ifdc-t-1812-c-1825-7pc",
+  "nom": "Ensemble salle à manger 7 pièces T-1812/ C-1825-7Pc",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "a7631e2540a74a2fb214fd50ccdcc64b~mv2_d_7 → Ensemble salle à manger 7 pièces T-1812/ C-1825-7Pc [dining-set] · Ensemble salle à manger 5 pièces T-1812/ C-1825-5Pc [dining-set] · Ensemble salle à manger 7 pièces T-1812/ C-1826-7Pc [dining-set] · Ensemble salle à manger 5 pièces T-1812/ C-1826-5Pc [dining-set] · Table seulement T-1812 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1814",
+  "h": "ifdc-t-1814-c-1711",
+  "nom": "Ensemble salle à manger 7 pièces T-1814/ C-1711",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "7520317210d04ab6a7861e1dda984359~mv2_d_4 → Ensemble salle à manger 7 pièces T-1814/ C-1711 [dining-set] · Ensemble salle à manger 7 pièces T-1814/ C-1712 [dining-set] · Table seulement T-1814 [dining-table] · Ensemble salle à manger 7 pièces T-1814/ C-1825-7Pc [dining-set] · Ensemble salle à manger 5 pièces T-1814/ C-1825-5Pc [dining-set] · Ensemble salle à manger 7 pièces T-1814/ C-1826-7Pc [dining-set] · Ensemble salle à manger 5 pièces T-1814/ C-1826-5Pc [dining-set]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1815",
+  "h": "ifdc-t-1815",
+  "nom": "Table seulement T-1815",
+  "type": "dining-table",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "6bc67af62cff4df79a208dd677cb6a80~mv2.jpg → Table seulement T-1815 [dining-table] · Ensemble salle à manger 7 pièces T-1815/ C-1817 [dining-set]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1817",
+  "h": "ifdc-t-1817-c-1817",
+  "nom": "Ensemble salle à manger 7 pièces T-1817/ C-1817",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "1ef60a97a8b74521a2a849abd2b80651~mv2.jpg → Ensemble salle à manger 7 pièces T-1817/ C-1817 [dining-set] · Table seulement T-1817 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-1818",
+  "h": "ifdc-t-1818-c-1817",
+  "nom": "Ensemble salle à manger 7 pièces T-1818/ C-1817",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "91aae1c441de4766818a657a76f10370~mv2.jpg → Ensemble salle à manger 7 pièces T-1818/ C-1817 [dining-set] · Table seulement T-1818 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "IF-5051",
+  "h": "ifdc-if-5051",
+  "nom": "Ensemble salle à manger 7 pièces IF-5051",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "2d7025feef524c8e83b8955ad7d02e8b~mv2.jpg → Ensemble salle à manger 7 pièces IF-5051 [dining-set] · Table seulement T-5051 [dining-table] · Chaise C-5051 [dining-chair]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "IF-5054",
+  "h": "ifdc-if-5054",
+  "nom": "Ensemble salle à manger 7 pièces IF-5054",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "d76e1ff7d6d54f849e5b45fae45ef673~mv2.jpg → Ensemble salle à manger 7 pièces IF-5054 [dining-set] · Table seulement T-5054 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-5065",
+  "h": "ifdc-t-5065",
+  "nom": "Table seulement T-5065",
+  "type": "dining-table",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "dff8cf2ebe1945eb80f8b2d60324c8c0~mv2_d_2 → Table seulement T-5065 [dining-table] · Ensemble salle à manger 5 pièces T-5065/ C-1770 [dining-set]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "T-5067",
+  "h": "ifdc-t-5067-c-1785",
+  "nom": "Ensemble salle à manger 7 pièces T-5067/ C-1785",
+  "type": "dining-set",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "a32be569af3e42fe84e9867af7bc632e~mv2_d_2 → Ensemble salle à manger 7 pièces T-5067/ C-1785 [dining-set] · Ensemble salle à manger 5 pièces T-5067/ C-1785 [dining-set] · Table seulement T-5067 [dining-table] · Table seulement T-5067 [dining-table]"
+ },
+ {
+  "gravite": "info",
+  "categorie": "image-partagee",
+  "sku": "IF-9281",
+  "h": "ifdc-if-9281",
+  "nom": "Sofa IF-9281",
+  "type": "sofa",
+  "titre": "Photo du fournisseur partagée entre un ensemble et ses pièces",
+  "detail": "d1962468fa634c9ea3f9f960b8ec7b1d~mv2.jpg → Sofa IF-9281 [sofa] · Ottoman IF-9281 [ottoman]"
+ }
+]
