@@ -34,8 +34,11 @@ export default function handler(req, res) {
      sous un autre nom. On liste donc les NOMS — jamais les valeurs — de
      tout ce qui ressemble à de la configuration Stripe, GHL ou compte,
      pour repérer un « STRIPE_WEBHOOK » ou un « GHL_TOKEN » mal nommé. */
+  /* Tous les noms définis par le propriétaire — on écarte seulement ce que
+     Vercel et Node injectent eux-mêmes. Noms uniquement, jamais les valeurs. */
+  const SYSTEME = /^(VERCEL|AWS|NODE|NOW|PATH|HOME|PWD|SHLVL|LANG|LC_|TZ|TMPDIR|_|LAMBDA|NEXT|npm_|CI$|HOSTNAME|TERM|USER|LOGNAME|SHELL|OLDPWD|INIT_CWD|COLOR|DEBIAN|FUNCTIONS?_|TASK)/i;
   const voisines = Object.keys(process.env)
-    .filter((k) => /STRIPE|GHL|WEBHOOK|COMPTE|SITE|CRON|LEAD/i.test(k))
+    .filter((k) => !SYSTEME.test(k))
     .filter((k) => !ATTENDUES.includes(k))
     .sort();
 
@@ -45,7 +48,7 @@ export default function handler(req, res) {
   return res.status(200).json({
     attendues: vues,
     manquantes,
-    autres_noms_ressemblants: voisines,
+    autres_noms_definis: voisines,
     note: "Aucune valeur n'est renvoyée. Supprimer api/diag.js après vérification.",
   });
 }
