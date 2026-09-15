@@ -4,6 +4,7 @@
   <url><loc>https://literiedamitie.com/chambre</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://literiedamitie.com/collection</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://literiedamitie.com/collections</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://literiedamitie.com/compte</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://literiedamitie.com/conditions</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://literiedamitie.com/confidentialite</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://literiedamitie.com/contact</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
@@ -110,7 +111,6 @@
   <url><loc>https://literiedamitie.com/produit?p=commode-pompei-blanche</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=commode-miroir-if-100-if-100-d-m</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=comfort-plus-matelas-pillow-top-a-ressorts-800-coil</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://literiedamitie.com/produit?p=coffre-if-100-chest</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=classic-sleep-matelas-8-5-a-ressorts-bonnell-tissu-bambou</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-sommier-boite-a-ressorts</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-matelas-mousse-compact</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
@@ -158,7 +158,6 @@
   <url><loc>https://literiedamitie.com/produit?p=ifdc-if-307-beige</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-if-308</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-if-309</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://literiedamitie.com/produit?p=ifdc-if-314</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-if-316-t-white</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-if-415-39</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-if-416-39</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
@@ -713,11 +712,6 @@
   <url><loc>https://literiedamitie.com/produit?p=ifdc-c-1450</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-c-1451</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-c-1453</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://literiedamitie.com/produit?p=ifdc-c-1574-2</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://literiedamitie.com/produit?p=ifdc-c-1575-2</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://literiedamitie.com/produit?p=ifdc-c-1576-2</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://literiedamitie.com/produit?p=ifdc-c-1577-2</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://literiedamitie.com/produit?p=ifdc-c-1579-2</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-c-1600</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-c-1750</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-c-ylime</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
@@ -923,7 +917,6 @@
   <url><loc>https://literiedamitie.com/produit?p=ifdc-if-2007</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-if-2008</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-if-2011</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://literiedamitie.com/produit?p=ifdc-if-2013</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-if-2014</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-if-2025</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://literiedamitie.com/produit?p=ifdc-if-2027</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
