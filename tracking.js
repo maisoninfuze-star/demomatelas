@@ -1,5 +1,5 @@
 /* ============================================================
-   tracking.js — Pixel Meta et événements de commerce.
+   tracking.js — Statistiques Vercel, pixel Meta et événements de commerce.
 
    INERTE PAR DÉFAUT. Tant que PIXEL_ID est vide, ce fichier ne
    charge rien, ne dépose aucun témoin et n'envoie aucune requête :
@@ -17,6 +17,32 @@
    ============================================================ */
 (function () {
   "use strict";
+
+  /* ---------- Vercel Web Analytics ----------
+     Fréquentation du site : visiteurs, pages, provenance, appareils.
+     Sans témoin ni identifiant de personne — ce n'est pas du profilage,
+     donc pas soumis au consentement, contrairement au pixel plus bas.
+     Chaque page charge /_vercel/insights/script.js ; la file `vaq`
+     retient les appels faits avant qu'il soit prêt. Les fonctions de
+     LDA_STATS nomment les étapes du parcours d'achat pour qu'on puisse
+     répondre à « combien de visiteurs, combien jusqu'au panier ». */
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  function stat(nom, donnees) {
+    try { window.va("event", { name: nom, data: donnees || {} }); } catch (e) { /* jamais casser la boutique */ }
+  }
+  function totalPanier(panier) {
+    var total = 0, n = 0;
+    (panier || []).forEach(function (i) { total += (i.p || 0) * (i.q || 1); n += i.q || 1; });
+    return { total: Math.round(total * 100) / 100, articles: n };
+  }
+  window.LDA_STATS = {
+    viewContent: function (p) { if (p) stat("Fiche produit", { produit: p.h, rayon: p.dept || "" }); },
+    addToCart: function (p, variante, qte) {
+      if (p) stat("Ajout panier", { produit: p.h, format: (variante && variante.t) || "", qte: qte || 1 });
+    },
+    initiateCheckout: function (panier) { var t = totalPanier(panier); stat("Paiement lancé", t); },
+    purchase: function (panier, ref) { var t = totalPanier(panier); t.commande = ref || ""; stat("Achat", t); },
+  };
 
   var PIXEL_ID = "3323503304502760";   // jeu de données Meta — Literie d'Amitié
   var DEVISE = "CAD";
