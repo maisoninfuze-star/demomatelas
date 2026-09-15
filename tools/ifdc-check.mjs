@@ -135,7 +135,11 @@ for (const [h, m] of Object.entries(carte.produits)) {
     if (!p.off) disparus.push({ p, mortes });
   }
   else {
-    if (p.off) revenus.push({ p, vivantes });
+    // Seul un produit masqué PAR CETTE VÉRIFICATION (il porte offDate) est
+    // remis en vente quand sa page revient. Un « off » posé à la main, sans
+    // date, est un doublon retiré du catalogue : sa page IFDC a toujours été
+    // vivante, et la remettre chaque lundi refaisait apparaître les doublons.
+    if (p.off && p.offDate) revenus.push({ p, vivantes });
     if (mortes.length) partiels.push({ p, mortes, vivantes });
   }
 }
