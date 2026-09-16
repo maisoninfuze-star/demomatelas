@@ -32,6 +32,14 @@ export const stripeWebhookSecret = () =>
 export const ghlWebhookUrl = () =>
   env("GHL_WEBHOOK_URL", "GHL_WEBHOOK", "GOHIGHLEVEL_WEBHOOK_URL", "LEADCONNECTOR_WEBHOOK_URL");
 
+/* API Conversions de Meta : le jeton d'accès généré dans le Gestionnaire
+   d'événements (Paramètres › API Conversions). Sans lui, aucun achat n'est
+   envoyé côté serveur — le pixel du navigateur reste seul. */
+export const metaCapiToken = () =>
+  env("META_CAPI_TOKEN", "META_ACCESS_TOKEN", "META_CONVERSIONS_TOKEN", "FB_ACCESS_TOKEN", "CAPI_TOKEN");
+export const metaPixelId = () => env("META_PIXEL_ID", "META_DATASET_ID", "FB_PIXEL_ID") || "3323503304502760";
+export const metaTestEventCode = () => env("META_TEST_EVENT_CODE", "META_TEST_CODE");
+
 /* Clé de signature des liens de compte.
    Si COMPTE_SECRET n'est pas définie, on la DÉRIVE de la clé Stripe par
    HMAC : aussi secrète que la clé Stripe, jamais exposée, et une variable
