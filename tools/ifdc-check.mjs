@@ -44,6 +44,17 @@ const mapPath = path.join(ROOT, "tools/ifdc-map.json");
 if (!existsSync(mapPath)) { console.error("tools/ifdc-map.json manquant — lancez d'abord tools/ifdc-map-build.mjs"); process.exit(1); }
 const carte = JSON.parse(readFileSync(mapPath, "utf8"));
 
+/* Rubans « DISCONTINUED » relevés par la dernière collecte complète
+   (tools/ifdc-scrape.mjs). Absent, l'ensemble est vide et la vérification
+   se comporte exactement comme avant. */
+const catPath = path.join(ROOT, "tools/ifdc-catalogue.json");
+const RETIRES = new Set(
+  existsSync(catPath)
+    ? Object.values(JSON.parse(readFileSync(catPath, "utf8")).produits).filter((x) => x.retire).map((x) => x.slug)
+    : []
+);
+if (RETIRES.size) console.log(`${RETIRES.size} pages portent le ruban « discontinued »`);
+
 const dataPath = path.join(ROOT, "data.js");
 const dataSrc = readFileSync(dataPath, "utf8");
 // Même expression qu'api/checkout.js : non gourmande, sinon elle avale
@@ -135,6 +146,15 @@ for (const [h, m] of Object.entries(carte.produits)) {
     if (!p.off) disparus.push({ p, mortes });
   }
   else {
+    // Une page vivante peut porter le ruban « DISCONTINUED » : chez IFDC c'est
+    // la seule marque de fin de série (isInStock dit « en stock » sur les 978
+    // pages, le magasin ne suit pas ses stocks). Si tools/ifdc-catalogue.json
+    // est présent, on le lit : une page retirée compte comme une page morte.
+    const retirees = vivantes.filter((s) => RETIRES.has(s));
+    if (retirees.length === vivantes.length && vivantes.length) {
+      if (!p.off) disparus.push({ p, mortes: retirees, ruban: true });
+      continue;
+    }
     // Seul un produit masqué PAR CETTE VÉRIFICATION (il porte offDate) est
     // remis en vente quand sa page revient. Un « off » posé à la main, sans
     // date, est un doublon retiré du catalogue : sa page IFDC a toujours été
