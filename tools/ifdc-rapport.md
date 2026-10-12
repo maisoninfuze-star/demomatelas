@@ -1,19 +1,11 @@
-# Disponibilité IFDC — 5 octobre 2026
+# Disponibilité IFDC — 12 octobre 2026
 
-834 pages vérifiées · **5** disparitions · **0** adresse changée · **3** produits amputés d'un fini · **0** retour
-
-> data.js a été modifié : les produits disparus sont masqués, les revenus sont ressortis.
-
-## Disparus d'IFDC — masqués sur le site
-
-- **Ensemble salle à manger 7 pièces T-1812/ C-1825-7Pc** (salle, 1619.98 $) — [t-1812-c-1825](https://www.ifdc.ca/product-page/t-1812-c-1825)
-- **Ensemble salle à manger 5 pièces T-1812/ C-1825-5Pc** (salle, 1279.98 $) — [t-1812-c-1825](https://www.ifdc.ca/product-page/t-1812-c-1825)
-- **Ensemble salle à manger 7 pièces T-1812/ C-1826-7Pc** (salle, 1619.98 $) — [t-1812-c-1826](https://www.ifdc.ca/product-page/t-1812-c-1826)
-- **Ensemble salle à manger 5 pièces T-1812/ C-1826-5Pc** (salle, 1279.98 $) — [t-1812-c-1826](https://www.ifdc.ca/product-page/t-1812-c-1826)
-- **Table seulement T-1812** (salle, 599.98 $) — [t-1812-c-1825](https://www.ifdc.ca/product-page/t-1812-c-1825), [t-1812-c-1826](https://www.ifdc.ca/product-page/t-1812-c-1826), [t-1812-c-1835](https://www.ifdc.ca/product-page/t-1812-c-1835)
+834 pages vérifiées · **0** disparition · **0** adresse changée · **5** produits amputés d'un fini · **0** retour
 
 ## Un fini en moins — le produit reste en vente
 
+- **Lit IF-314** — parti : [if-314e](https://www.ifdc.ca/product-page/if-314e) · reste : 1 page
+- **Table seulement T-1810** — parti : [t-1810-c-1727](https://www.ifdc.ca/product-page/t-1810-c-1727) · reste : 3 pages
 - **Chaise C-1825** — parti : [t-1812-c-1825](https://www.ifdc.ca/product-page/t-1812-c-1825) · reste : 3 pages
 - **Chaise C-1826** — parti : [t-1812-c-1826](https://www.ifdc.ca/product-page/t-1812-c-1826) · reste : 4 pages
 - **Chaise C-1835** — parti : [t-1812-c-1835](https://www.ifdc.ca/product-page/t-1812-c-1835) · reste : 4 pages
