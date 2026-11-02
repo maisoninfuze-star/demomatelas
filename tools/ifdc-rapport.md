@@ -1,17 +1,6 @@
-# Disponibilité IFDC — 26 octobre 2026
+# Disponibilité IFDC — 2 novembre 2026
 
-834 pages vérifiées · **6** disparitions · **0** adresse changée · **5** produits amputés d'un fini · **0** retour
-
-> data.js a été modifié : les produits disparus sont masqués, les revenus sont ressortis.
-
-## Disparus d'IFDC — masqués sur le site
-
-- **IF-3430** (pieces, 139.98 $) — [if-3430](https://www.ifdc.ca/product-page/if-3430)
-- **Lit de jour IF-305** (lits, 919.98 $) — [if-305](https://www.ifdc.ca/product-page/if-305)
-- **Lit IF-5231 (velours noir)** (lits, 799.98 $) — [if-5231](https://www.ifdc.ca/product-page/if-5231)
-- **Lit IF-5613** (lits, 439.98 $) — [if-5613](https://www.ifdc.ca/product-page/if-5613)
-- **Lit IF-5652 (bleu)** (lits, 459.98 $) — [if-5652](https://www.ifdc.ca/product-page/if-5652)
-- **Sofa IF-8220** (salon, 440 $) — [if-8220](https://www.ifdc.ca/product-page/if-8220)
+834 pages vérifiées · **0** disparition · **0** adresse changée · **5** produits amputés d'un fini · **0** retour
 
 ## Un fini en moins — le produit reste en vente
 
