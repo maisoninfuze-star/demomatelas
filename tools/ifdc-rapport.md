@@ -1,6 +1,12 @@
-# Disponibilité IFDC — 2 novembre 2026
+# Disponibilité IFDC — 9 novembre 2026
 
-834 pages vérifiées · **0** disparition · **0** adresse changée · **5** produits amputés d'un fini · **0** retour
+834 pages vérifiées · **1** disparition · **0** adresse changée · **5** produits amputés d'un fini · **0** retour
+
+> data.js a été modifié : les produits disparus sont masqués, les revenus sont ressortis.
+
+## Disparus d'IFDC — masqués sur le site
+
+- **Sofa IF-8200** (salon, 400 $) — [if-8200](https://www.ifdc.ca/product-page/if-8200)
 
 ## Un fini en moins — le produit reste en vente
 
@@ -10,7 +16,7 @@
 - **Chaise C-1826** — parti : [t-1812-c-1826](https://www.ifdc.ca/product-page/t-1812-c-1826) · reste : 4 pages
 - **Chaise C-1835** — parti : [t-1812-c-1835](https://www.ifdc.ca/product-page/t-1812-c-1835) · reste : 4 pages
 
-## Actuellement masqués (31)
+## Actuellement masqués (32)
 
 - **Madison IF-100 — Coffre** — pieces — masqué le ?
 - **Andros** — ensembles — masqué le 2026-10-19
@@ -39,6 +45,7 @@
 - **Tabouret de bar - Grey PU ST-7801** — salle — masqué le 2026-09-28
 - **Sofa inclinable IF-6305** — salon — masqué le 2026-09-29
 - **Sofa inclinable IF-6351** — salon — masqué le 2026-09-29
+- **Sofa IF-8200** — salon — masqué le 2026-11-09
 - **Sofa IF-8220** — salon — masqué le 2026-10-26
 - **3Pc Coffee Set IF-2013** — salon — masqué le 2026-08-31
 - **3Pc Coffee Set IF-2070** — salon — masqué le 2026-09-21
